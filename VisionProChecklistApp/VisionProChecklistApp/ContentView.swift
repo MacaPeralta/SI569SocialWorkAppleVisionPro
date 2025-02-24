@@ -11,7 +11,7 @@ struct ChecklistItem: Identifiable {
 
 struct ContentView: View {
     
-    @Binding var immersiveSpaceID: String
+    @Binding var immersiveSpaceID: String //Changing id for different immersive space 360 views
     
     // Environment Property Wrappers for immersive space
     @Environment(\.openImmersiveSpace) private var openImmersiveSpace
@@ -67,11 +67,11 @@ struct ContentView: View {
                     interviewQuestionsView
                 }
             }
-            .padding(40) // Add padding to simulate document margins
+            .padding(40)
         }
-        .background(Color.white) // White background to match the paper feel
-        .cornerRadius(20) // Rounded corners
-        .shadow(radius: 10) // Add shadow for paper-like depth
+        .background(Color.white)
+        .cornerRadius(20)
+        .shadow(radius: 10)
         
         // Button to control the immersive environment
         Button(immersiveSpaceActive ? "Exit Environment" : "View Environment") {
@@ -94,7 +94,7 @@ struct ContentView: View {
             .font(.title)
             .fontWeight(.bold)
             .foregroundColor(.black)
-            .frame(maxWidth: .infinity, alignment: .center) // Center the title
+            .frame(maxWidth: .infinity, alignment: .center)
             .padding(.top, 16)
     }
     
@@ -103,26 +103,26 @@ struct ContentView: View {
             Button("Living Room") {
                 selectedRoom = "Living Room"
                 immersiveSpaceID = "LivingRoom_360"
-                print("Immersive Space ID set to: \(immersiveSpaceID)")// Update immersive space ID to LivingRoom_360
+                print("Immersive Space ID set to: \(immersiveSpaceID)")
             }
             .buttonStyle(TabButtonStyle(isSelected: selectedRoom == "Living Room"))
 
             Button("Kitchen") {
                 selectedRoom = "Kitchen"
                 immersiveSpaceID = "Kitchen_360"
-                print("Immersive Space ID set to: \(immersiveSpaceID)")// Update immersive space ID to Kitchen_360
+                print("Immersive Space ID set to: \(immersiveSpaceID)")
             }
             .buttonStyle(TabButtonStyle(isSelected: selectedRoom == "Kitchen"))
 
             Button("Bathroom") {
                 selectedRoom = "Bathroom"
-                immersiveSpaceID = "Bathroom_360"   // Update immersive space ID to Bathroom_360
+                immersiveSpaceID = "Bathroom_360"
             }
             .buttonStyle(TabButtonStyle(isSelected: selectedRoom == "Bathroom"))
 
             Button("Bedroom") {
                 selectedRoom = "Bedroom"
-                immersiveSpaceID = "Bedroom_360"    // Update immersive space ID to Bedroom_360
+                immersiveSpaceID = "Bedroom_360"
             }
             .buttonStyle(TabButtonStyle(isSelected: selectedRoom == "Bedroom"))
         }
@@ -142,13 +142,13 @@ struct ContentView: View {
     private func checklistItemsForRoom(_ room: String) -> [ChecklistItem] {
         switch room {
         case "Living Room":
-            return Array(checklistItems[8..<13]) // Adjust these ranges as per your data
+            return Array(checklistItems[8..<13]) // Adjust these ranges as per the data and any added checklist item questions
         case "Kitchen":
-            return Array(checklistItems[0..<8]) // Adjust these ranges as per your data
+            return Array(checklistItems[0..<8])
         case "Bathroom":
-            return Array(checklistItems[13..<17]) // Adjust these ranges as per your data
+            return Array(checklistItems[13..<17])
         case "Bedroom":
-            return Array(checklistItems[17..<20]) // Adjust these ranges as per your data
+            return Array(checklistItems[17..<20])
         default:
             return []
         }
@@ -208,20 +208,10 @@ struct ContentView: View {
     }
     
     private func isChecklistComplete() -> Bool {
-        // Collect items that are missing a selection
         let incompleteItems = checklistItems.filter { $0.selectedOption == nil }
         
-        // Print incomplete items for debugging
-        if !incompleteItems.isEmpty {
-            print("Incomplete items:")
-            for item in incompleteItems {
-                print("- \(item.question)")
-            }
-        }
-
-        // Check if all checklist items have a selectedOption
+        // Check if the items are all checked to generate the interview questions button
         let allCompleted = incompleteItems.isEmpty
-        print("isChecklistComplete result: \(allCompleted)")
         return allCompleted
     }
     

@@ -1,0 +1,78 @@
+#usda 1.0
+(
+    customLayerData = {
+        string creator = "Reality Composer Pro Version 2.0 (443)"
+    }
+    defaultPrim = "Root"
+    metersPerUnit = 1
+    upAxis = "Y"
+)
+
+def Xform "Root"
+{
+    def "card_01" (
+        active = true
+        prepend apiSchemas = ["MaterialBindingAPI"]
+        references = @card_01.usdc@
+    )
+    {
+        rel material:binding = </Root/card_arm_01_mat> (
+            bindMaterialAs = "strongerThanDescendants"
+        )
+        float3 xformOp:scale = (1, 1, 1)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+        def RealityKitComponent "GroundingShadow"
+        {
+            bool enableIBLShadow = 1
+            bool enableMeshShadow = 1
+            uniform token info:id = "RealityKit.GroundingShadow"
+        }
+    }
+
+    def "card_arm_01_mat" (
+        active = true
+        references = @card_arm_01_mat.usda@
+    )
+    {
+        token inputs:frame:stPrimvarName = "st" (
+            customData = {
+                dictionary realitykit = {
+                    bool hide = 1
+                }
+            }
+        )
+        token outputs:mtlx:surface.connect = </Root/card_arm_01_mat/PreviewSurface.outputs:out>
+        token outputs:surface.connect = </Root/card_arm_01_mat/UsdPreviewSurface.outputs:surface>
+
+        over "PreviewSurface" (
+            active = false
+        )
+        {
+        }
+
+        over "UsdPreviewSurface" (
+            active = true
+        )
+        {
+            color3f inputs:diffuseColor = (0.18, 0.18, 0.18)
+            color3f inputs:diffuseColor.connect = </Root/card_arm_01_mat/diffuseColor.outputs:rgb>
+        }
+
+        def Shader "diffuseColor"
+        {
+            uniform token info:id = "UsdUVTexture"
+            asset inputs:file = @textures/cards/Q2.png@
+            float2 inputs:st.connect = </Root/card_arm_01_mat/diffuseColor/TexCoordReader.outputs:result>
+            color3f outputs:rgb
+
+            def Shader "TexCoordReader"
+            {
+                uniform token info:id = "UsdPrimvarReader_float2"
+                token inputs:varname.connect = </Root/card_arm_01_mat.inputs:frame:stPrimvarName>
+                float2 outputs:result
+            }
+        }
+    }
+}
+

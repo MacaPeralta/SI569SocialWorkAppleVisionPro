@@ -1,0 +1,168 @@
+#usda 1.0
+(
+    customLayerData = {
+        string creator = "Reality Composer Pro Version 1.0 (413)"
+    }
+    defaultPrim = "Root"
+    metersPerUnit = 1
+    upAxis = "Y"
+)
+
+def Xform "Root" (
+    references = None
+)
+{
+    float3 xformOp:scale = (0.01, 0.01, 0.01)
+    uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+    def RealityKitAudioFile "pickUpCard_mp3"
+    {
+        uniform asset file = @pickUpCard.mp3@
+    }
+
+    def Xform "Transform" (
+        active = true
+        customData = {
+            float3 rotationEulerHint = (0, 0, 0)
+        }
+        references = None
+    )
+    {
+        quatf xformOp:orient = (1, 0, 0, 0)
+        float3 xformOp:translate = (0, 0, 0)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+        def RealityKitComponent "SpatialAudio"
+        {
+            uniform token info:id = "RealityKit.SpatialAudio"
+            float rolloffFactor = 0
+        }
+    }
+
+    def "table_assembly" (
+        active = true
+        customData = {
+            float3 rotationEulerHint = (0, 0, 0)
+        }
+        references = @table_assembly.usda@
+    )
+    {
+        quatf xformOp:orient = (1, 0, 0, 0)
+        float3 xformOp:scale = (1, 1, 1)
+        float3 xformOp:translate = (0, 0, 0)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+        def RealityKitComponent "GroundingShadow"
+        {
+            bool enableIBLShadow = 1
+            bool enableMeshShadow = 1
+            uniform token info:id = "RealityKit.GroundingShadow"
+        }
+
+        over "table_rectangle" (
+            customData = {
+                float3 rotationEulerHint = (-1.110392e-16, 0.017453287, 0)
+            }
+        )
+        {
+            quatf xformOp:orient = (0.9999619, -5.551749e-17, 0.008726533, 4.8449364e-19)
+            float3 xformOp:translate = (0, 0, 0)
+
+            over "Looks"
+            {
+                over "table_square_matSG"
+                {
+                    string inputs:file79:varname (
+                        customData = {
+                            dictionary realitykit = {
+                                float2 positionInSubgraph = (-343.75, 87.5)
+                            }
+                        }
+                    )
+                    string inputs:file82:varname (
+                        customData = {
+                            dictionary realitykit = {
+                                float2 positionInSubgraph = (-122.25, 87.5)
+                            }
+                        }
+                    )
+                    string inputs:file83:varname (
+                        customData = {
+                            dictionary realitykit = {
+                                float2 positionInSubgraph = (99.25, 87.5)
+                            }
+                        }
+                    )
+                    token outputs:mtlx:surface
+                    token outputs:realitykit:vertex
+                    float2 ui:nodegraph:realitykit:subgraphOutputs:pos = (335.75, 110.5)
+                }
+            }
+        }
+    }
+
+    def "table_assembly_1" (
+        active = true
+        customData = {
+            float3 rotationEulerHint = (0, 0, 3.1415927)
+        }
+        references = @table_assembly.usda@
+    )
+    {
+        float2 ui:nodegraph:node:pos = (-827.345, 103.39484)
+        int ui:nodegraph:node:stackingOrder = 1
+        quatf xformOp:orient = (-4.371139e-8, 0, 0, 1)
+        float3 xformOp:scale = (1, 1, 1)
+        float3 xformOp:translate = (0, -1.4, 0)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+        def RealityKitComponent "GroundingShadow"
+        {
+            bool enableIBLShadow = 1
+            bool enableMeshShadow = 1
+            uniform token info:id = "RealityKit.GroundingShadow"
+        }
+
+        over "table_rectangle" (
+            customData = {
+                float3 rotationEulerHint = (-1.110392e-16, 0.017453287, 0)
+            }
+        )
+        {
+            quatf xformOp:orient = (0.9999619, -5.551749e-17, 0.008726533, 4.8449364e-19)
+            float3 xformOp:translate = (0, 0, 0)
+
+            over "Looks"
+            {
+                over "table_square_matSG"
+                {
+                    string inputs:file79:varname (
+                        customData = {
+                            dictionary realitykit = {
+                                float2 positionInSubgraph = (-343.75, 87.5)
+                            }
+                        }
+                    )
+                    string inputs:file82:varname (
+                        customData = {
+                            dictionary realitykit = {
+                                float2 positionInSubgraph = (-122.25, 87.5)
+                            }
+                        }
+                    )
+                    string inputs:file83:varname (
+                        customData = {
+                            dictionary realitykit = {
+                                float2 positionInSubgraph = (99.25, 87.5)
+                            }
+                        }
+                    )
+                    token outputs:mtlx:surface
+                    token outputs:realitykit:vertex
+                    float2 ui:nodegraph:realitykit:subgraphOutputs:pos = (335.75, 110.5)
+                }
+            }
+        }
+    }
+}
+

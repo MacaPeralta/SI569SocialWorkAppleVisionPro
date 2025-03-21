@@ -25,6 +25,18 @@
       }
     ]
   },
+  "136FD0AD-6713-4B76-8A9F-6D17143449B4" : {
+    "objectMetadataList" : [
+      [
+        "136FD0AD-6713-4B76-8A9F-6D17143449B4",
+        "Root"
+      ],
+      {
+        "isExpanded" : true,
+        "isLocked" : false
+      }
+    ]
+  },
   "1858FEBC-B187-47DA-8B10-C31BD020EC6F" : {
     "objectMetadataList" : [
       [
@@ -101,8 +113,7 @@
     "objectMetadataList" : [
       [
         "2DBD2779-949E-4725-9590-5207F8F60EA0",
-        "conveyor_belt",
-        "Conveyor_Belt_Mesh"
+        "Material"
       ],
       {
         "isExpanded" : true,
@@ -110,7 +121,8 @@
       },
       [
         "2DBD2779-949E-4725-9590-5207F8F60EA0",
-        "Material"
+        "conveyor_belt",
+        "Conveyor_Belt_Mesh"
       ],
       {
         "isExpanded" : true,
@@ -170,7 +182,8 @@
     "objectMetadataList" : [
       [
         "396A753D-3FCE-4223-A4FD-81DFD1B3F698",
-        "rectangle_table"
+        "rectangle_table",
+        "Looks"
       ],
       {
         "isExpanded" : true,
@@ -178,8 +191,7 @@
       },
       [
         "396A753D-3FCE-4223-A4FD-81DFD1B3F698",
-        "rectangle_table",
-        "Looks"
+        "rectangle_table"
       ],
       {
         "isExpanded" : true,
@@ -317,6 +329,37 @@
       }
     ]
   },
+  "5F834463-9902-4F13-851C-24E873E6D929" : {
+    "objectMetadataList" : [
+      [
+        "5F834463-9902-4F13-851C-24E873E6D929",
+        "Root"
+      ],
+      {
+        "isExpanded" : true,
+        "isLocked" : false
+      },
+      [
+        "5F834463-9902-4F13-851C-24E873E6D929",
+        "Root",
+        "round_table"
+      ],
+      {
+        "isExpanded" : true,
+        "isLocked" : false
+      },
+      [
+        "5F834463-9902-4F13-851C-24E873E6D929",
+        "Root",
+        "round_table",
+        "Cylinder"
+      ],
+      {
+        "isExpanded" : true,
+        "isLocked" : false
+      }
+    ]
+  },
   "61E6EFDB-D057-4FD6-86A1-9E83171B83F7" : {
     "objectMetadataList" : [
       [
@@ -364,8 +407,7 @@
     "objectMetadataList" : [
       [
         "6A0E0B9B-C43C-4E81-B743-8369CA61CD5A",
-        "Root",
-        "Material_board"
+        "Root"
       ],
       {
         "isExpanded" : true,
@@ -373,7 +415,8 @@
       },
       [
         "6A0E0B9B-C43C-4E81-B743-8369CA61CD5A",
-        "Root"
+        "Root",
+        "Material_board"
       ],
       {
         "isExpanded" : true,
@@ -395,15 +438,6 @@
       [
         "6B0FE460-615F-4AC1-B88D-F07B2C91455D",
         "Root",
-        "Material"
-      ],
-      {
-        "isExpanded" : true,
-        "isLocked" : false
-      },
-      [
-        "6B0FE460-615F-4AC1-B88D-F07B2C91455D",
-        "Root",
         "Material_2"
       ],
       {
@@ -413,6 +447,15 @@
       [
         "6B0FE460-615F-4AC1-B88D-F07B2C91455D",
         "Root"
+      ],
+      {
+        "isExpanded" : true,
+        "isLocked" : false
+      },
+      [
+        "6B0FE460-615F-4AC1-B88D-F07B2C91455D",
+        "Root",
+        "Material"
       ],
       {
         "isExpanded" : true,
@@ -436,8 +479,7 @@
     "objectMetadataList" : [
       [
         "718C46EE-3026-48D2-8101-C349DBA088F0",
-        "Root",
-        "table_assembly"
+        "Root"
       ],
       {
         "isExpanded" : true,
@@ -445,7 +487,19 @@
       },
       [
         "718C46EE-3026-48D2-8101-C349DBA088F0",
-        "Root"
+        "Root",
+        "Group",
+        "Cylinder"
+      ],
+      {
+        "isExpanded" : true,
+        "isLocked" : false
+      },
+      [
+        "718C46EE-3026-48D2-8101-C349DBA088F0",
+        "Root",
+        "round_table",
+        "Cylinder"
       ],
       {
         "isExpanded" : true,
@@ -498,8 +552,7 @@
     "objectMetadataList" : [
       [
         "914D484B-DFA7-402D-94A0-A6D1083C7B86",
-        "Root",
-        "gantry"
+        "Root"
       ],
       {
         "isExpanded" : true,
@@ -507,7 +560,8 @@
       },
       [
         "914D484B-DFA7-402D-94A0-A6D1083C7B86",
-        "Root"
+        "Root",
+        "gantry"
       ],
       {
         "isExpanded" : true,
@@ -588,7 +642,8 @@
       },
       [
         "9EA55302-0617-4BB0-88EC-CB095954DA3D",
-        "Root"
+        "Root",
+        "table_mat"
       ],
       {
         "isExpanded" : true,
@@ -596,8 +651,7 @@
       },
       [
         "9EA55302-0617-4BB0-88EC-CB095954DA3D",
-        "Root",
-        "table_mat"
+        "Root"
       ],
       {
         "isExpanded" : true,
@@ -621,6 +675,15 @@
     "objectMetadataList" : [
       [
         "A4216F42-1CE9-4D59-8658-1FD730C1129F",
+        "table_rectangle",
+        "Looks"
+      ],
+      {
+        "isExpanded" : true,
+        "isLocked" : false
+      },
+      [
+        "A4216F42-1CE9-4D59-8658-1FD730C1129F",
         "table_rectangle"
       ],
       {
@@ -630,15 +693,6 @@
       [
         "A4216F42-1CE9-4D59-8658-1FD730C1129F",
         "Material"
-      ],
-      {
-        "isExpanded" : true,
-        "isLocked" : false
-      },
-      [
-        "A4216F42-1CE9-4D59-8658-1FD730C1129F",
-        "table_rectangle",
-        "Looks"
       ],
       {
         "isExpanded" : true,
@@ -686,7 +740,9 @@
     "objectMetadataList" : [
       [
         "B1CC4727-C9C5-4DFB-A907-BBBD6349AE2B",
-        "Material"
+        "Material",
+        "flipYcoord",
+        "tiled_mat"
       ],
       {
         "isExpanded" : true,
@@ -694,9 +750,7 @@
       },
       [
         "B1CC4727-C9C5-4DFB-A907-BBBD6349AE2B",
-        "Material",
-        "flipYcoord",
-        "tiled_mat"
+        "Material"
       ],
       {
         "isExpanded" : true,
@@ -780,7 +834,8 @@
     "objectMetadataList" : [
       [
         "C834DADC-084D-4C7C-97CC-1EE60CEB420B",
-        "Root"
+        "Root",
+        "card_arm_01_mat"
       ],
       {
         "isExpanded" : true,
@@ -788,8 +843,7 @@
       },
       [
         "C834DADC-084D-4C7C-97CC-1EE60CEB420B",
-        "Root",
-        "card_arm_01_mat"
+        "Root"
       ],
       {
         "isExpanded" : true,
@@ -854,7 +908,7 @@
     "objectMetadataList" : [
       [
         "E5B88685-EF6C-401C-8633-BD67C0F49516",
-        "Material"
+        "cloud_plane"
       ],
       {
         "isExpanded" : true,
@@ -862,7 +916,7 @@
       },
       [
         "E5B88685-EF6C-401C-8633-BD67C0F49516",
-        "cloud_plane"
+        "Material"
       ],
       {
         "isExpanded" : true,
@@ -898,6 +952,14 @@
     "objectMetadataList" : [
       [
         "FB314189-4086-4667-917C-EC194B87F026",
+        "Material"
+      ],
+      {
+        "isExpanded" : true,
+        "isLocked" : false
+      },
+      [
+        "FB314189-4086-4667-917C-EC194B87F026",
         "cutebot_shadow"
       ],
       {
@@ -908,14 +970,6 @@
         "FB314189-4086-4667-917C-EC194B87F026",
         "cutebot_shadow",
         "Looks"
-      ],
-      {
-        "isExpanded" : true,
-        "isLocked" : false
-      },
-      [
-        "FB314189-4086-4667-917C-EC194B87F026",
-        "Material"
       ],
       {
         "isExpanded" : true,

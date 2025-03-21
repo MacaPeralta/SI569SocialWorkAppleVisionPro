@@ -40,7 +40,7 @@ class GameRenderer: TabletopGame.RenderDelegate {
     
     @MainActor
     func loadAssets() async {
-        let staticSceneEntity = try! await Entity(named: "static_scene", in: tabletopGameSampleContentBundle)
+        let staticSceneEntity = try! await Entity(named: "static_scene_round_table", in: tabletopGameSampleContentBundle)
         staticSceneEntity.setParent(root)
 
         /*//let portalWorld.addChild(boardCavityEntity)CavityEntity = try! await Entity(named: "board_cavity_assembly", in: tabletopGameSampleContentBundle)

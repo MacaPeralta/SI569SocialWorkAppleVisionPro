@@ -4,23 +4,42 @@ See the LICENSE.txt file for this sample’s licensing information.
 Abstract:
 Setup of the scene and views for the app.
 */
-import Foundation
 import SwiftUI
-import TabletopKit
 import RealityKit
+import _RealityKit_SwiftUI 
+import TabletopKit
+
+
+
 
 // MARK: App entrypoint
-@MainActor
+
+
 @main
 struct SampleApp: App {
+    @State private var immersionStyle: ImmersionStyle = .full
+    @Environment(\.openImmersiveSpace) var openImmersiveSpace
+
     var body: some SwiftUI.Scene {
         WindowGroup(id: "Volumetric") {
-            GameView().volumeBaseplateVisibility(.hidden)
+            EmptyView()
+                .task {
+                    await openImmersiveSpace(id: "ImmersiveGameSpace")
+                }
         }
         .windowStyle(.volumetric)
-        .defaultSize(width: 1.5, height: 1.5, depth: 1.5, in: .meters)
+        .defaultSize(width: 1.0, height: 1.0, depth: 1.0, in: .meters)
+
+        ImmersiveSpace(id: "ImmersiveGameSpace") {
+            GameImmersiveView()
+        }
+        .immersionStyle(selection: $immersionStyle, in: .full)
     }
 }
+
+
+
+
 
 
 @MainActor

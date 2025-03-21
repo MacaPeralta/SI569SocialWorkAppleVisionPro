@@ -12,6 +12,7 @@ def Xform "Root" (
     references = None
 )
 {
+    reorder nameChildren = ["pickUpCard_mp3", "Transform", "table_assembly", "table_assembly_1", "round_table"]
     float3 xformOp:scale = (0.01, 0.01, 0.01)
     uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
 
@@ -40,7 +41,6 @@ def Xform "Root" (
     }
 
     def "table_assembly" (
-        active = true
         customData = {
             float3 rotationEulerHint = (0, 0, 0)
         }
@@ -102,7 +102,6 @@ def Xform "Root" (
     }
 
     def "table_assembly_1" (
-        active = true
         customData = {
             float3 rotationEulerHint = (0, 0, 3.1415927)
         }

@@ -56,7 +56,7 @@ struct CardStockGroup: Equipment {
 
     init(id: ID) {
         self.id = id
-        // The die and card deck are placed on the side of the table with no seat.
+        // The die and card deck are placed in the center of the table
         initialState = .init(parentID: .tableID,
                              seatControl: .restricted([]),
                              pose: .init(position: .init(x: 0, z: 0), rotation: .degrees(90)),

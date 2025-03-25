@@ -23,9 +23,9 @@ struct SampleApp: App {
     var body: some SwiftUI.Scene {
         WindowGroup(id: "Volumetric") {
             GameView().volumeBaseplateVisibility(.hidden)
-                .task {
-                    await openImmersiveSpace(id: "ImmersiveGameSpace")
-                }
+//                .task {
+//                    await openImmersiveSpace(id: "ImmersiveGameSpace")
+//                }
         }
         .windowStyle(.volumetric)
         .defaultSize(width: 1, height: 1.5, depth: 1, in: .meters)
@@ -73,8 +73,11 @@ struct GameView: View {
 }
 
 struct GameToolbar: ToolbarContent {
-    let game: Game
+    @State private var showImmersiveView: Bool = false
+    @Environment(\.openImmersiveSpace) private var openImmersiveSpace
+    @Environment(\.dismissImmersiveSpace) private var dismissImmersiveSpace
     
+    let game: Game
     init(game: Game) {
         self.game = game
     }
@@ -89,6 +92,19 @@ struct GameToolbar: ToolbarContent {
                Task {
                     try! await Activity().activate()
                }
+            }
+            Spacer()
+            Button {
+                Task {
+                    if showImmersiveView {
+                        await dismissImmersiveSpace()
+                    } else {
+                        let result = await openImmersiveSpace(id: "ImmersiveGameSpace")
+                    }
+                    showImmersiveView.toggle()
+                }
+            } label: {
+                Label("Immersive", systemImage: showImmersiveView ? "vision.pro.fill" : "vision.pro")
             }
         }
     }

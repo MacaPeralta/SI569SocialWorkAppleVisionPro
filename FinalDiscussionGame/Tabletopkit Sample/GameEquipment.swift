@@ -38,6 +38,7 @@ struct PlayerSeat: TableSeat {
     Each seat faces the center of the table. */
     @MainActor static let seatPoses: [TableVisualState.Pose2D] = [
         .init(position: .init(x: 0, z: Double(GameMetrics.tableEdge)), rotation: .degrees(0)),
+        .init(position: .init(x: 0, z: -Double(GameMetrics.tableEdge)), rotation: .degrees(-180)),
         .init(position: .init(x: -Double(GameMetrics.tableEdge), z: 0), rotation: .degrees(-90)),
         .init(position: .init(x: Double(GameMetrics.tableEdge), z: 0), rotation: .degrees(90))
     ]

@@ -67,7 +67,6 @@
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		0314D79A2D8DDE8900C74C0D /* TabletopkitVisionApp */ = {isa = PBXFileSystemSynchronizedRootGroup; exceptions = (0314D7AF2D8DDE8A00C74C0D /* PBXFileSystemSynchronizedBuildFileExceptionSet */, ); explicitFileTypes = {}; explicitFolders = (); path = TabletopkitVisionApp; sourceTree = "<group>"; };
-		9A2A704B2D93301E005D9479 /* library.skybox */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = library.skybox; sourceTree = "<group>"; };
 /* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -126,7 +125,6 @@
 				87D38AF42BFE484600FEA20C /* Tabletopkit Sample.entitlements */,
 				8755DCEA2BC5962C005D8C82 /* Resources */,
 				87903A7F2BC4C376003009AC /* Assets.xcassets */,
-				9A2A704B2D93301E005D9479 /* library.skybox */,
 				87903A792BC4C376003009AC /* Info.plist */,
 				87903A7A2BC4C376003009AC /* Tabletopkit_SampleApp.swift */,
 				0314D7932D8DD8C100C74C0D /* GameImmersiveView.swift */,
@@ -212,9 +210,6 @@
 			buildRules = (
 			);
 			dependencies = (
-			);
-			fileSystemSynchronizedGroups = (
-				9A2A704B2D93301E005D9479 /* library.skybox */,
 			);
 			name = "Tabletopkit Sample";
 			packageProductDependencies = (

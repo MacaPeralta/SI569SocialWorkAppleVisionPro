@@ -14,7 +14,7 @@ extension EquipmentIdentifier {
 }
 
 struct Table: Tabletop {
-    var shape: TabletopShape = .rectangular(width: GameMetrics.tableEdge, height: GameMetrics.tableEdge, thickness: 0)
+    var shape: TabletopShape = .round(radius: GameMetrics.tableEdge, thickness: 0)
     
     var id: EquipmentIdentifier = .tableID
 }

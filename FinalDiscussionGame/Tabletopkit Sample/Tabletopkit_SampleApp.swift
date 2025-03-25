@@ -22,13 +22,13 @@ struct SampleApp: App {
 
     var body: some SwiftUI.Scene {
         WindowGroup(id: "Volumetric") {
-            EmptyView()
+            GameView().volumeBaseplateVisibility(.hidden)
                 .task {
                     await openImmersiveSpace(id: "ImmersiveGameSpace")
                 }
         }
         .windowStyle(.volumetric)
-        .defaultSize(width: 1.0, height: 1.0, depth: 1.0, in: .meters)
+        .defaultSize(width: 1, height: 1.5, depth: 1, in: .meters)
 
         ImmersiveSpace(id: "ImmersiveGameSpace") {
             GameImmersiveView()

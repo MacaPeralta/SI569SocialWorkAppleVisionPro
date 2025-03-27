@@ -11,6 +11,7 @@
 		0314D79E2D8DDE8900C74C0D /* RealityKitContent in Frameworks */ = {isa = PBXBuildFile; productRef = 0314D79D2D8DDE8900C74C0D /* RealityKitContent */; };
 		03C6EC312D6CF3BA007B0AA5 /* static_scene.scn in Resources */ = {isa = PBXBuildFile; fileRef = 03C6EC302D6CF3BA007B0AA5 /* static_scene.scn */; };
 		03C6EC332D6CF7D0007B0AA5 /* static_scene.scn in Resources */ = {isa = PBXBuildFile; fileRef = 03C6EC322D6CF7D0007B0AA5 /* static_scene.scn */; };
+		400FD9942D95304900C13368 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 400FD9932D95304500C13368 /* ContentView.swift */; };
 		465C8AAE2BF581000039460A /* GameObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 465C8AAD2BF581000039460A /* GameObserver.swift */; };
 		46BD421D2BCB1AA600F8CC03 /* GroupActivityManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46BD421C2BCB1AA600F8CC03 /* GroupActivityManager.swift */; };
 		8733BE3D2BF291B700802BE2 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8733BE3C2BF290CA00802BE2 /* Utils.swift */; };
@@ -34,6 +35,7 @@
 		03C6EC302D6CF3BA007B0AA5 /* static_scene.scn */ = {isa = PBXFileReference; lastKnownFileType = file.bplist; name = static_scene.scn; path = "Tabletopkit Sample/Resources/TabletopGameSampleContent/Sources/TabletopGameSampleContent/TabletopGameSampleContent.rkassets/static_scene.scn"; sourceTree = "<group>"; };
 		03C6EC322D6CF7D0007B0AA5 /* static_scene.scn */ = {isa = PBXFileReference; lastKnownFileType = file.bplist; name = static_scene.scn; path = "Tabletopkit Sample/Resources/TabletopGameSampleContent/Sources/TabletopGameSampleContent/TabletopGameSampleContent.rkassets/static_scene.scn"; sourceTree = "<group>"; };
 		3A53195BE3858298577DDD79 /* LICENSE.txt */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = LICENSE.txt; sourceTree = "<group>"; };
+		400FD9932D95304500C13368 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		40D3161C41CFD8B1DCF1D253 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		465C8AAD2BF581000039460A /* GameObserver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = GameObserver.swift; path = "Tabletopkit Sample/GameObserver.swift"; sourceTree = "<group>"; };
 		46BD421C2BCB1AA600F8CC03 /* GroupActivityManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = GroupActivityManager.swift; path = "Tabletopkit Sample/GroupActivityManager.swift"; sourceTree = "<group>"; };
@@ -127,6 +129,7 @@
 				87903A7F2BC4C376003009AC /* Assets.xcassets */,
 				87903A792BC4C376003009AC /* Info.plist */,
 				87903A7A2BC4C376003009AC /* Tabletopkit_SampleApp.swift */,
+				400FD9932D95304500C13368 /* ContentView.swift */,
 				0314D7932D8DD8C100C74C0D /* GameImmersiveView.swift */,
 				877B30D12BD3191400BD5107 /* GameSetup.swift */,
 				8749FB152BF424EA000193AD /* GameEquipment.swift */,
@@ -292,6 +295,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				877B30D82BD319F300BD5107 /* Game.swift in Sources */,
+				400FD9942D95304900C13368 /* ContentView.swift in Sources */,
 				877B30D62BD319C800BD5107 /* GameRenderer.swift in Sources */,
 				8749FB162BF424EA000193AD /* GameEquipment.swift in Sources */,
 				877B30DC2BD31A5B00BD5107 /* GameInteraction.swift in Sources */,

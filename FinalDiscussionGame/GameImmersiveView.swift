@@ -6,11 +6,12 @@ import TabletopKit
 struct GameImmersiveView: View {
     @State private var game: Game? = nil
     @State private var anchor: AnchorEntity? = nil
+    @Binding var immersiveSpaceID: String
 
     var body: some View {
         ZStack {
             RealityView { content in
-                if let texture = try? await TextureResource(named: "360image") {
+                if let texture = try? await TextureResource(named: immersiveSpaceID) {
                     var material = UnlitMaterial()
                     material.color = .init(texture: .init(texture))
                     let sphere = ModelEntity(mesh: .generateSphere(radius: 1000), materials: [material])
@@ -18,6 +19,9 @@ struct GameImmersiveView: View {
                     content.add(sphere)
                 }
             }
+            .id(immersiveSpaceID)
+        }
+    }
 //            if let loadedGame = game, let tableAnchor = anchor {
 //                RealityView { content in
 //                    content.add(tableAnchor)
@@ -51,8 +55,8 @@ struct GameImmersiveView: View {
 //                        print("Game and anchor loaded.")
 //                    }
 //            }
-        }
-    }
+        
+    
 }
 
 

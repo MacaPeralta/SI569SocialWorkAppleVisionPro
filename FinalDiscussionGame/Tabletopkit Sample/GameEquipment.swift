@@ -14,7 +14,7 @@ extension EquipmentIdentifier {
 }
 
 struct Table: Tabletop {
-    var shape: TabletopShape = .round(radius: GameMetrics.tableEdge, thickness: 0)
+    var shape: TabletopShape = .rectangular(width: GameMetrics.tableEdge, height: GameMetrics.tableEdge, thickness: 0)
     
     var id: EquipmentIdentifier = .tableID
 }
@@ -38,7 +38,6 @@ struct PlayerSeat: TableSeat {
     Each seat faces the center of the table. */
     @MainActor static let seatPoses: [TableVisualState.Pose2D] = [
         .init(position: .init(x: 0, z: Double(GameMetrics.tableEdge)), rotation: .degrees(0)),
-        .init(position: .init(x: 0, z: -Double(GameMetrics.tableEdge)), rotation: .degrees(-180)),
         .init(position: .init(x: -Double(GameMetrics.tableEdge), z: 0), rotation: .degrees(-90)),
         .init(position: .init(x: Double(GameMetrics.tableEdge), z: 0), rotation: .degrees(90))
     ]

@@ -9,17 +9,21 @@ import RealityKit
 import SwiftUI
 import TabletopGameSampleContent
 
+
+
 @Observable
 class Game {
     let tabletopGame: TabletopGame
     let renderer: GameRenderer
     let observer: GameObserver
     let setup: GameSetup
+    let useFullDeck: Bool
 
     @MainActor
-    init() async {
+    init(useFullDeck: Bool = false) async {
+        self.useFullDeck = useFullDeck
         renderer = GameRenderer()
-        setup = GameSetup(root: renderer.root)
+        setup = GameSetup(root: renderer.root, useFullDeck: useFullDeck)
         
         tabletopGame = TabletopGame(tableSetup: setup.setup)
         

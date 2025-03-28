@@ -19,12 +19,15 @@ import TabletopKit
 struct SampleApp: App {
     @State private var immersionStyle: ImmersionStyle = .full
     @State private var immersiveSpaceID: String = "360image"
+    @State private var useFullDeck: Bool = false
+
     
     @Environment(\.openImmersiveSpace) var openImmersiveSpace
 
     var body: some SwiftUI.Scene {
         WindowGroup(id: "Volumetric") {
-            GameView(immersiveSpaceID: $immersiveSpaceID).volumeBaseplateVisibility(.hidden)
+            GameView(immersiveSpaceID: $immersiveSpaceID, useFullDeck: $useFullDeck)
+
 //                .task {
 //                    await openImmersiveSpace(id: "ImmersiveGameSpace")
 //                }
@@ -58,6 +61,8 @@ struct GameView: View {
     @State private var game: Game?
     @State private var activityManager: GroupActivityManager?
     @Binding var immersiveSpaceID: String
+    @Binding var useFullDeck: Bool
+    
 
     var body: some View {
         ZStack {
@@ -66,16 +71,24 @@ struct GameView: View {
                     content.entities.append(loadedGame.renderer.root)
                     content.add(loadedGame.renderer.portalWorld)
                     //content.add(loadedGame.renderer.portal)
-                }.toolbar() {
-                    GameToolbar(game: loadedGame, immersiveSpaceID: $immersiveSpaceID)
+                }.toolbar {
+                    GameToolbar(game: loadedGame, immersiveSpaceID: $immersiveSpaceID, useFullDeck: $useFullDeck)
                 }.tabletopGame(loadedGame.tabletopGame, parent: loadedGame.renderer.root) { _ in
                     GameInteraction(game: loadedGame)
                 }
             }
         }
         .task {
-            self.game = await Game()
-            self.activityManager = .init(tabletopGame: game!.tabletopGame)
+            print("🟢 Initializing Game with useFullDeck = \(useFullDeck)")
+            self.game = await Game(useFullDeck: useFullDeck)
+            self.activityManager = GroupActivityManager(tabletopGame: game!.tabletopGame)
+        }
+        .onChange(of: useFullDeck) { newValue in
+            print("🟡 useFullDeck changed to: \(newValue)")
+            Task {
+                self.game = await Game(useFullDeck: newValue)
+                self.activityManager = GroupActivityManager(tabletopGame: game!.tabletopGame)
+            }
         }
     }
 }
@@ -89,12 +102,15 @@ struct GameToolbar: ToolbarContent {
     @Environment(\.openWindow) private var openWindow
     @Environment(\.dismiss) private var dismissWindow
     @Binding var immersiveSpaceID: String
+    @Binding var useFullDeck: Bool
     
     let game: Game
-    init(game: Game, immersiveSpaceID: Binding<String>) {
+    init(game: Game, immersiveSpaceID: Binding<String>, useFullDeck: Binding<Bool>) {
         self.game = game
         _immersiveSpaceID = immersiveSpaceID
+        _useFullDeck = useFullDeck
     }
+
 
     var body: some ToolbarContent {
         ToolbarItemGroup(placement: .bottomOrnament) {
@@ -127,6 +143,8 @@ struct GameToolbar: ToolbarContent {
                 Button {
                     Task {
                             immersiveSpaceID = "LivingRoom_360"
+                            useFullDeck = true // change var to switch tabletop modes
+                            print("🏠 House button clicked. Setting useFullDeck = true")
                             showImmersiveLibView.toggle() //false
                             showImmersiveHomeInspecView.toggle() //true
                             openWindow(id: "CheckList")

@@ -43,6 +43,7 @@ class GameSetup {
         }
     }
     var idGenerator = IdentifierGenerator()
+    let useFullDeck: Bool
 
     /*
      The table has a board in the center,
@@ -71,8 +72,9 @@ class GameSetup {
            pawn  |   hand    |
                  +-----------+
      */
-    init(root: Entity) {
+    init(root: Entity, useFullDeck: Bool) {
         self.root = root
+        self.useFullDeck = useFullDeck
         setup = TableSetup(tabletop: Table())
 
         // Keep the table and card groups only
@@ -125,57 +127,51 @@ class GameSetup {
     }
     
      func loadEntityEquipment() {
-        /*for (index, pawnInfo) in PlayerPawn.pawns.enumerated() {
-            let pawn = PlayerPawn(id: PlayerPawn.ID(self.idGenerator.newId()),
-                                  seat: seats[index],
-                                  cuteBotColor: pawnInfo.1,
-                                  entity: try! Entity.load(named: pawnInfo.0, in: tabletopGameSampleContentBundle))
-            pawns.append(pawn)
-            setup.add(equipment: pawn)
-        }
-        
-        let cardEntities = [
-            (try! ModelEntity.load(named: "card_arm_01_assembly", in: tabletopGameSampleContentBundle), Card.Classification.arm),
-            (try! ModelEntity.load(named: "card_flower_01_assembly", in: tabletopGameSampleContentBundle), Card.Classification.flower),
-            (try! ModelEntity.load(named: "card_leg_01_assembly", in: tabletopGameSampleContentBundle), Card.Classification.leg)
-        ]
-
-        let audioResource = try! AudioFileResource.load(named: "/Root/pickUpCard_mp3",
-                                                        from: "static_scene.usda",
-                                                        in: tabletopGameSampleContentBundle)
-        for _ in 0 ..< 5 {
-            for cardEntity in cardEntities {
-                let card = Card(id: EquipmentIdentifier(self.idGenerator.newId()),
-                                classification: cardEntity.1,
-                                parent: cardStockGroup.id,
-                                entity: cardEntity.0.clone(recursive: true),
-                                audioResource: audioResource)
-                cards.append(card)
-                setup.add(equipment: card)
-            }
-        }*/
+         print("🔧 GameSetup loading cards. useFullDeck = \(useFullDeck)")
          let cardEntities = [
              (try! ModelEntity.load(named: "card_arm_01_assembly", in: tabletopGameSampleContentBundle), Card.Classification.arm),
              (try! ModelEntity.load(named: "card_flower_01_assembly", in: tabletopGameSampleContentBundle), Card.Classification.flower),
              (try! ModelEntity.load(named: "card_leg_01_assembly", in: tabletopGameSampleContentBundle), Card.Classification.leg)
          ]
 
-         let audioResource = try! AudioFileResource.load(named: "/Root/pickUpCard_mp3",
-                                                         from: "static_scene.usda",
-                                                         in: tabletopGameSampleContentBundle)
-         for _ in 0 ..< 5 {
-             for cardEntity in cardEntities {
-                 let card = Card(id: EquipmentIdentifier(self.idGenerator.newId()),
-                                 classification: cardEntity.1,
-                                 parent: cardStockGroup.id,
-                                 entity: cardEntity.0.clone(recursive: true),
-                                 audioResource: audioResource)
+         let audioResource = try! AudioFileResource.load(
+             named: "/Root/pickUpCard_mp3",
+             from: "static_scene.usda",
+             in: tabletopGameSampleContentBundle
+         )
+
+         if useFullDeck {
+             print("🃏 Loading full deck (15 cards)")
+             for _ in 0..<5 {
+                 for (entity, classification) in cardEntities {
+                     let card = Card(
+                         id: EquipmentIdentifier(self.idGenerator.newId()),
+                         classification: classification,
+                         parent: cardStockGroup.id,
+                         entity: entity.clone(recursive: true),
+                         audioResource: audioResource
+                     )
+                     cards.append(card)
+                     setup.add(equipment: card)
+                 }
+             }
+         } else {
+             print("🃏 Loading ONLY 2 cards")
+             for i in 0..<2 {
+                 let (entity, classification) = cardEntities[i % cardEntities.count]
+                 let card = Card(
+                     id: EquipmentIdentifier(self.idGenerator.newId()),
+                     classification: classification,
+                     parent: cardStockGroup.id,
+                     entity: entity.clone(recursive: true),
+                     audioResource: audioResource
+                 )
                  cards.append(card)
                  setup.add(equipment: card)
              }
          }
+     }
 
-    }
 }
 
 extension Game {

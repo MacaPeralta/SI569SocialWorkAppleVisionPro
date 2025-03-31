@@ -9,7 +9,7 @@ import SwiftUI
 @preconcurrency import TabletopKit
 
 // Compiler indicates this is risky, but it's the easiest way to make shareplay work
-extension GroupSession: @unchecked Sendable {}
+extension GroupSession: @unchecked @retroactive Sendable {}
 
 struct Activity: GroupActivity {
     var metadata: GroupActivityMetadata {

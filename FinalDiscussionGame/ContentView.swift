@@ -77,7 +77,7 @@ struct ContentView: View {
         Button(immersiveSpaceActive ? "Exit Environment" : "View Environment") {
             Task {
                 if !immersiveSpaceActive {
-                    let result = await openImmersiveSpace(id: immersiveSpaceID) // Use immersiveSpaceID here
+                    let _ = await openImmersiveSpace(id: immersiveSpaceID) // Use immersiveSpaceID here
                     immersiveSpaceActive = true
                 } else {
                     await dismissImmersiveSpace()

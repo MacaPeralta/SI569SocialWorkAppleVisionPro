@@ -114,7 +114,7 @@ struct GameToolbar: ToolbarContent {
                         if showImmersiveLibView {
                             await dismissImmersiveSpace()
                         } else {
-                            let result = await openImmersiveSpace(id: immersiveSpaceID)
+                            let _ = await openImmersiveSpace(id: immersiveSpaceID)
                         }
                         showImmersiveLibView.toggle() //true
                     }

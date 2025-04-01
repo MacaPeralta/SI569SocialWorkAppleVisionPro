@@ -20,6 +20,7 @@ struct Activity: GroupActivity {
     }
 }
 
+@MainActor
 class GroupActivityManager: Observable {
     var tabletopGame: TabletopGame
     var sessionTask = Task<Void, Never> {}
@@ -27,7 +28,7 @@ class GroupActivityManager: Observable {
     
     init(tabletopGame: TabletopGame) {
         self.tabletopGame = tabletopGame
-        sessionTask = Task { @MainActor in
+        sessionTask = Task {
             for await session in Activity.sessions() {
                 // override default shareplay settings
                 var configuration = SystemCoordinator.Configuration()
@@ -39,22 +40,20 @@ class GroupActivityManager: Observable {
         }
     }
     
-//    func startSessionTask() {
-//        sessionTask = Task { @MainActor in
-//            for await session in Activity.sessions() {
-//                sharePlaySession = session // Store the session
-//                // override default shareplay settings
-//                var configuration = SystemCoordinator.Configuration()
-//                configuration.supportsGroupImmersiveSpace = true
-//                configuration.spatialTemplatePreference = .surround
-//                await session.systemCoordinator?.configuration = configuration
-//                tabletopGame.coordinateWithSession(session)
-//            }
-//        }
-//    }
-    
     func updateSpatialTemplatePreference(showImmersiveLibSpace: Bool) {
         print("change template")
+//        sessionTask.cancel()
+        sessionTask = Task {
+            for await session in Activity.sessions() {
+                print("check")
+                print("lib: \(showImmersiveLibSpace)")
+                var configuration = SystemCoordinator.Configuration()
+                configuration.supportsGroupImmersiveSpace = true
+                configuration.spatialTemplatePreference = showImmersiveLibSpace ?  .surround : .custom(HomeInspectionTemplate())
+                await session.systemCoordinator?.configuration = configuration
+                tabletopGame.coordinateWithSession(session)
+            }
+        }
     }
     
     deinit {

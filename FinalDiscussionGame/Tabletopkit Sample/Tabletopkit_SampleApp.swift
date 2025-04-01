@@ -24,15 +24,11 @@ struct SampleApp: App {
 
     var body: some SwiftUI.Scene {
         WindowGroup(id: "Volumetric") {
-            GameView(immersiveSpaceID: $immersiveSpaceID).volumeBaseplateVisibility(.hidden)
-//                .task {
-//                    await openImmersiveSpace(id: "ImmersiveGameSpace")
-//                }
+            GameView(immersiveSpaceID: $immersiveSpaceID)
+                .volumeBaseplateVisibility(.hidden)
         }
         .windowStyle(.volumetric)
         .defaultSize(width: 1, height: 1.5, depth: 1, in: .meters)
-        
-        
         
         WindowGroup(id: "CheckList") {
             ContentView(immersiveSpaceID: $immersiveSpaceID)
@@ -120,6 +116,7 @@ struct GameToolbar: ToolbarContent {
                             let _ = await openImmersiveSpace(id: immersiveSpaceID)
                         }
                         showImmersiveLibView.toggle() //true
+                        
                         activityManager.updateSpatialTemplatePreference(showImmersiveLibSpace: showImmersiveLibView)
                     }
                 } label: {
@@ -134,7 +131,7 @@ struct GameToolbar: ToolbarContent {
                         showImmersiveLibView.toggle() //false
                         showImmersiveHomeInspecView.toggle() //true
                         openWindow(id: "CheckList")
-                        
+                        print("home inspection")
                         activityManager.updateSpatialTemplatePreference(showImmersiveLibSpace: showImmersiveLibView)
                     }
                 } label: {

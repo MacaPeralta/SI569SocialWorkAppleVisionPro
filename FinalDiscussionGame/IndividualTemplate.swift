@@ -8,7 +8,7 @@
 
 import GroupActivities
 
-struct HomeInspectionTemplate: SpatialTemplate {
+struct IndividualTemplate: SpatialTemplate {
     let elements: [any SpatialTemplateElement] = [
 //        .seat(position: .app.offsetBy(x: 0, z: 0))
     ]

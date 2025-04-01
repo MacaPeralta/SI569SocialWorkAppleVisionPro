@@ -25,6 +25,7 @@
 		87D13D112BFC016200AE614A /* TabletopGameSampleContent in Resources */ = {isa = PBXBuildFile; fileRef = 87D13D102BFC016200AE614A /* TabletopGameSampleContent */; };
 		87D13D132BFC031700AE614A /* TabletopGameSampleContent in Frameworks */ = {isa = PBXBuildFile; productRef = 87D13D122BFC031700AE614A /* TabletopGameSampleContent */; };
 		9A3453E32D9B7EC20023C6A6 /* IndividualTemplate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A3453E22D9B7EBA0023C6A6 /* IndividualTemplate.swift */; };
+		9A566CD02D9C6AA900C48025 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A566CCF2D9C6AA200C48025 /* ViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -53,6 +54,7 @@
 		87D38AF42BFE484600FEA20C /* Tabletopkit Sample.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; name = "Tabletopkit Sample.entitlements"; path = "Tabletopkit Sample/Tabletopkit Sample.entitlements"; sourceTree = "<group>"; };
 		98C998E818430FA5BFAE3F67 /* SampleCode.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; name = SampleCode.xcconfig; path = Configuration/SampleCode.xcconfig; sourceTree = "<group>"; };
 		9A3453E22D9B7EBA0023C6A6 /* IndividualTemplate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IndividualTemplate.swift; sourceTree = "<group>"; };
+		9A566CCF2D9C6AA200C48025 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		D12037B72BF59CF200566BB1 /* Tabletopkit Sample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Tabletopkit Sample.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -127,6 +129,7 @@
 				87903A7F2BC4C376003009AC /* Assets.xcassets */,
 				87903A792BC4C376003009AC /* Info.plist */,
 				87903A7A2BC4C376003009AC /* Tabletopkit_SampleApp.swift */,
+				9A566CCF2D9C6AA200C48025 /* ViewController.swift */,
 				400FD9932D95304500C13368 /* ContentView.swift */,
 				0314D7932D8DD8C100C74C0D /* GameImmersiveView.swift */,
 				877B30D12BD3191400BD5107 /* GameSetup.swift */,
@@ -299,6 +302,7 @@
 				877B30DC2BD31A5B00BD5107 /* GameInteraction.swift in Sources */,
 				0314D7942D8DD8C100C74C0D /* GameImmersiveView.swift in Sources */,
 				465C8AAE2BF581000039460A /* GameObserver.swift in Sources */,
+				9A566CD02D9C6AA900C48025 /* ViewController.swift in Sources */,
 				8733BE3D2BF291B700802BE2 /* Utils.swift in Sources */,
 				877B30D22BD3191400BD5107 /* GameSetup.swift in Sources */,
 				46BD421D2BCB1AA600F8CC03 /* GroupActivityManager.swift in Sources */,

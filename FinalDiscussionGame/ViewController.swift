@@ -27,8 +27,20 @@ enum AppState {
 
 @Observable
 class ViewController {
-    var appState: AppState = .intro
-    var immersiveSpaceId: String = "360image"
+    var appState: AppState = .setup
+    var immersiveSpaceId: String = "360image" // TODO: Change to enum
+    var isInLibrary: Bool {
+        appState.isInLibrary()
+    }
+    var isHomeInspection: Bool {
+        appState == .homeInspection ? true : false
+    }
     var game: Game?
-    var activity: Activity?
+    var activityManager: GroupActivityManager?
+    
+    @MainActor
+    func updateSpatialTemplate() async {
+        guard let activityManager else { return }
+        await activityManager.updateSpatialTemplatePreference(isGroupSession: !isHomeInspection)
+    }
 }

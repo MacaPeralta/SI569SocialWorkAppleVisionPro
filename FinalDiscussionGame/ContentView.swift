@@ -11,14 +11,13 @@ struct ChecklistItem: Identifiable {
 
 struct ContentView: View {
     
-    @Binding var immersiveSpaceID: String //Changing id for different immersive space 360 views
-    
     // Environment Property Wrappers for immersive space
     @Environment(\.openImmersiveSpace) private var openImmersiveSpace
     @Environment(\.dismissImmersiveSpace) private var dismissImmersiveSpace
     
+    @Environment(ViewController.self) var viewController
+    
     // State variables
-    @State private var immersiveSpaceActive: Bool = false
     @State private var selectedRoom: String = "Living Room" // Default room
     @State private var showInterviewQuestions = false
     @State private var checklistItems = [
@@ -74,15 +73,12 @@ struct ContentView: View {
         .shadow(radius: 10)
         
         // Button to control the immersive environment
-        Button(immersiveSpaceActive ? "Exit Environment" : "View Environment") {
+        Button("Exit Home Inspection") {
             Task {
-                if !immersiveSpaceActive {
-                    let _ = await openImmersiveSpace(id: immersiveSpaceID) // Use immersiveSpaceID here
-                    immersiveSpaceActive = true
-                } else {
-                    await dismissImmersiveSpace()
-                    immersiveSpaceActive = false
-                }
+                viewController.appState = .discussion
+                viewController.immersiveSpaceId = "360image"
+                let _ = await openImmersiveSpace(id: viewController.immersiveSpaceId)
+                await viewController.updateSpatialTemplate()
             }
         }
         .padding()
@@ -102,27 +98,27 @@ struct ContentView: View {
         HStack {
             Button("Living Room") {
                 selectedRoom = "Living Room"
-                immersiveSpaceID = "LivingRoom_360"
-                print("Immersive Space ID set to: \(immersiveSpaceID)")
+                viewController.immersiveSpaceId = "LivingRoom_360"
+                print("Immersive Space ID set to: \(viewController.immersiveSpaceId)")
             }
             .buttonStyle(TabButtonStyle(isSelected: selectedRoom == "Living Room"))
 
             Button("Kitchen") {
                 selectedRoom = "Kitchen"
-                immersiveSpaceID = "Kitchen_360"
-                print("Immersive Space ID set to: \(immersiveSpaceID)")
+                viewController.immersiveSpaceId = "Kitchen_360"
+                print("Immersive Space ID set to: \(viewController.immersiveSpaceId)")
             }
             .buttonStyle(TabButtonStyle(isSelected: selectedRoom == "Kitchen"))
 
             Button("Bathroom") {
                 selectedRoom = "Bathroom"
-                immersiveSpaceID = "Bathroom_360"
+                viewController.immersiveSpaceId = "Bathroom_360"
             }
             .buttonStyle(TabButtonStyle(isSelected: selectedRoom == "Bathroom"))
 
             Button("Bedroom") {
                 selectedRoom = "Bedroom"
-                immersiveSpaceID = "Bedroom_360"
+                viewController.immersiveSpaceId = "Bedroom_360"
             }
             .buttonStyle(TabButtonStyle(isSelected: selectedRoom == "Bedroom"))
         }
@@ -335,8 +331,8 @@ struct TabButtonStyle: ButtonStyle {
     }
 }
 
-struct ContentView_Previews: PreviewProvider {
-    static var previews: some View {
-        ContentView(immersiveSpaceID: .constant("LivingRoom_360"))
-    }
-}
+//struct ContentView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        ContentView(immersiveSpaceID: .constant("LivingRoom_360"))
+//    }
+//}

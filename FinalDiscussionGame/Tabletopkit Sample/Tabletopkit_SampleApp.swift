@@ -21,7 +21,7 @@ struct SampleApp: App {
 
     var body: some SwiftUI.Scene {
         WindowGroup(id: "Volumetric") {
-            GameView(immersiveSpaceID: $immersiveSpaceID)
+            GameView()
                 .volumeBaseplateVisibility(.hidden)
                 .environment(viewController)
         }
@@ -29,14 +29,14 @@ struct SampleApp: App {
         .defaultSize(width: 1, height: 1.5, depth: 1, in: .meters)
         
         WindowGroup(id: "CheckList") {
-            ContentView(immersiveSpaceID: $immersiveSpaceID)
+            ContentView()
                 .frame(width: 612, height: 792)
                 .environment(viewController)
         }
         .windowResizability(.contentSize)
 
         ImmersiveSpace(id: immersiveSpaceID) {
-            GameImmersiveView(immersiveSpaceID: $immersiveSpaceID)
+            GameImmersiveView()
                 .environment(viewController)
         }
         .immersionStyle(selection: $immersionStyle, in: .full)
@@ -46,25 +46,23 @@ struct SampleApp: App {
 @MainActor
 struct GameView: View {
     @Environment(\.realityKitScene) private var scene
+    @Environment(ViewController.self) var viewController
     @State private var game: Game?
     @State private var activityManager: GroupActivityManager?
-    @State private var showImmersiveHomeInspecView: Bool = false
-    @Binding var immersiveSpaceID: String
 
     var body: some View {
         ZStack {
-            if let loadedGame = game, activityManager != nil {
+            if let loadedGame = viewController.game, viewController.activityManager != nil {
                 RealityView { (content: inout RealityViewContent) in
                     content.entities.append(loadedGame.renderer.root)
-                    //content.add(loadedGame.renderer.portalWorld)
-                    //content.add(loadedGame.renderer.portal)
                 } update: { content in
-                    let scale: Float = showImmersiveHomeInspecView ? 0.0 : 1.0
+                    let scale: Float = viewController.isHomeInspection ? 0.0 : 1.0
                     loadedGame.renderer.root.scale = SIMD3<Float>(scale, scale, scale)
                 }
                 .toolbar() {
                     //FIXME: Hide toolbar in home inspection?
-                    GameToolbar(game: loadedGame, activityManager: activityManager!, immersiveSpaceID: $immersiveSpaceID, showImmersiveHomeInspecView: $showImmersiveHomeInspecView)
+                    GameToolbar(
+                        viewController: viewController)
                 }.tabletopGame(loadedGame.tabletopGame, parent: loadedGame.renderer.root) { _ in
                     GameInteraction(game: loadedGame)
                 }
@@ -73,34 +71,29 @@ struct GameView: View {
         .task {
             self.game = await Game()
             self.activityManager = .init(tabletopGame: game!.tabletopGame)
+            viewController.game = self.game
+            viewController.activityManager = self.activityManager
         }
     }
 }
 
 
 struct GameToolbar: ToolbarContent {
-    @State private var showImmersiveLibView: Bool = false
     @Environment(\.openImmersiveSpace) private var openImmersiveSpace
     @Environment(\.dismissImmersiveSpace) private var dismissImmersiveSpace
     @Environment(\.openWindow) private var openWindow
     @Environment(\.dismiss) private var dismissWindow
-    @Binding var immersiveSpaceID: String
-    @Binding var showImmersiveHomeInspecView: Bool
     
-    let game: Game
-    var activityManager: GroupActivityManager
+    var viewController: ViewController
     
-    init(game: Game, activityManager: GroupActivityManager, immersiveSpaceID: Binding<String>, showImmersiveHomeInspecView: Binding<Bool>) {
-        self.game = game
-        self.activityManager = activityManager
-        _immersiveSpaceID = immersiveSpaceID
-        _showImmersiveHomeInspecView = showImmersiveHomeInspecView
+    init(viewController: ViewController) {
+        self.viewController = viewController
     }
 
     var body: some ToolbarContent {
         ToolbarItemGroup(placement: .bottomOrnament) {
             Button("Reset", systemImage: "arrow.counterclockwise") {
-                game.resetGame()
+                viewController.game!.resetGame()
             }
             Spacer()
             Button("SharePlay", systemImage: "shareplay") {
@@ -109,36 +102,34 @@ struct GameToolbar: ToolbarContent {
                }
             }
             Spacer()
-                Button {
-                    Task {
-                        immersiveSpaceID = "360image"
-                        if showImmersiveLibView {
-                            await dismissImmersiveSpace()
-                        } else {
-                            let _ = await openImmersiveSpace(id: immersiveSpaceID)
-                        }
-                        showImmersiveLibView.toggle() //true
-                        showImmersiveHomeInspecView = false
-                        
-                        await activityManager.updateSpatialTemplatePreference(isGroupSession: showImmersiveLibView)
+            Button {
+                Task {
+                    viewController.immersiveSpaceId = "360image"
+                    if viewController.isInLibrary {
+                        await dismissImmersiveSpace()
+                    } else {
+                        let _ = await openImmersiveSpace(id: viewController.immersiveSpaceId)
                     }
-                } label: {
-                    Label("Immersive", systemImage: showImmersiveLibView && immersiveSpaceID == "360image" ? "vision.pro.fill" : "vision.pro")
+                    viewController.appState = .intro
+                    
+                    await viewController.updateSpatialTemplate()
                 }
+            } label: {
+                Label("Immersive", systemImage: viewController.isInLibrary ? "vision.pro.fill" : "vision.pro")
+            }
             
             Spacer()
-            if showImmersiveLibView{
+            if viewController.isInLibrary{
                 Button {
                     Task {
-                        immersiveSpaceID = "LivingRoom_360"
-                        showImmersiveLibView.toggle() //false
-                        showImmersiveHomeInspecView.toggle() //true
+                        viewController.immersiveSpaceId = "LivingRoom_360"
                         openWindow(id: "CheckList")
-                        print("home inspection")
-                        await activityManager.updateSpatialTemplatePreference(isGroupSession: showImmersiveLibView)
+                        viewController.appState = .homeInspection
+                        print("Enter home inspection")
+                        await viewController.updateSpatialTemplate()
                     }
                 } label: {
-                    Label("HomeInspection", systemImage: immersiveSpaceID == "LivingRoom_360" ? "house.fill" : "house")
+                    Label("HomeInspection", systemImage: viewController.isHomeInspection ? "house.fill" : "house")
                 }
             }
         }

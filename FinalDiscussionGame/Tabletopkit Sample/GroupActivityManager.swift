@@ -5,47 +5,6 @@ Abstract:
 Start and coordinate with GroupActivities sessions.
 */
 
-//Old Code
-//import GroupActivities
-//import SwiftUI
-//@preconcurrency import TabletopKit
-//
-//extension GroupSession: @unchecked @retroactive Sendable {}
-//
-//struct Activity: GroupActivity {
-//    var metadata: GroupActivityMetadata {
-//        var metadata = GroupActivityMetadata()
-//        metadata.type = .generic
-//        metadata.title = "TabletopKitSample"
-//        return metadata
-//    }
-//}
-//
-//@MainActor
-//class GroupActivityManager: Observable {
-//    var tabletopGame: TabletopGame
-//    var sessionTask = Task<Void, Never> {}
-//    
-//    init(tabletopGame: TabletopGame) {
-//        self.tabletopGame = tabletopGame
-//        sessionTask = Task {
-//            for await session in Activity.sessions() {
-//                // override default shareplay settings
-//                var configuration = SystemCoordinator.Configuration()
-//                configuration.supportsGroupImmersiveSpace = true
-//                configuration.spatialTemplatePreference = .surround
-//                await session.systemCoordinator?.configuration = configuration
-//                tabletopGame.coordinateWithSession(session)
-//            }
-//        }
-//    }
-//    
-//    deinit {
-//        tabletopGame.detachNetworkCoordinator()
-//        sessionTask.cancel()
-//    }
-//}
-
 import GroupActivities
 import SwiftUI
 @preconcurrency import TabletopKit

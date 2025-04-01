@@ -16,23 +16,28 @@ struct SampleApp: App {
     @State private var immersiveSpaceID: String = "360image"
     
     @Environment(\.openImmersiveSpace) var openImmersiveSpace
+    
+    @State private var viewController = ViewController()
 
     var body: some SwiftUI.Scene {
         WindowGroup(id: "Volumetric") {
             GameView(immersiveSpaceID: $immersiveSpaceID)
                 .volumeBaseplateVisibility(.hidden)
+                .environment(viewController)
         }
         .windowStyle(.volumetric)
         .defaultSize(width: 1, height: 1.5, depth: 1, in: .meters)
         
         WindowGroup(id: "CheckList") {
             ContentView(immersiveSpaceID: $immersiveSpaceID)
-            .frame(width: 612, height: 792)
+                .frame(width: 612, height: 792)
+                .environment(viewController)
         }
         .windowResizability(.contentSize)
 
         ImmersiveSpace(id: immersiveSpaceID) {
             GameImmersiveView(immersiveSpaceID: $immersiveSpaceID)
+                .environment(viewController)
         }
         .immersionStyle(selection: $immersionStyle, in: .full)
     }

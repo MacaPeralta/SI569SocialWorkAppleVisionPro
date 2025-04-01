@@ -38,8 +38,27 @@ class GroupActivityManager: Observable {
             }
         }
     }
-
+    
+//    func startSessionTask() {
+//        sessionTask = Task { @MainActor in
+//            for await session in Activity.sessions() {
+//                sharePlaySession = session // Store the session
+//                // override default shareplay settings
+//                var configuration = SystemCoordinator.Configuration()
+//                configuration.supportsGroupImmersiveSpace = true
+//                configuration.spatialTemplatePreference = .surround
+//                await session.systemCoordinator?.configuration = configuration
+//                tabletopGame.coordinateWithSession(session)
+//            }
+//        }
+//    }
+    
+    func updateSpatialTemplatePreference(showImmersiveLibSpace: Bool) {
+        print("change template")
+    }
+    
     deinit {
         tabletopGame.detachNetworkCoordinator()
+        sessionTask.cancel()
     }
 }

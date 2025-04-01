@@ -67,7 +67,7 @@ struct GameView: View {
                     content.add(loadedGame.renderer.portalWorld)
                     //content.add(loadedGame.renderer.portal)
                 }.toolbar() {
-                    GameToolbar(game: loadedGame, immersiveSpaceID: $immersiveSpaceID)
+                    GameToolbar(game: loadedGame, activityManager: activityManager!, immersiveSpaceID: $immersiveSpaceID)
                 }.tabletopGame(loadedGame.tabletopGame, parent: loadedGame.renderer.root) { _ in
                     GameInteraction(game: loadedGame)
                 }
@@ -91,8 +91,11 @@ struct GameToolbar: ToolbarContent {
     @Binding var immersiveSpaceID: String
     
     let game: Game
-    init(game: Game, immersiveSpaceID: Binding<String>) {
+    var activityManager: GroupActivityManager
+    
+    init(game: Game, activityManager: GroupActivityManager, immersiveSpaceID: Binding<String>) {
         self.game = game
+        self.activityManager = activityManager
         _immersiveSpaceID = immersiveSpaceID
     }
 
@@ -117,6 +120,7 @@ struct GameToolbar: ToolbarContent {
                             let _ = await openImmersiveSpace(id: immersiveSpaceID)
                         }
                         showImmersiveLibView.toggle() //true
+                        activityManager.updateSpatialTemplatePreference(showImmersiveLibSpace: showImmersiveLibView)
                     }
                 } label: {
                     Label("Immersive", systemImage: showImmersiveLibView && immersiveSpaceID == "360image" ? "vision.pro.fill" : "vision.pro")
@@ -126,10 +130,12 @@ struct GameToolbar: ToolbarContent {
             if showImmersiveLibView{
                 Button {
                     Task {
-                            immersiveSpaceID = "LivingRoom_360"
-                            showImmersiveLibView.toggle() //false
-                            showImmersiveHomeInspecView.toggle() //true
-                            openWindow(id: "CheckList")
+                        immersiveSpaceID = "LivingRoom_360"
+                        showImmersiveLibView.toggle() //false
+                        showImmersiveHomeInspecView.toggle() //true
+                        openWindow(id: "CheckList")
+                        
+                        activityManager.updateSpatialTemplatePreference(showImmersiveLibSpace: showImmersiveLibView)
                     }
                 } label: {
                     Label("HomeInspection", systemImage: immersiveSpaceID == "LivingRoom_360" ? "house.fill" : "house")

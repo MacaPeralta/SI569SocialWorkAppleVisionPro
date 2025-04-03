@@ -47,8 +47,6 @@ struct SampleApp: App {
 struct GameView: View {
     @Environment(\.realityKitScene) private var scene
     @Environment(ViewController.self) var viewController
-    @State private var game: Game?
-    @State private var activityManager: GroupActivityManager?
 
     var body: some View {
         ZStack {
@@ -60,19 +58,18 @@ struct GameView: View {
                     loadedGame.renderer.root.scale = SIMD3<Float>(scale, scale, scale)
                 }
                 .toolbar() {
-                    //FIXME: Hide toolbar in home inspection?
-                    GameToolbar(
-                        viewController: viewController)
+                    if (!viewController.isHomeInspection) {
+                        GameToolbar(
+                            viewController: viewController)
+                    }
                 }.tabletopGame(loadedGame.tabletopGame, parent: loadedGame.renderer.root) { _ in
                     GameInteraction(game: loadedGame)
                 }
             }
         }
         .task {
-            self.game = await Game()
-            self.activityManager = .init(tabletopGame: game!.tabletopGame)
-            viewController.game = self.game
-            viewController.activityManager = self.activityManager
+            viewController.game = await Game()
+            viewController.activityManager = .init(tabletopGame: viewController.game!.tabletopGame)
         }
     }
 }

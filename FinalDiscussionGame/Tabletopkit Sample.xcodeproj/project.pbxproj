@@ -9,8 +9,6 @@
 /* Begin PBXBuildFile section */
 		0314D7942D8DD8C100C74C0D /* GameImmersiveView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0314D7932D8DD8C100C74C0D /* GameImmersiveView.swift */; };
 		0314D79E2D8DDE8900C74C0D /* RealityKitContent in Frameworks */ = {isa = PBXBuildFile; productRef = 0314D79D2D8DDE8900C74C0D /* RealityKitContent */; };
-		03C6EC312D6CF3BA007B0AA5 /* static_scene.scn in Resources */ = {isa = PBXBuildFile; fileRef = 03C6EC302D6CF3BA007B0AA5 /* static_scene.scn */; };
-		03C6EC332D6CF7D0007B0AA5 /* static_scene.scn in Resources */ = {isa = PBXBuildFile; fileRef = 03C6EC322D6CF7D0007B0AA5 /* static_scene.scn */; };
 		400FD9942D95304900C13368 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 400FD9932D95304500C13368 /* ContentView.swift */; };
 		465C8AAE2BF581000039460A /* GameObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 465C8AAD2BF581000039460A /* GameObserver.swift */; };
 		46BD421D2BCB1AA600F8CC03 /* GroupActivityManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46BD421C2BCB1AA600F8CC03 /* GroupActivityManager.swift */; };
@@ -26,13 +24,14 @@
 		87903A812BC4C376003009AC /* Tabletopkit_SampleApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87903A7A2BC4C376003009AC /* Tabletopkit_SampleApp.swift */; };
 		87D13D112BFC016200AE614A /* TabletopGameSampleContent in Resources */ = {isa = PBXBuildFile; fileRef = 87D13D102BFC016200AE614A /* TabletopGameSampleContent */; };
 		87D13D132BFC031700AE614A /* TabletopGameSampleContent in Frameworks */ = {isa = PBXBuildFile; productRef = 87D13D122BFC031700AE614A /* TabletopGameSampleContent */; };
+		9A3453E32D9B7EC20023C6A6 /* IndividualTemplate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A3453E22D9B7EBA0023C6A6 /* IndividualTemplate.swift */; };
+		9A566CD02D9C6AA900C48025 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A566CCF2D9C6AA200C48025 /* ViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		0314D7932D8DD8C100C74C0D /* GameImmersiveView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameImmersiveView.swift; sourceTree = "<group>"; };
 		0314D7992D8DDE8900C74C0D /* TabletopkitVisionApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TabletopkitVisionApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0314D79C2D8DDE8900C74C0D /* RealityKitContent */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = RealityKitContent; sourceTree = "<group>"; };
-		03C6EC302D6CF3BA007B0AA5 /* static_scene.scn */ = {isa = PBXFileReference; lastKnownFileType = file.bplist; name = static_scene.scn; path = "Tabletopkit Sample/Resources/TabletopGameSampleContent/Sources/TabletopGameSampleContent/TabletopGameSampleContent.rkassets/static_scene.scn"; sourceTree = "<group>"; };
 		03C6EC322D6CF7D0007B0AA5 /* static_scene.scn */ = {isa = PBXFileReference; lastKnownFileType = file.bplist; name = static_scene.scn; path = "Tabletopkit Sample/Resources/TabletopGameSampleContent/Sources/TabletopGameSampleContent/TabletopGameSampleContent.rkassets/static_scene.scn"; sourceTree = "<group>"; };
 		3A53195BE3858298577DDD79 /* LICENSE.txt */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = LICENSE.txt; sourceTree = "<group>"; };
 		400FD9932D95304500C13368 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -54,6 +53,8 @@
 		87D13D102BFC016200AE614A /* TabletopGameSampleContent */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = TabletopGameSampleContent; sourceTree = "<group>"; };
 		87D38AF42BFE484600FEA20C /* Tabletopkit Sample.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; name = "Tabletopkit Sample.entitlements"; path = "Tabletopkit Sample/Tabletopkit Sample.entitlements"; sourceTree = "<group>"; };
 		98C998E818430FA5BFAE3F67 /* SampleCode.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; name = SampleCode.xcconfig; path = Configuration/SampleCode.xcconfig; sourceTree = "<group>"; };
+		9A3453E22D9B7EBA0023C6A6 /* IndividualTemplate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IndividualTemplate.swift; sourceTree = "<group>"; };
+		9A566CCF2D9C6AA200C48025 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		D12037B72BF59CF200566BB1 /* Tabletopkit Sample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Tabletopkit Sample.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -122,13 +123,13 @@
 			isa = PBXGroup;
 			children = (
 				03C6EC322D6CF7D0007B0AA5 /* static_scene.scn */,
-				03C6EC302D6CF3BA007B0AA5 /* static_scene.scn */,
 				40D3161C41CFD8B1DCF1D253 /* README.md */,
 				87D38AF42BFE484600FEA20C /* Tabletopkit Sample.entitlements */,
 				8755DCEA2BC5962C005D8C82 /* Resources */,
 				87903A7F2BC4C376003009AC /* Assets.xcassets */,
 				87903A792BC4C376003009AC /* Info.plist */,
 				87903A7A2BC4C376003009AC /* Tabletopkit_SampleApp.swift */,
+				9A566CCF2D9C6AA200C48025 /* ViewController.swift */,
 				400FD9932D95304500C13368 /* ContentView.swift */,
 				0314D7932D8DD8C100C74C0D /* GameImmersiveView.swift */,
 				877B30D12BD3191400BD5107 /* GameSetup.swift */,
@@ -138,6 +139,7 @@
 				465C8AAD2BF581000039460A /* GameObserver.swift */,
 				877B30D52BD319C800BD5107 /* GameRenderer.swift */,
 				46BD421C2BCB1AA600F8CC03 /* GroupActivityManager.swift */,
+				9A3453E22D9B7EBA0023C6A6 /* IndividualTemplate.swift */,
 				8733BE3C2BF290CA00802BE2 /* Utils.swift */,
 				0314D79A2D8DDE8900C74C0D /* TabletopkitVisionApp */,
 				0314D79B2D8DDE8900C74C0D /* Packages */,
@@ -230,7 +232,7 @@
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
 				LastSwiftUpdateCheck = 1620;
-				LastUpgradeCheck = 1600;
+				LastUpgradeCheck = 1620;
 				ORGANIZATIONNAME = Apple;
 				TargetAttributes = {
 					0314D7982D8DDE8900C74C0D = {
@@ -275,8 +277,6 @@
 			files = (
 				87D13D112BFC016200AE614A /* TabletopGameSampleContent in Resources */,
 				875E46812BC4D2D2006F825B /* Assets.xcassets in Resources */,
-				03C6EC312D6CF3BA007B0AA5 /* static_scene.scn in Resources */,
-				03C6EC332D6CF7D0007B0AA5 /* static_scene.scn in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -296,11 +296,13 @@
 			files = (
 				877B30D82BD319F300BD5107 /* Game.swift in Sources */,
 				400FD9942D95304900C13368 /* ContentView.swift in Sources */,
+				9A3453E32D9B7EC20023C6A6 /* IndividualTemplate.swift in Sources */,
 				877B30D62BD319C800BD5107 /* GameRenderer.swift in Sources */,
 				8749FB162BF424EA000193AD /* GameEquipment.swift in Sources */,
 				877B30DC2BD31A5B00BD5107 /* GameInteraction.swift in Sources */,
 				0314D7942D8DD8C100C74C0D /* GameImmersiveView.swift in Sources */,
 				465C8AAE2BF581000039460A /* GameObserver.swift in Sources */,
+				9A566CD02D9C6AA900C48025 /* ViewController.swift in Sources */,
 				8733BE3D2BF291B700802BE2 /* Utils.swift in Sources */,
 				877B30D22BD3191400BD5107 /* GameSetup.swift in Sources */,
 				46BD421D2BCB1AA600F8CC03 /* GroupActivityManager.swift in Sources */,
@@ -472,7 +474,35 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 98C998E818430FA5BFAE3F67 /* SampleCode.xcconfig */;
 			buildSettings = {
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = xros;
 				SWIFT_VERSION = 6.0;
 				USE_HEADERMAP = NO;
@@ -483,8 +513,35 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 98C998E818430FA5BFAE3F67 /* SampleCode.xcconfig */;
 			buildSettings = {
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				SDKROOT = xros;
+				SWIFT_COMPILATION_MODE = wholemodule;
 				SWIFT_VERSION = 6.0;
 				USE_HEADERMAP = NO;
 			};
@@ -494,7 +551,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 98C998E818430FA5BFAE3F67 /* SampleCode.xcconfig */;
 			buildSettings = {
-				ARCHS = arm64;
+				CLANG_ENABLE_OBJC_WEAK = YES;
 				CODE_SIGN_ENTITLEMENTS = "Tabletopkit Sample/Tabletopkit Sample.entitlements";
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
@@ -518,7 +575,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 98C998E818430FA5BFAE3F67 /* SampleCode.xcconfig */;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD)";
+				CLANG_ENABLE_OBJC_WEAK = YES;
 				CODE_SIGN_ENTITLEMENTS = "Tabletopkit Sample/Tabletopkit Sample.entitlements";
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;

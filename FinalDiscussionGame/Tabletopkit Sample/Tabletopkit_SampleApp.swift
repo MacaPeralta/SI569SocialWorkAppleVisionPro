@@ -98,13 +98,6 @@ struct GameToolbar: ToolbarContent {
                     try! await Activity().activate()
                }
             }
-            Button {
-                Task {
-                    await viewController.game?.toggleDeckMode()
-                }
-            } label: {
-                Label("Toggle Deck", systemImage: "rectangle.stack")
-            }
             Spacer()
             Button {
                 Task {
@@ -130,6 +123,7 @@ struct GameToolbar: ToolbarContent {
                         openWindow(id: "CheckList")
                         viewController.appState = .homeInspection
                         print("Enter home inspection")
+                        await viewController.game?.setDeckMode(.full)
                         await viewController.updateSpatialTemplate()
                     }
                 } label: {

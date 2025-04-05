@@ -16,17 +16,20 @@ class Game {
     let observer: GameObserver
     let setup: GameSetup
     
+
+    
     @MainActor
-    func toggleDeckMode() {
-        currentDeckMode = (currentDeckMode == .full) ? .mini : .full
+    func setDeckMode(_ mode: DeckMode) {
+        currentDeckMode = mode
 
         for card in setup.cards {
-            card.entity.transform.scale = (currentDeckMode == .full) ? SIMD3(1, 1, 1) : SIMD3(0, 0, 0)
+            card.entity.transform.scale = (mode == .full) ? SIMD3(1, 1, 1) : SIMD3(0, 0, 0)
         }
         for card in setup.miniCards {
-            card.entity.transform.scale = (currentDeckMode == .mini) ? SIMD3(1, 1, 1) : SIMD3(0, 0, 0)
+            card.entity.transform.scale = (mode == .mini) ? SIMD3(1, 1, 1) : SIMD3(0, 0, 0)
         }
     }
+
     
     
 

@@ -17,6 +17,9 @@ struct GameImmersiveView: View {
                     material.color = .init(texture: .init(texture))
                     let sphere = ModelEntity(mesh: .generateSphere(radius: 1000), materials: [material])
                     sphere.scale = [-1, 1, 1]
+                    let angle = Float.pi / 2  // 90 degrees
+                    sphere.transform.rotation = simd_quatf(angle: angle, axis: [0, 1, 0])
+
                     content.add(sphere)
                 }
             }

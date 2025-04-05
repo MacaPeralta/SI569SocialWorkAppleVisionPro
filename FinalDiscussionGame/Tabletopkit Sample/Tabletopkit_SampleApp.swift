@@ -98,6 +98,13 @@ struct GameToolbar: ToolbarContent {
                     try! await Activity().activate()
                }
             }
+            Button {
+                Task {
+                    await viewController.game?.toggleDeckMode()
+                }
+            } label: {
+                Label("Toggle Deck", systemImage: "rectangle.stack")
+            }
             Spacer()
             Button {
                 Task {

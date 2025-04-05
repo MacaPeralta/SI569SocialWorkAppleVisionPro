@@ -32,6 +32,7 @@ class GameSetup {
     var pawns: [PlayerPawn] = []
     var cards: [Card] = []
     var seats: [PlayerSeat] = []
+    var miniCards: [Card] = []
 
     // This is an incrementing counter to generate unique IDs for each piece of equipment.
     struct IdentifierGenerator {
@@ -174,6 +175,19 @@ class GameSetup {
                  setup.add(equipment: card)
              }
          }
+         let flowerEntity = try! ModelEntity.load(named: "card_flower_01_assembly", in: tabletopGameSampleContentBundle)
+             for _ in 0..<3 {
+                 let flowerCard = Card(
+                     id: EquipmentIdentifier(self.idGenerator.newId()),
+                     classification: .flower,
+                     parent: cardStockGroup.id,
+                     entity: flowerEntity.clone(recursive: true),
+                     audioResource: audioResource
+                 )
+                 cards.append(flowerCard) // still included in the main group
+                 miniCards.append(flowerCard) // add this!
+                 setup.add(equipment: flowerCard)
+             }
 
     }
 }
@@ -181,16 +195,29 @@ class GameSetup {
 extension Game {
     @MainActor
     func resetGame() {
-        // Move pawns back to their starting location.
+        // Reset pawns (if using)
         for pawn in setup.pawns {
             tabletopGame.addAction(.moveEquipment(matching: pawn.id, childOf: .tableID, pose: pawn.initialState.pose))
         }
 
-        // Shuffle cards and return them to the stockpile, face down, controlled by any seat.
-        let cardsShuffled = setup.cards.shuffled()
-        for card in cardsShuffled {
-            tabletopGame.addAction(.updateEquipment(card, faceUp: false, seatControl: .any))
-            tabletopGame.addAction(.moveEquipment(matching: card.id, childOf: setup.cardStockGroup.id))
+        // Hide all cards
+        for card in setup.cards + setup.miniCards {
+            card.entity.transform.scale = SIMD3<Float>(repeating: 0)
+        }
+
+        if currentDeckMode == .full {
+            for card in setup.cards.shuffled() {
+                card.entity.transform.scale = SIMD3<Float>(repeating: 1)
+                tabletopGame.addAction(.updateEquipment(card, faceUp: false, seatControl: .any))
+                tabletopGame.addAction(.moveEquipment(matching: card.id, childOf: setup.cardStockGroup.id))
+            }
+        } else {
+            for card in setup.miniCards {
+                card.entity.transform.scale = SIMD3<Float>(repeating: 1)
+                tabletopGame.addAction(.updateEquipment(card, faceUp: false, seatControl: .any))
+                tabletopGame.addAction(.moveEquipment(matching: card.id, childOf: setup.cardStockGroup.id))
+            }
         }
     }
+
 }

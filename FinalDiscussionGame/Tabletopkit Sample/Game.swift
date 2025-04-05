@@ -15,6 +15,19 @@ class Game {
     let renderer: GameRenderer
     let observer: GameObserver
     let setup: GameSetup
+    
+    @MainActor
+    func toggleDeckMode() {
+        currentDeckMode = (currentDeckMode == .full) ? .mini : .full
+
+        for card in setup.cards {
+            card.entity.transform.scale = (currentDeckMode == .full) ? SIMD3(1, 1, 1) : SIMD3(0, 0, 0)
+        }
+        for card in setup.miniCards {
+            card.entity.transform.scale = (currentDeckMode == .mini) ? SIMD3(1, 1, 1) : SIMD3(0, 0, 0)
+        }
+    }
+
 
     @MainActor
     init() async {
@@ -40,4 +53,7 @@ class Game {
         tabletopGame.removeObserver(observer)
         tabletopGame.removeRenderDelegate(renderer)
     }
+    enum DeckMode { case full, mini }
+    @MainActor var currentDeckMode: DeckMode = .mini
+
 }

@@ -27,7 +27,8 @@ class Game {
             card.entity.transform.scale = (currentDeckMode == .mini) ? SIMD3(1, 1, 1) : SIMD3(0, 0, 0)
         }
     }
-
+    
+    
 
     @MainActor
     init() async {

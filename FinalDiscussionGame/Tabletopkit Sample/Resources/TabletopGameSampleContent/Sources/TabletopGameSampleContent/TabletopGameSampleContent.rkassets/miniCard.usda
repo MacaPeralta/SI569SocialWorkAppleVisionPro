@@ -1,0 +1,85 @@
+#usda 1.0
+(
+    customLayerData = {
+        string creator = "Reality Composer Pro Version 2.0 (443)"
+    }
+    defaultPrim = "Root"
+    metersPerUnit = 1
+    upAxis = "Y"
+)
+
+def Xform "Root"
+{
+    def "card_01" (
+        active = true
+        prepend apiSchemas = ["MaterialBindingAPI"]
+        references = @card_01.usdc@
+    )
+    {
+        rel material:binding = </Root/Material> (
+            bindMaterialAs = "strongerThanDescendants"
+        )
+        float3 xformOp:scale = (1, 1, 1)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+        def RealityKitComponent "GroundingShadow"
+        {
+            bool enableIBLShadow = 1
+            bool enableMeshShadow = 1
+            uniform token info:id = "RealityKit.GroundingShadow"
+        }
+
+        over "Looks" (
+            active = false
+        )
+        {
+        }
+    }
+
+    def "card_flower_01_mat" (
+        active = false
+        references = @card_flower_01_mat.usda@
+    )
+    {
+    }
+
+    def Material "Material"
+    {
+        token inputs:frame:stPrimvarName = "st" (
+            customData = {
+                dictionary realitykit = {
+                    bool hide = 1
+                }
+            }
+        )
+        token outputs:mtlx:surface
+        token outputs:realitykit:vertex
+        token outputs:surface.connect = </Root/Material/UsdPreviewSurface.outputs:surface>
+        float2 ui:nodegraph:realitykit:subgraphOutputs:pos = (0, 110.5)
+
+        def Shader "UsdPreviewSurface"
+        {
+            uniform token info:id = "UsdPreviewSurface"
+            color3f inputs:diffuseColor = (0.49072868, 1, 0.26087955) (
+                colorSpace = "srgb_displayp3"
+            )
+            token outputs:surface
+        }
+
+        def Shader "diffuseColor"
+        {
+            uniform token info:id = "UsdUVTexture"
+            asset inputs:file = @textures/cards/card_flower_BaseColor 2.png@
+            float2 inputs:st.connect = </Root/Material/diffuseColor/TexCoordReader.outputs:result>
+            color3f outputs:rgb
+
+            def Shader "TexCoordReader"
+            {
+                uniform token info:id = "UsdPrimvarReader_float2"
+                token inputs:varname.connect = </Root/Material.inputs:frame:stPrimvarName>
+                float2 outputs:result
+            }
+        }
+    }
+}
+

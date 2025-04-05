@@ -9,7 +9,8 @@
     "card_flower_01_mat.usda",
     "card_arm_01_assembly.usda",
     "card_leg_01_mat.usda",
-    "card_leg_01_assembly.usda"
+    "Untitled Scene.usda",
+    "miniCard.usda"
   ],
   "recentIdentifiers" : {
     "0CDC10A8-F8B5-45A8-AE8D-69A7D23C8838" : [
@@ -713,7 +714,75 @@
         ]
       }
     ],
+    "839D8A7C-14AE-4B78-954F-9030974CB689" : [
+      {
+        "date" : 765514007.358254,
+        "title" : "Untitled",
+        "transform" : [
+          1,
+          0,
+          0,
+          0,
+          0,
+          0.7071069,
+          -0.70710677,
+          0,
+          0,
+          0.70710677,
+          0.7071069,
+          0,
+          0,
+          0.08137143,
+          0.081371434,
+          1
+        ]
+      },
+      {
+        "date" : 765514001.4115,
+        "title" : "Untitled",
+        "transform" : [
+          1,
+          0,
+          0,
+          0,
+          0,
+          0.7071069,
+          -0.70710677,
+          0,
+          0,
+          0.70710677,
+          0.7071069,
+          0,
+          0,
+          0.13440715,
+          0.13440716,
+          1
+        ]
+      }
+    ],
     "944BFAF6-A7D7-4206-B621-3B283DEA0ADA" : [
+      {
+        "date" : 765513689.008138,
+        "title" : "Untitled",
+        "transform" : [
+          0.99116206,
+          3.592787e-09,
+          -0.13265684,
+          0,
+          -0.093892865,
+          0.7064253,
+          -0.7015322,
+          0,
+          0.09371212,
+          0.70778763,
+          0.70018184,
+          0,
+          0.010743846,
+          0.10049459,
+          0.080491714,
+          1
+        ]
+      },
       {
         "date" : 762236961.676322,
         "title" : "Untitled",
@@ -919,5 +988,5 @@
   "sceneViewportBackgroundColors" : {
 
   },
-  "selectedSceneRelativePath" : "card_arm_01_assembly.usda"
+  "selectedSceneRelativePath" : "miniCard.usda"
 }

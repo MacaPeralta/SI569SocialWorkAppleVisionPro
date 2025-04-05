@@ -175,8 +175,10 @@ class GameSetup {
                  setup.add(equipment: card)
              }
          }
-         let flowerEntity = try! ModelEntity.load(named: "card_flower_01_assembly", in: tabletopGameSampleContentBundle)
-             for _ in 0..<3 {
+         
+         
+         let flowerEntity = try! ModelEntity.load(named: "miniCard", in: tabletopGameSampleContentBundle)
+             for _ in 0..<10 {
                  let flowerCard = Card(
                      id: EquipmentIdentifier(self.idGenerator.newId()),
                      classification: .flower,
@@ -184,9 +186,10 @@ class GameSetup {
                      entity: flowerEntity.clone(recursive: true),
                      audioResource: audioResource
                  )
-                 cards.append(flowerCard) // still included in the main group
+                 //cards.append(flowerCard) // still included in the main group
                  miniCards.append(flowerCard) // add this!
                  setup.add(equipment: flowerCard)
+                 
              }
 
     }
@@ -195,10 +198,7 @@ class GameSetup {
 extension Game {
     @MainActor
     func resetGame() {
-        // Reset pawns (if using)
-        for pawn in setup.pawns {
-            tabletopGame.addAction(.moveEquipment(matching: pawn.id, childOf: .tableID, pose: pawn.initialState.pose))
-        }
+        
 
         // Hide all cards
         for card in setup.cards + setup.miniCards {
@@ -212,10 +212,21 @@ extension Game {
                 tabletopGame.addAction(.moveEquipment(matching: card.id, childOf: setup.cardStockGroup.id))
             }
         } else {
-            for card in setup.miniCards {
+            //let spacing: Float = 0.03
+            for (i, card) in setup.miniCards.enumerated() {
                 card.entity.transform.scale = SIMD3<Float>(repeating: 1)
+
                 tabletopGame.addAction(.updateEquipment(card, faceUp: false, seatControl: .any))
+                
+                // OPTIONAL: don't even move them in TabletopKit if you're overriding transform
                 tabletopGame.addAction(.moveEquipment(matching: card.id, childOf: setup.cardStockGroup.id))
+                
+                // Lower the card 1 cm, adjust as needed
+                card.entity.transform.translation = SIMD3<Float>(
+                    x: 0,
+                    y: 0.03, // 👈 try adjusting this down further if needed
+                    z: 0
+                )
             }
         }
     }

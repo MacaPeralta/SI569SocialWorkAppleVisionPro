@@ -8,7 +8,8 @@
     "objectMetadataList" : [
       [
         "0CDC10A8-F8B5-45A8-AE8D-69A7D23C8838",
-        "Root"
+        "Root",
+        "card_01"
       ],
       {
         "isExpanded" : true,
@@ -16,8 +17,7 @@
       },
       [
         "0CDC10A8-F8B5-45A8-AE8D-69A7D23C8838",
-        "Root",
-        "card_01"
+        "Root"
       ],
       {
         "isExpanded" : true,
@@ -27,6 +27,15 @@
   },
   "136FD0AD-6713-4B76-8A9F-6D17143449B4" : {
     "objectMetadataList" : [
+      [
+        "136FD0AD-6713-4B76-8A9F-6D17143449B4",
+        "Root",
+        "Round_Table"
+      ],
+      {
+        "isExpanded" : true,
+        "isLocked" : false
+      },
       [
         "136FD0AD-6713-4B76-8A9F-6D17143449B4",
         "Root"
@@ -40,15 +49,6 @@
         "Root",
         "Round_Table",
         "round_table"
-      ],
-      {
-        "isExpanded" : true,
-        "isLocked" : false
-      },
-      [
-        "136FD0AD-6713-4B76-8A9F-6D17143449B4",
-        "Root",
-        "Round_Table"
       ],
       {
         "isExpanded" : true,
@@ -153,7 +153,8 @@
     "objectMetadataList" : [
       [
         "2DBD2779-949E-4725-9590-5207F8F60EA0",
-        "Material"
+        "conveyor_belt",
+        "Conveyor_Belt_Mesh"
       ],
       {
         "isExpanded" : true,
@@ -161,8 +162,7 @@
       },
       [
         "2DBD2779-949E-4725-9590-5207F8F60EA0",
-        "conveyor_belt",
-        "Conveyor_Belt_Mesh"
+        "Material"
       ],
       {
         "isExpanded" : true,
@@ -222,7 +222,8 @@
     "objectMetadataList" : [
       [
         "396A753D-3FCE-4223-A4FD-81DFD1B3F698",
-        "rectangle_table"
+        "rectangle_table",
+        "Looks"
       ],
       {
         "isExpanded" : true,
@@ -230,8 +231,7 @@
       },
       [
         "396A753D-3FCE-4223-A4FD-81DFD1B3F698",
-        "rectangle_table",
-        "Looks"
+        "rectangle_table"
       ],
       {
         "isExpanded" : true,
@@ -243,8 +243,7 @@
     "objectMetadataList" : [
       [
         "3A0F651E-FFC0-4324-B986-FC5A1054E23E",
-        "Root",
-        "board_flatbase_mat"
+        "Root"
       ],
       {
         "isExpanded" : true,
@@ -252,7 +251,8 @@
       },
       [
         "3A0F651E-FFC0-4324-B986-FC5A1054E23E",
-        "Root"
+        "Root",
+        "board_flatbase_mat"
       ],
       {
         "isExpanded" : true,
@@ -304,8 +304,7 @@
     "objectMetadataList" : [
       [
         "3D2F24C9-F933-4FE3-926F-0B998CA423C2",
-        "Root",
-        "gantry_assembly"
+        "Root"
       ],
       {
         "isExpanded" : true,
@@ -313,7 +312,8 @@
       },
       [
         "3D2F24C9-F933-4FE3-926F-0B998CA423C2",
-        "Root"
+        "Root",
+        "gantry_assembly"
       ],
       {
         "isExpanded" : true,
@@ -374,6 +374,16 @@
       [
         "5F834463-9902-4F13-851C-24E873E6D929",
         "Root",
+        "round_table",
+        "Cylinder"
+      ],
+      {
+        "isExpanded" : true,
+        "isLocked" : false
+      },
+      [
+        "5F834463-9902-4F13-851C-24E873E6D929",
+        "Root",
         "round_table"
       ],
       {
@@ -383,16 +393,6 @@
       [
         "5F834463-9902-4F13-851C-24E873E6D929",
         "Root"
-      ],
-      {
-        "isExpanded" : true,
-        "isLocked" : false
-      },
-      [
-        "5F834463-9902-4F13-851C-24E873E6D929",
-        "Root",
-        "round_table",
-        "Cylinder"
       ],
       {
         "isExpanded" : true,
@@ -447,6 +447,15 @@
     "objectMetadataList" : [
       [
         "6A0E0B9B-C43C-4E81-B743-8369CA61CD5A",
+        "Root",
+        "Material_occluder"
+      ],
+      {
+        "isExpanded" : true,
+        "isLocked" : false
+      },
+      [
+        "6A0E0B9B-C43C-4E81-B743-8369CA61CD5A",
         "Root"
       ],
       {
@@ -457,15 +466,6 @@
         "6A0E0B9B-C43C-4E81-B743-8369CA61CD5A",
         "Root",
         "Material_board"
-      ],
-      {
-        "isExpanded" : true,
-        "isLocked" : false
-      },
-      [
-        "6A0E0B9B-C43C-4E81-B743-8369CA61CD5A",
-        "Root",
-        "Material_occluder"
       ],
       {
         "isExpanded" : true,
@@ -520,8 +520,7 @@
       [
         "718C46EE-3026-48D2-8101-C349DBA088F0",
         "Root",
-        "round_table",
-        "Cylinder"
+        "table_assembly_1"
       ],
       {
         "isExpanded" : true,
@@ -538,7 +537,7 @@
       [
         "718C46EE-3026-48D2-8101-C349DBA088F0",
         "Root",
-        "Group",
+        "round_table",
         "Cylinder"
       ],
       {
@@ -548,7 +547,8 @@
       [
         "718C46EE-3026-48D2-8101-C349DBA088F0",
         "Root",
-        "table_assembly_1"
+        "Group",
+        "Cylinder"
       ],
       {
         "isExpanded" : true,
@@ -601,8 +601,7 @@
     "objectMetadataList" : [
       [
         "914D484B-DFA7-402D-94A0-A6D1083C7B86",
-        "Root",
-        "gantry"
+        "Root"
       ],
       {
         "isExpanded" : true,
@@ -610,7 +609,8 @@
       },
       [
         "914D484B-DFA7-402D-94A0-A6D1083C7B86",
-        "Root"
+        "Root",
+        "gantry"
       ],
       {
         "isExpanded" : true,
@@ -683,6 +683,15 @@
       [
         "9EA55302-0617-4BB0-88EC-CB095954DA3D",
         "Root",
+        "table_rectangle"
+      ],
+      {
+        "isExpanded" : true,
+        "isLocked" : false
+      },
+      [
+        "9EA55302-0617-4BB0-88EC-CB095954DA3D",
+        "Root",
         "table_mat"
       ],
       {
@@ -692,15 +701,6 @@
       [
         "9EA55302-0617-4BB0-88EC-CB095954DA3D",
         "Root"
-      ],
-      {
-        "isExpanded" : true,
-        "isLocked" : false
-      },
-      [
-        "9EA55302-0617-4BB0-88EC-CB095954DA3D",
-        "Root",
-        "table_rectangle"
       ],
       {
         "isExpanded" : true,
@@ -724,6 +724,15 @@
     "objectMetadataList" : [
       [
         "A4216F42-1CE9-4D59-8658-1FD730C1129F",
+        "table_rectangle",
+        "Looks"
+      ],
+      {
+        "isExpanded" : true,
+        "isLocked" : false
+      },
+      [
+        "A4216F42-1CE9-4D59-8658-1FD730C1129F",
         "Material"
       ],
       {
@@ -733,15 +742,6 @@
       [
         "A4216F42-1CE9-4D59-8658-1FD730C1129F",
         "table_rectangle"
-      ],
-      {
-        "isExpanded" : true,
-        "isLocked" : false
-      },
-      [
-        "A4216F42-1CE9-4D59-8658-1FD730C1129F",
-        "table_rectangle",
-        "Looks"
       ],
       {
         "isExpanded" : true,
@@ -957,7 +957,7 @@
     "objectMetadataList" : [
       [
         "E5B88685-EF6C-401C-8633-BD67C0F49516",
-        "cloud_plane"
+        "Material"
       ],
       {
         "isExpanded" : true,
@@ -965,7 +965,7 @@
       },
       [
         "E5B88685-EF6C-401C-8633-BD67C0F49516",
-        "Material"
+        "cloud_plane"
       ],
       {
         "isExpanded" : true,

@@ -847,5 +847,4 @@ struct ContentView: View {
                 .font(.body)
         }
     }
-    
 }

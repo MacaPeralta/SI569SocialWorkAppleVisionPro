@@ -55,7 +55,7 @@ struct ContentView: View {
             
         ]
     
-        @State private var countdown = 1200 // 20 minutes in seconds
+        @State private var countdown = 300 // 20 minutes in seconds
         @State private var timerColor: Color = .black
         @State private var timerIsActive = false
         @State private var showExitButton = false

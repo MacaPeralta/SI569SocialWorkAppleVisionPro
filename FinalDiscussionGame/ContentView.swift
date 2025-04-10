@@ -55,7 +55,7 @@ struct ContentView: View {
             
         ]
     
-        @State private var countdown = 1200 // 20 minutes in seconds
+        @State private var countdown = 300 // 20 minutes in seconds
         @State private var timerColor: Color = .black
         @State private var timerIsActive = false
         @State private var showExitButton = false
@@ -306,7 +306,7 @@ struct ContentView: View {
 
         // Timer Logic
         func startTimer() {
-            countdown = 1200 // 20 minutes in seconds
+            countdown = 300 // 20 minutes in seconds
             timerIsActive = true
             Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true) { _ in
                 DispatchQueue.main.async {

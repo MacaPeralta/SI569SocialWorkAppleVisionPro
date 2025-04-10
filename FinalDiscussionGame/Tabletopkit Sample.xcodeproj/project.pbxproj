@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		0314D7942D8DD8C100C74C0D /* GameImmersiveView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0314D7932D8DD8C100C74C0D /* GameImmersiveView.swift */; };
 		0314D79E2D8DDE8900C74C0D /* RealityKitContent in Frameworks */ = {isa = PBXBuildFile; productRef = 0314D79D2D8DDE8900C74C0D /* RealityKitContent */; };
+		03B3F2162DA7FAFD00E3A5B6 /* Interview.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 03B3F2152DA7FAFD00E3A5B6 /* Interview.mp4 */; };
 		400FD9942D95304900C13368 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 400FD9932D95304500C13368 /* ContentView.swift */; };
 		465C8AAE2BF581000039460A /* GameObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 465C8AAD2BF581000039460A /* GameObserver.swift */; };
 		46BD421D2BCB1AA600F8CC03 /* GroupActivityManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46BD421C2BCB1AA600F8CC03 /* GroupActivityManager.swift */; };
@@ -32,6 +33,7 @@
 		0314D7932D8DD8C100C74C0D /* GameImmersiveView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameImmersiveView.swift; sourceTree = "<group>"; };
 		0314D7992D8DDE8900C74C0D /* TabletopkitVisionApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TabletopkitVisionApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0314D79C2D8DDE8900C74C0D /* RealityKitContent */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = RealityKitContent; sourceTree = "<group>"; };
+		03B3F2152DA7FAFD00E3A5B6 /* Interview.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = Interview.mp4; sourceTree = "<group>"; };
 		03C6EC322D6CF7D0007B0AA5 /* static_scene.scn */ = {isa = PBXFileReference; lastKnownFileType = file.bplist; name = static_scene.scn; path = "Tabletopkit Sample/Resources/TabletopGameSampleContent/Sources/TabletopGameSampleContent/TabletopGameSampleContent.rkassets/static_scene.scn"; sourceTree = "<group>"; };
 		3A53195BE3858298577DDD79 /* LICENSE.txt */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = LICENSE.txt; sourceTree = "<group>"; };
 		400FD9932D95304500C13368 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -127,6 +129,7 @@
 				87D38AF42BFE484600FEA20C /* Tabletopkit Sample.entitlements */,
 				8755DCEA2BC5962C005D8C82 /* Resources */,
 				87903A7F2BC4C376003009AC /* Assets.xcassets */,
+				03B3F2152DA7FAFD00E3A5B6 /* Interview.mp4 */,
 				87903A792BC4C376003009AC /* Info.plist */,
 				87903A7A2BC4C376003009AC /* Tabletopkit_SampleApp.swift */,
 				9A566CCF2D9C6AA200C48025 /* ViewController.swift */,
@@ -276,6 +279,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				87D13D112BFC016200AE614A /* TabletopGameSampleContent in Resources */,
+				03B3F2162DA7FAFD00E3A5B6 /* Interview.mp4 in Resources */,
 				875E46812BC4D2D2006F825B /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

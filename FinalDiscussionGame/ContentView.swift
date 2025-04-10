@@ -55,7 +55,7 @@ struct ContentView: View {
             
         ]
     
-        @State private var countdown = 1200 // 20 minutes in seconds
+        @State private var countdown = 300 // 20 minutes in seconds
         @State private var timerColor: Color = .black
         @State private var timerIsActive = false
         @State private var showExitButton = false
@@ -595,16 +595,23 @@ struct ContentView: View {
             }
             
 
-            ForEach(interviewQuestions, id: \.self) { question in
+            ForEach(Array(interviewQuestions.enumerated()), id: \.offset) { index, question in
                 Button(action: {
                     if interviewQuestionsStatus[question] == nil {
-                            interviewQuestionsStatus[question] = true // Initializing to true if not yet set
-                        } else {
-                            interviewQuestionsStatus[question]?.toggle() // Toggle the existing value
-                        }
-                   // playSampleVideo(for: question)
+                        interviewQuestionsStatus[question] = true
+                    } else {
+                        interviewQuestionsStatus[question]?.toggle()
+                    }
+
+                    // Set immersive ID based on index: Interview_1, Interview_2, ...
+                    viewController.immersiveSpaceId = "Interview_\(index + 1)"
+
+                    Task {
+                        _ = await openImmersiveSpace(id: viewController.immersiveSpaceId)
+                    }
                 }) {
                     Text(question)
+              
                         .font(.custom("Avenir", size: 20))
                         .fontWeight(.semibold)
                         .padding()
@@ -734,13 +741,10 @@ struct ContentView: View {
     // Sample interview questions
     private var interviewQuestions: [String] {
         [
-            "Question 1: How do you ensure safety in the home?",
-            "Question 2: Describe a time you handled a difficult situation.",
-            "Question 3: What steps do you take to ensure child welfare?",
-            "Question 4: How do you manage family dynamics?",
-            "Question 5: How do you assess the child's well-being?",
-            "Question 6: What resources do you suggest to families in need?",
-            "Question 7: How do you ensure confidentiality in your reports?"
+            "Question 1: Hi, Jasmine. I’m Maca. It's nice to meet you. How are you and the kids doing today?",
+            "Question 2: That sounds busy but rewarding! How is Eli adjusting to second grade?",
+            "Question 3: I’m here to support you with that. Would you like to explore some resources to help Eli with reading?",
+            "Question 4: I can connect you with a local literacy program and some online resources. How does that sound?"
         ]
     }
     

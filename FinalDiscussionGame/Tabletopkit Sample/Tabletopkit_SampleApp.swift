@@ -14,6 +14,8 @@ import TabletopKit
 struct SampleApp: App {
     @State private var immersionStyle: ImmersionStyle = .full
     @State private var immersiveSpaceID: String = "360image"
+    @State private var checklistWindowWidth: CGFloat = 675
+    @State private var showNotesPanel: Bool = false
     
     @Environment(\.openImmersiveSpace) var openImmersiveSpace
     
@@ -29,8 +31,8 @@ struct SampleApp: App {
         .defaultSize(width: 1, height: 1.5, depth: 1, in: .meters)
         
         WindowGroup(id: "CheckList") {
-            ContentView()
-                .frame(width: 612, height: 792)
+            ContentView(checklistWindowWidth: $checklistWindowWidth, showNotesPanel: $showNotesPanel)
+                .frame(width: checklistWindowWidth, height: 950)
                 .environment(viewController)
         }
         .windowResizability(.contentSize)

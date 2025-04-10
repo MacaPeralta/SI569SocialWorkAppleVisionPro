@@ -8,6 +8,7 @@ import SwiftUI
 import RealityKit
 import _RealityKit_SwiftUI 
 import TabletopKit
+import QuickLook
 
 // MARK: App entrypoint
 @main
@@ -56,11 +57,11 @@ struct GameView: View {
                 RealityView { (content: inout RealityViewContent) in
                     content.entities.append(loadedGame.renderer.root)
                 } update: { content in
-                    let scale: Float = viewController.isHomeInspection ? 0.0 : 1.0
+                    let scale: Float = viewController.shouldShowTable ? 1.0 : 0.0
                     loadedGame.renderer.root.scale = SIMD3<Float>(scale, scale, scale)
                 }
                 .toolbar() {
-                    if (!viewController.isHomeInspection) {
+                    if (viewController.appState != .homeInspection) {
                         GameToolbar(
                             viewController: viewController)
                     }
@@ -91,44 +92,55 @@ struct GameToolbar: ToolbarContent {
 
     var body: some ToolbarContent {
         ToolbarItemGroup(placement: .bottomOrnament) {
-            Button("Reset", systemImage: "arrow.counterclockwise") {
-                viewController.game!.resetGame()
-            }
-            Spacer()
-            Button("SharePlay", systemImage: "shareplay") {
-               Task {
-                    try! await Activity().activate()
-               }
-            }
-            Spacer()
-            Button {
-                Task {
-                    viewController.immersiveSpaceId = "360image"
-                    if viewController.isInLibrary {
-                        await dismissImmersiveSpace()
-                    } else {
-                        let _ = await openImmersiveSpace(id: viewController.immersiveSpaceId)
-                    }
-                    viewController.appState = .intro
-                    
-                    await viewController.updateSpatialTemplate()
+            if (!viewController.playedIntroVideo) {
+                Button("Watch Intro Video") {
+                    _ = PreviewApplication.open(urls: [viewController.videoURl])
                 }
-            } label: {
-                Label("Immersive", systemImage: viewController.isInLibrary ? "vision.pro.fill" : "vision.pro")
-            }
-            
-            Spacer()
-            if viewController.isInLibrary{
+                Spacer()
+                Button("Done Watching") {
+                    viewController.playedIntroVideo = true
+                    viewController.appState = .setup
+                }
+            } else {
+                Button("Reset", systemImage: "arrow.counterclockwise") {
+                    viewController.game!.resetGame()
+                }
+                Spacer()
+                Button("SharePlay", systemImage: "shareplay") {
+                   Task {
+                        try! await Activity().activate()
+                   }
+                }
+                Spacer()
                 Button {
                     Task {
-                        viewController.immersiveSpaceId = "LivingRoom_360"
-                        openWindow(id: "CheckList")
-                        viewController.appState = .homeInspection
-                        print("Enter home inspection")
+                        viewController.immersiveSpaceId = "360image"
+                        if viewController.isInLibrary {
+                            await dismissImmersiveSpace()
+                        } else {
+                            let _ = await openImmersiveSpace(id: viewController.immersiveSpaceId)
+                        }
+                        viewController.appState = .intro
+                        
                         await viewController.updateSpatialTemplate()
                     }
                 } label: {
-                    Label("HomeInspection", systemImage: viewController.isHomeInspection ? "house.fill" : "house")
+                    Label("Immersive", systemImage: viewController.isInLibrary ? "vision.pro.fill" : "vision.pro")
+                }
+                
+                Spacer()
+                if viewController.isInLibrary{
+                    Button {
+                        Task {
+                            viewController.immersiveSpaceId = "LivingRoom_360"
+                            openWindow(id: "CheckList")
+                            viewController.appState = .homeInspection
+                            print("Enter home inspection")
+                            await viewController.updateSpatialTemplate()
+                        }
+                    } label: {
+                        Label("HomeInspection", systemImage: "house")
+                    }
                 }
             }
         }

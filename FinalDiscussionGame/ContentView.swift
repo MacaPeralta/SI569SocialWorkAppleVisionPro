@@ -36,7 +36,7 @@ struct ContentView: View {
             ChecklistItem(question: "Are there safety hazards like exposed wires or furniture blocking pathways?"),
             ChecklistItem(question: "Are the furniture and appliances in good condition?"),
             ChecklistItem(question: "Is the room well-lit and safe, especially for children?"),
-            ChecklistItem(question: "Are smoke detectors installed and functioning properly?"),
+            ChecklistItem(question: "Are the windows clean and in good condition?"),
             
             // Bathroom Section
             ChecklistItem(question: "Is the bathroom clean and free of mold?"),

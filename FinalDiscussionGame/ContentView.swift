@@ -489,18 +489,18 @@ struct ContentView: View {
     // Move dummy data out of the function so it stays clean
     private let instructorNotes: [String: [String]] = [
         "Kitchen": [
-            "Counters and sink are spotless.",
+            "Counters and sink are mostly clean.",
             "Fridge contents are up-to-date.",
             "Cutlery in excellent shape.",
-            "Bins were recently emptied.",
-            "Pantry is well-stocked."
+            "Bins have not been recently emptied.",
+            "Fridge and pantry are well-stocked."
         ],
         "Living Room": [
-            "Tidy and no visible hazards.",
-            "No exposed wires found.",
-            "Couch needs minor repair.",
+            "Tidy and free of clutter.",
+            "Exposed wires found near TV and lighter on table.",
+            "Furniture in good condition.",
             "Plenty of natural light.",
-            "Smoke detector working fine."
+            "Windows clean and working fine."
         ],
         "Bathroom": [
             "Clean and mold-free.",
@@ -514,15 +514,15 @@ struct ContentView: View {
             "No toys/clutter on floor.",
             "Closet is organized.",
             "Room feels calming and quiet.",
-            "Detector beeps when tested."
+            "Detector beeps from low battery."
         ]
     ]
 
     private let instructorRatings: [String: [Int]] = [
-        "Kitchen": [3, 3, 2, 2, 3],
-        "Living Room": [2, 3, 1, 3, 3],
-        "Bathroom": [3, 2, 3, 2, 3],
-        "Bedroom": [3, 2, 3, 2, 3]
+        "Kitchen": [2, 3, 3, 1, 3],
+        "Living Room": [3, 1, 3, 3, 3],
+        "Bathroom": [3, 3, 3, 2, 3],
+        "Bedroom": [3, 3, 3, 3, 1]
     ]
     
     private func instructorChecklistItemView(_ item: ChecklistItem) -> some View {
@@ -792,7 +792,7 @@ struct ContentView: View {
                 Button(action: {
                     selectedRoom = "Kitchen"
                     if viewController.immersiveSpaceId != "360image"{
-                        viewController.immersiveSpaceId = "Kitchen_360"
+                        viewController.immersiveSpaceId = "Kitchen_360_new"
                     }
                     
                     print("Immersive Space ID set to: \(viewController.immersiveSpaceId)")
@@ -819,7 +819,7 @@ struct ContentView: View {
                 Button(action: {
                     selectedRoom = "Bedroom"
                     if viewController.immersiveSpaceId != "360image"{
-                        viewController.immersiveSpaceId = "Bedroom_360"
+                        viewController.immersiveSpaceId = "Bedroom_360_new"
                     }
                     
                     print("Immersive Space ID set to: \(viewController.immersiveSpaceId)")

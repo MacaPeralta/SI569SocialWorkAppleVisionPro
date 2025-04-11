@@ -53,7 +53,7 @@ struct GameInteraction: TabletopInteraction.Delegate {
         if let card = game.tabletopGame.equipment(of: Card.self, matching: interaction.value.startingEquipmentID) {
             // Allow cards to be moved anywhere on the table.
             interaction.setAllowedDestinations(.any)
-
+            //viewController.game = await Game()
             // Use counter action to signal to all players that someone picked up the card.
             interaction.addAction(.updateCounter(matching: game.setup.counter.id, value: Int64(card.id.rawValue)))
         }

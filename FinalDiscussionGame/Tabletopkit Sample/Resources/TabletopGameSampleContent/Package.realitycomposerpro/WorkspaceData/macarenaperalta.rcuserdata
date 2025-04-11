@@ -716,6 +716,28 @@
     ],
     "839D8A7C-14AE-4B78-954F-9030974CB689" : [
       {
+        "date" : 765856151.31454,
+        "title" : "Untitled",
+        "transform" : [
+          0.99763006,
+          1.5166618e-08,
+          0.068804584,
+          0,
+          0.025187142,
+          0.9305884,
+          -0.36519969,
+          0,
+          -0.06402877,
+          0.36606714,
+          0.92838305,
+          0,
+          -0.0073682107,
+          0.04212576,
+          0.10683515,
+          1
+        ]
+      },
+      {
         "date" : 765514007.358254,
         "title" : "Untitled",
         "transform" : [
@@ -988,5 +1010,5 @@
   "sceneViewportBackgroundColors" : {
 
   },
-  "selectedSceneRelativePath" : "miniCard.usda"
+  "selectedSceneRelativePath" : "Untitled Scene.usda"
 }

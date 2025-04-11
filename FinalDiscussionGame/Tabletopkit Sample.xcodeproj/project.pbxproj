@@ -31,6 +31,7 @@
 		87D13D132BFC031700AE614A /* TabletopGameSampleContent in Frameworks */ = {isa = PBXBuildFile; productRef = 87D13D122BFC031700AE614A /* TabletopGameSampleContent */; };
 		9A3453E32D9B7EC20023C6A6 /* IndividualTemplate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A3453E22D9B7EBA0023C6A6 /* IndividualTemplate.swift */; };
 		9A566CD02D9C6AA900C48025 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A566CCF2D9C6AA200C48025 /* ViewController.swift */; };
+		9A6D62FB2DA8AC0200EF3785 /* IntroVid.mov in Resources */ = {isa = PBXBuildFile; fileRef = 9A6D62FA2DA8AC0200EF3785 /* IntroVid.mov */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -65,6 +66,7 @@
 		98C998E818430FA5BFAE3F67 /* SampleCode.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; name = SampleCode.xcconfig; path = Configuration/SampleCode.xcconfig; sourceTree = "<group>"; };
 		9A3453E22D9B7EBA0023C6A6 /* IndividualTemplate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IndividualTemplate.swift; sourceTree = "<group>"; };
 		9A566CCF2D9C6AA200C48025 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		9A6D62FA2DA8AC0200EF3785 /* IntroVid.mov */ = {isa = PBXFileReference; lastKnownFileType = video.quicktime; path = IntroVid.mov; sourceTree = "<group>"; };
 		D12037B72BF59CF200566BB1 /* Tabletopkit Sample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Tabletopkit Sample.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -143,6 +145,7 @@
 				03B3F2A92DA84D8700E3A5B6 /* Interview_3.mp4 */,
 				03B3F2AB2DA84D8D00E3A5B6 /* Interview_4.mp4 */,
 				87903A792BC4C376003009AC /* Info.plist */,
+				9A6D62FA2DA8AC0200EF3785 /* IntroVid.mov */,
 				87903A7A2BC4C376003009AC /* Tabletopkit_SampleApp.swift */,
 				9A566CCF2D9C6AA200C48025 /* ViewController.swift */,
 				400FD9932D95304500C13368 /* ContentView.swift */,
@@ -291,6 +294,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				03B3F2AC2DA84D8D00E3A5B6 /* Interview_4.mp4 in Resources */,
+				9A6D62FB2DA8AC0200EF3785 /* IntroVid.mov in Resources */,
 				87D13D112BFC016200AE614A /* TabletopGameSampleContent in Resources */,
 				03B3F2162DA7FAFD00E3A5B6 /* Interview.mp4 in Resources */,
 				875E46812BC4D2D2006F825B /* Assets.xcassets in Resources */,

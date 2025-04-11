@@ -72,6 +72,8 @@ struct GameView: View {
         .task {
             viewController.game = await Game()
             viewController.activityManager = .init(tabletopGame: viewController.game!.tabletopGame)
+            
+            await viewController.game?.showMiniDeck()
         }
     }
 }
@@ -125,6 +127,8 @@ struct GameToolbar: ToolbarContent {
                         openWindow(id: "CheckList")
                         viewController.appState = .homeInspection
                         print("Enter home inspection")
+                        //await viewController.game?.setDeckMode(.full)
+                        await viewController.game?.showNormalDeck()
                         await viewController.updateSpatialTemplate()
                     }
                 } label: {

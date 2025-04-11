@@ -15,11 +15,32 @@ class Game {
     let renderer: GameRenderer
     let observer: GameObserver
     let setup: GameSetup
+    
+
+    
+    @MainActor
+    func setDeckMode(_ mode: DeckMode) {
+        currentDeckMode = mode
+
+        /*for card in setup.cards {
+            card.entity.transform.scale = (mode == .full) ? SIMD3(1, 1, 1) : SIMD3(0, 0, 0)
+        }
+        for card in setup.miniCards {
+            card.entity.transform.scale = (mode == .mini) ? SIMD3(1, 1, 1) : SIMD3(0, 0, 0)
+        }*/
+    }
+
+    
+    
 
     @MainActor
     init() async {
         renderer = GameRenderer()
         setup = GameSetup(root: renderer.root)
+        
+        setup.loadEntityEquipment()
+        setup.loadPlayerCardGroups()
+
         
         tabletopGame = TabletopGame(tableSetup: setup.setup)
         
@@ -31,7 +52,8 @@ class Game {
 
         // Claim any seat when launching in single-player mode; a player must be seated to interact with the game.
         tabletopGame.claimAnySeat()
-
+        
+        
         // Shuffles the card deck.
         self.resetGame()
     }
@@ -40,4 +62,7 @@ class Game {
         tabletopGame.removeObserver(observer)
         tabletopGame.removeRenderDelegate(renderer)
     }
+    enum DeckMode { case full, mini }
+    @MainActor var currentDeckMode: DeckMode = .mini
+
 }

@@ -72,7 +72,8 @@
     "objectMetadataList" : [
       [
         "18A3D419-D1EF-443B-B412-44E4357391CB",
-        "Root"
+        "Root",
+        "round_table"
       ],
       {
         "isExpanded" : true,
@@ -80,8 +81,7 @@
       },
       [
         "18A3D419-D1EF-443B-B412-44E4357391CB",
-        "Root",
-        "round_table"
+        "Root"
       ],
       {
         "isExpanded" : true,
@@ -270,6 +270,15 @@
       [
         "3A0F651E-FFC0-4324-B986-FC5A1054E23E",
         "Root",
+        "board_flatbase_mat"
+      ],
+      {
+        "isExpanded" : true,
+        "isLocked" : false
+      },
+      [
+        "3A0F651E-FFC0-4324-B986-FC5A1054E23E",
+        "Root",
         "board",
         "Board_Mesh"
       ],
@@ -283,7 +292,8 @@
     "objectMetadataList" : [
       [
         "3A765C6F-60A8-4882-AC5A-C6D91FE6925B",
-        "Root"
+        "Root",
+        "CuteBot_04_extrabits"
       ],
       {
         "isExpanded" : true,
@@ -291,8 +301,7 @@
       },
       [
         "3A765C6F-60A8-4882-AC5A-C6D91FE6925B",
-        "Root",
-        "CuteBot_04_extrabits"
+        "Root"
       ],
       {
         "isExpanded" : true,
@@ -337,6 +346,18 @@
     "objectMetadataList" : [
       [
         "4F77C9E9-D063-4A9B-8F39-83F6F5F41A22",
+        "Root"
+      ],
+      {
+        "isExpanded" : true,
+        "isLocked" : false
+      }
+    ]
+  },
+  "50A65540-8EB1-4C74-B54B-715091DC0517" : {
+    "objectMetadataList" : [
+      [
+        "50A65540-8EB1-4C74-B54B-715091DC0517",
         "Root"
       ],
       {
@@ -392,7 +413,8 @@
       },
       [
         "5F834463-9902-4F13-851C-24E873E6D929",
-        "Root"
+        "Root",
+        "round_table"
       ],
       {
         "isExpanded" : true,
@@ -464,8 +486,7 @@
       },
       [
         "6A0E0B9B-C43C-4E81-B743-8369CA61CD5A",
-        "Root",
-        "Material_board"
+        "Root"
       ],
       {
         "isExpanded" : true,
@@ -477,7 +498,8 @@
     "objectMetadataList" : [
       [
         "6B0FE460-615F-4AC1-B88D-F07B2C91455D",
-        "Root"
+        "Root",
+        "Material_2"
       ],
       {
         "isExpanded" : true,
@@ -485,8 +507,7 @@
       },
       [
         "6B0FE460-615F-4AC1-B88D-F07B2C91455D",
-        "Root",
-        "Material_2"
+        "Root"
       ],
       {
         "isExpanded" : true,
@@ -585,6 +606,27 @@
 
     ]
   },
+  "839D8A7C-14AE-4B78-954F-9030974CB689" : {
+    "objectMetadataList" : [
+      [
+        "839D8A7C-14AE-4B78-954F-9030974CB689",
+        "Root"
+      ],
+      {
+        "isExpanded" : true,
+        "isLocked" : false
+      },
+      [
+        "839D8A7C-14AE-4B78-954F-9030974CB689",
+        "Root",
+        "card_01"
+      ],
+      {
+        "isExpanded" : true,
+        "isLocked" : false
+      }
+    ]
+  },
   "8782B64B-AB6E-4B59-BC7E-ED19ED2DE285" : {
     "objectMetadataList" : [
       [
@@ -622,7 +664,26 @@
     "objectMetadataList" : [
       [
         "944BFAF6-A7D7-4206-B621-3B283DEA0ADA",
+        "Root",
+        "card_01",
+        "Looks"
+      ],
+      {
+        "isExpanded" : true,
+        "isLocked" : false
+      },
+      [
+        "944BFAF6-A7D7-4206-B621-3B283DEA0ADA",
         "Root"
+      ],
+      {
+        "isExpanded" : true,
+        "isLocked" : false
+      },
+      [
+        "944BFAF6-A7D7-4206-B621-3B283DEA0ADA",
+        "Root",
+        "card_01"
       ],
       {
         "isExpanded" : true,
@@ -700,7 +761,8 @@
       },
       [
         "9EA55302-0617-4BB0-88EC-CB095954DA3D",
-        "Root"
+        "Root",
+        "table_mat"
       ],
       {
         "isExpanded" : true,
@@ -1001,6 +1063,14 @@
     "objectMetadataList" : [
       [
         "FB314189-4086-4667-917C-EC194B87F026",
+        "cutebot_shadow"
+      ],
+      {
+        "isExpanded" : true,
+        "isLocked" : false
+      },
+      [
+        "FB314189-4086-4667-917C-EC194B87F026",
         "cutebot_shadow",
         "Looks"
       ],
@@ -1011,14 +1081,6 @@
       [
         "FB314189-4086-4667-917C-EC194B87F026",
         "Material"
-      ],
-      {
-        "isExpanded" : true,
-        "isLocked" : false
-      },
-      [
-        "FB314189-4086-4667-917C-EC194B87F026",
-        "cutebot_shadow"
       ],
       {
         "isExpanded" : true,

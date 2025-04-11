@@ -116,19 +116,19 @@ struct GameToolbar: ToolbarContent {
                 Spacer()
                 Button {
                     Task {
-                        viewController.immersiveSpaceId = "LivingRoom_360"
-                        openWindow(id: "CheckList")
-                        viewController.appState = .homeInspection
-                        print("Enter home inspection")
-                        //await viewController.game?.setDeckMode(.full)
-                        await viewController.game?.showNormalDeck()
-                        // viewController.immersiveSpaceId = "360image"
-                        // if viewController.isInLibrary {
-                        //     await dismissImmersiveSpace()
-                        // } else {
-                        //     let _ = await openImmersiveSpace(id: viewController.immersiveSpaceId)
-                        // }
-                        // viewController.appState = .intro
+//                        viewController.immersiveSpaceId = "LivingRoom_360"
+//                        openWindow(id: "CheckList")
+//                        viewController.appState = .intro
+//                        print("Enter home inspection")
+//                        //await viewController.game?.setDeckMode(.full)
+//                        await viewController.game?.showNormalDeck()
+                         viewController.immersiveSpaceId = "360image"
+                         if viewController.isInLibrary {
+                             await dismissImmersiveSpace()
+                         } else {
+                             let _ = await openImmersiveSpace(id: viewController.immersiveSpaceId)
+                         }
+                         viewController.appState = .intro
                         
                         await viewController.updateSpatialTemplate()
                     }
@@ -144,6 +144,7 @@ struct GameToolbar: ToolbarContent {
                             openWindow(id: "CheckList")
                             viewController.appState = .homeInspection
                             print("Enter home inspection")
+                            await viewController.game?.showNormalDeck()
                             await viewController.updateSpatialTemplate()
                         }
                     } label: {

@@ -41,7 +41,7 @@ class ViewController {
         }
     }
     
-    let videoURl: URL = Bundle.main.url(forResource: "InstructorVideoPlaceholder", withExtension: "MOV")!
+    let videoURl: URL = Bundle.main.url(forResource: "IntroVid", withExtension: "mov")!
     var playedIntroVideo = false
     
     var game: Game?

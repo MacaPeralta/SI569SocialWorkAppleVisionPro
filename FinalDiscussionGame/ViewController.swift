@@ -8,7 +8,7 @@
 import Foundation
 import Observation
 
-enum AppState {
+enum AppState: Codable {
     case instructorVideo // View instructor intro video
     case setup // Join SharePlay Session
     case intro // Enter social work library and start initial discussion

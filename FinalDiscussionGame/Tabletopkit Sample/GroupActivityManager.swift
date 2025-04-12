@@ -13,10 +13,11 @@ import SwiftUI
 extension GroupSession: @unchecked @retroactive Sendable {}
 
 struct Activity: GroupActivity {
+    static let activityIdentifier: String = "SocialSphere"
     var metadata: GroupActivityMetadata {
         var metadata = GroupActivityMetadata()
         metadata.type = .generic
-        metadata.title = "TabletopKitSample"
+        metadata.title = "SocialSphere"
         return metadata
     }
 }
@@ -24,20 +25,38 @@ struct Activity: GroupActivity {
 @MainActor
 class GroupActivityManager: ObservableObject {
     var tabletopGame: TabletopGame
+    var viewController: ViewController
+    var currentSession: GroupSession<Activity>?
+    var currentSessionMessenger: GroupSessionMessenger?
     var sessionTask: Task<Void, Never>? = nil
-    @Published var currentSession: GroupSession<Activity>?
+    var tasks = Set<Task<Void, Never>>()
     
-    init(tabletopGame: TabletopGame) {
+    init(tabletopGame: TabletopGame, viewController: ViewController) {
         self.tabletopGame = tabletopGame
+        self.viewController = viewController
         startSessionObservation()
     }
     
     func startSessionObservation() {
-        sessionTask = Task {
+        Task {
             for await session in Activity.sessions() {
-                await configureSession(session: session)
-                tabletopGame.coordinateWithSession(session)
-                self.currentSession = session
+                let messenger = GroupSessionMessenger(session: session)
+                self.currentSessionMessenger = messenger
+                tasks.insert(
+                    Task {
+                        for await (message, _) in messenger.messages(of: AppStateMessage.self) {
+                            print("Received message: \(message)")
+                            handleStateMessage(message)
+                        }
+                    }
+                )
+                
+                sessionTask = Task {
+                    await configureSession(session: session)
+                    currentSession = session
+                    tabletopGame.coordinateWithSession(session)
+                }
+                tasks.insert(sessionTask!)
             }
         }
     }
@@ -65,6 +84,23 @@ class GroupActivityManager: ObservableObject {
         configuration.supportsGroupImmersiveSpace = true
         configuration.spatialTemplatePreference = isGroupSession ? .surround : .custom(IndividualTemplate())
         await session.systemCoordinator?.configuration = configuration
+    }
+    
+    func sendStateMessage(_ message: AppStateMessage) {
+        Task {
+            do {
+                try await currentSessionMessenger?.send(message)
+            } catch {
+                print("send message failed: \(error)")
+            }
+        }
+    }
+    
+    func handleStateMessage(_ message: AppStateMessage) {
+        Task{
+            print("message received: \(message)")
+            viewController.appState = message.appState
+        }
     }
 }
 

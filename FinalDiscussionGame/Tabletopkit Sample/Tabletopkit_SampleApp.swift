@@ -72,7 +72,7 @@ struct GameView: View {
         }
         .task {
             viewController.game = await Game()
-            viewController.activityManager = .init(tabletopGame: viewController.game!.tabletopGame)
+            viewController.activityManager = .init(tabletopGame: viewController.game!.tabletopGame, viewController: viewController)
             
             await viewController.game?.showMiniDeck()
         }
@@ -116,12 +116,6 @@ struct GameToolbar: ToolbarContent {
                 Spacer()
                 Button {
                     Task {
-//                        viewController.immersiveSpaceId = "LivingRoom_360"
-//                        openWindow(id: "CheckList")
-//                        viewController.appState = .intro
-//                        print("Enter home inspection")
-//                        //await viewController.game?.setDeckMode(.full)
-//                        await viewController.game?.showNormalDeck()
                          viewController.immersiveSpaceId = "360image"
                          if viewController.isInLibrary {
                              await dismissImmersiveSpace()

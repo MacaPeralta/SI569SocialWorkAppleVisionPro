@@ -50,15 +50,81 @@ struct SampleApp: App {
 struct GameView: View {
     @Environment(\.realityKitScene) private var scene
     @Environment(ViewController.self) var viewController
+    @Environment(\.openImmersiveSpace) private var openImmersiveSpace
+    @Environment(\.dismissImmersiveSpace) private var dismissImmersiveSpace
+    @Environment(\.openWindow) private var openWindow
+    @Environment(\.dismiss) private var dismissWindow
 
     var body: some View {
         ZStack {
             if let loadedGame = viewController.game, viewController.activityManager != nil {
                 RealityView { (content: inout RealityViewContent) in
                     content.entities.append(loadedGame.renderer.root)
+                    viewController.setupIntroVideoPlayerEntity()
+                    if let videoEntity = viewController.introVideoPlayerEntity {
+                        if videoEntity.scene == nil {
+                            content.entities.append(videoEntity)
+                            print("Intro video added to scene")
+                        }
+                    }
                 } update: { content in
-                    let scale: Float = viewController.shouldShowTable ? 1.0 : 0.0
+                    let scale: Float = viewController.isInLibrary ? 1.0 : 0.0
                     loadedGame.renderer.root.scale = SIMD3<Float>(scale, scale, scale)
+                    
+                    if !viewController.playedIntroVideo {
+                        if let videoEntity = viewController.introVideoPlayerEntity {
+                            if viewController.appState == .instructorVideo {
+                                if !videoEntity.isEnabled {
+                                    videoEntity.isEnabled = true
+                                    print("Video Entity Enabled")
+                                }
+                            } else if viewController.appState == .playingInstructorVideo {
+                                if !videoEntity.isEnabled {
+                                    videoEntity.isEnabled = true
+                                    print("Video Entity Enabled")
+                                }
+                                viewController.introVideoPlayer.seek(to: .zero)
+                                viewController.introVideoPlayer.play()
+                                print("Video Play Triggered")
+                            } else if viewController.appState == .setup {
+                                if videoEntity.isEnabled {
+                                    videoEntity.isEnabled = false
+                                    viewController.introVideoPlayer.pause()
+                                    print("Video Entity Disabled, Player Paused")
+                                }
+                            }
+                        }
+                    } else {
+                        viewController.introVideoPlayer.pause()
+                        viewController.introVideoPlayerEntity?.removeFromParent()
+                    }
+                    
+                    if viewController.appStateUpdated {
+                        if viewController.appState == .intro {
+                            Task {
+                                await viewController.updateSpatialTemplate()
+                                viewController.immersiveSpaceId = "360image"
+                                let _ = await openImmersiveSpace(id: viewController.immersiveSpaceId)
+                            }
+                            viewController.appStateUpdated = false
+                        } else if viewController.appState == .homeInspection {
+                            Task {
+                                viewController.immersiveSpaceId = "LivingRoom_360"
+                                openWindow(id: "CheckList")
+                                print("Enter home inspection")
+                                await viewController.game?.showNormalDeck()
+                                await viewController.updateSpatialTemplate()
+                            }
+                            viewController.appStateUpdated = false
+                        } else if viewController.appState == .discussion {
+                            Task {
+                                viewController.immersiveSpaceId = "360image"
+                                let _ = await openImmersiveSpace(id: viewController.immersiveSpaceId)
+                                await viewController.updateSpatialTemplate()
+                            }
+                            viewController.appStateUpdated = false
+                        }
+                    }
                 }
                 .toolbar() {
                     if (viewController.appState != .homeInspection) {
@@ -94,57 +160,47 @@ struct GameToolbar: ToolbarContent {
 
     var body: some ToolbarContent {
         ToolbarItemGroup(placement: .bottomOrnament) {
-            if (!viewController.playedIntroVideo) {
-                Button("Watch Intro Video") {
-                    _ = PreviewApplication.open(urls: [viewController.videoURl])
-                }
-                Spacer()
-                Button("Done Watching") {
-                    viewController.playedIntroVideo = true
-                    viewController.appState = .setup
-                }
-            } else {
-                Button("Reset", systemImage: "arrow.counterclockwise") {
-                    viewController.game!.resetGame()
-                }
-                Spacer()
-                Button("SharePlay", systemImage: "shareplay") {
-                   Task {
-                        try! await Activity().activate()
-                   }
-                }
-                Spacer()
-                Button {
+            switch viewController.appState {
+            case .setup:
+                Button("Start") {
                     Task {
-                         viewController.immersiveSpaceId = "360image"
-                         if viewController.isInLibrary {
-                             await dismissImmersiveSpace()
-                         } else {
-                             let _ = await openImmersiveSpace(id: viewController.immersiveSpaceId)
-                         }
-                         viewController.appState = .intro
-                        
-                        await viewController.updateSpatialTemplate()
-                    }
-                } label: {
-                    Label("Immersive", systemImage: viewController.isInLibrary ? "vision.pro.fill" : "vision.pro")
-                }
-                
-                Spacer()
-                if viewController.isInLibrary{
-                    Button {
-                        Task {
-                            viewController.immersiveSpaceId = "LivingRoom_360"
-                            openWindow(id: "CheckList")
-                            viewController.appState = .homeInspection
-                            print("Enter home inspection")
-                            await viewController.game?.showNormalDeck()
-                            await viewController.updateSpatialTemplate()
-                        }
-                    } label: {
-                        Label("HomeInspection", systemImage: "house")
+                         _ = try! await Activity().activate()
+                        viewController.appState = .instructorVideo
+                        viewController.appStateUpdated = true
+                        viewController.activityManager?.sendStateMessage(AppStateMessage(appState: viewController.appState))
                     }
                 }
+            case .instructorVideo:
+                Button("Play Intro") {
+                    viewController.appState = .playingInstructorVideo
+                    viewController.appStateUpdated = true
+                    viewController.activityManager?.sendStateMessage(AppStateMessage(appState: viewController.appState))
+                }
+            case .playingInstructorVideo:
+                Button("Done Watching") {
+                    viewController.appState = .finishedInstructorVideo
+                    viewController.appStateUpdated = true
+                    viewController.activityManager?.sendStateMessage(AppStateMessage(appState: viewController.appState))
+                }
+            case .finishedInstructorVideo:
+                Button("Enter Library") {
+                    viewController.appState = .intro
+                    viewController.appStateUpdated = true
+                    viewController.activityManager?.sendStateMessage(AppStateMessage(appState: viewController.appState))
+                }
+            case .intro, .discussion:
+//                Button("Reset", systemImage: "arrow.counterclockwise") {
+//                    viewController.game!.resetGame()
+//                }
+//                Spacer()
+                // 2card sets is causing reset issues, so let's remove it
+                Button("Home Inspection") {
+                    viewController.appState = .homeInspection
+                    viewController.appStateUpdated = true
+                    viewController.activityManager?.sendStateMessage(AppStateMessage(appState: viewController.appState))
+                }
+            default:
+                Text("Something went wrong with app state")
             }
         }
     }

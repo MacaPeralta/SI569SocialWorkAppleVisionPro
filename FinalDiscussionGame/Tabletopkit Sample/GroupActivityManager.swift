@@ -70,7 +70,7 @@ class GroupActivityManager: ObservableObject {
         // override default shareplay settings
         var configuration = SystemCoordinator.Configuration()
         configuration.supportsGroupImmersiveSpace = true
-        configuration.spatialTemplatePreference = .surround
+        configuration.spatialTemplatePreference = .sideBySide
         await session.systemCoordinator?.configuration = configuration
     }
     
@@ -90,6 +90,7 @@ class GroupActivityManager: ObservableObject {
         Task {
             do {
                 try await currentSessionMessenger?.send(message)
+                print("\(message) send successfully")
             } catch {
                 print("send message failed: \(error)")
             }
@@ -100,6 +101,7 @@ class GroupActivityManager: ObservableObject {
         Task{
             print("message received: \(message)")
             viewController.appState = message.appState
+            viewController.appStateUpdated = true
         }
     }
 }

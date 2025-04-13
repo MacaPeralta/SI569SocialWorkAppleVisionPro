@@ -197,12 +197,9 @@ struct ContentView: View {
                             showExitButton = false
                             notesButtonActive = true
                             viewController.appState = .discussion
-                            viewController.immersiveSpaceId = "360image"
-                            let _ = await openImmersiveSpace(id: viewController.immersiveSpaceId)
-                            await viewController.updateSpatialTemplate()
-                            print("immersive space id set to: \(viewController.immersiveSpaceId)")
+                            viewController.activityManager?.sendStateMessage(AppStateMessage(appState: viewController.appState))
+                            viewController.appStateUpdated = true
                         }
-                        
                     }
                     .background(Color.blue)
                     .foregroundColor(.white)
@@ -257,9 +254,8 @@ struct ContentView: View {
                                 showExitButton = false
                                 notesButtonActive = true
                                 viewController.appState = .discussion
-                                viewController.immersiveSpaceId = "360image"
-                                let _ = await openImmersiveSpace(id: viewController.immersiveSpaceId)
-                                await viewController.updateSpatialTemplate()
+                                viewController.activityManager?.sendStateMessage(AppStateMessage(appState: viewController.appState))
+                                viewController.appStateUpdated = true
                             }
                         }
                         .background(Color.blue)
@@ -306,7 +302,7 @@ struct ContentView: View {
 
         // Timer Logic
         func startTimer() {
-            countdown = 300 // 20 minutes in seconds
+            countdown = 60 // 20 minutes in seconds
             timerIsActive = true
             Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true) { _ in
                 DispatchQueue.main.async {

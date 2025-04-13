@@ -83,7 +83,7 @@ struct GameView: View {
                                     videoEntity.isEnabled = true
                                     print("Video Entity Enabled")
                                 }
-                                viewController.introVideoPlayer.seek(to: .zero)
+//                                viewController.introVideoPlayer.seek(to: .zero)
                                 viewController.introVideoPlayer.play()
                                 print("Video Play Triggered")
                             } else if viewController.appState == .setup {

@@ -5,7 +5,7 @@ import AVKit
 struct ChecklistItem: Identifiable {
     var id = UUID()
     var question: String
-    var options: [String] = ["0", "1", "2", "3"]
+    var options: [String] = ["0", "1", "2", "3"]2
     var selectedOption: Int? = nil
     var note: String? = ""
 }
@@ -71,154 +71,24 @@ struct ContentView: View {
         
 
     var body: some View {
-        HStack{
-            
-            //MAIN USER HOME INSPECTION CHECKLIST
+        if viewController.scene == "scene1"{
             VStack {
                 ScrollView {
                     VStack(alignment: .leading, spacing: 16) {
-                        HStack {
-                            //Social Work Logo Image
-                            Image("Social Work Logo")
-                                .resizable()
-                                .scaledToFit()
-                                .frame(width: 200)
-                            Spacer()
-                            HStack{
-                                //CHECKLIST BUTTON
-                                Button(action: {
-                                    checklistButtonActive = true
-                                    interviewButtonActive = false
-                                }) {
-                                    Label("Checklist", systemImage: "")
-                                        .frame(minWidth: 80)
-                                        .padding()
-                                        .background(checklistButtonActive ? Color.blue : Color.gray)
-                                        .foregroundColor(.white)
-                                        .cornerRadius(8)
-                                        .shadow(radius: 5)
-                                }
-                                .buttonStyle(PlainButtonStyle())
-                                .onAppear {
-                                    checklistButtonActive = true
-                                }
-                                .padding(10)
-                                
-                                
-                                //INTERVIEW BUTTON
-                                Button(action: {
-                                    showInterviewQuestions = true
-                                    interviewButtonActive = true
-                                    checklistButtonActive = false
-                                    
-                                }) {
-                                    Label("Interview", systemImage: "")
-                                        .frame(minWidth: 80)
-                                        .padding()
-                                        .background(isChecklistComplete() && interviewButtonActive ? Color.blue : Color.gray)
-                                        .foregroundColor(.white)
-                                        .cornerRadius(8)
-                                        .shadow(radius: 5)
-                                }
-                                .buttonStyle(PlainButtonStyle())
-                                .disabled(!isChecklistComplete())
-                                
-                                
-                                //TIMER
-                                
-                                if viewController.immersiveSpaceId != "360image"{
-                                    // Timer display
-                                    HStack {
-                                        
-                                        Text(timeFormatted(countdown)) //formatted time mm:ss
-                                            .font(.custom("Avenir", size: 20))
-                                            .fontWeight(.semibold)
-                                            .foregroundColor(Color.white)
-                                            .padding()
-                                            .background(timerColor)
-                                            .clipShape(RoundedRectangle(cornerRadius: 10))
-                                    }
-                                    .onAppear {
-                                        startTimer() // Start the timer when the view appears
-                                    }
-                                }
-                            }
-                            .padding(10)
-                        }
-                        
-                        
-                        
-                        
-                        //CHECKLIST HEADER
-                        
-                        headerView
-                            .frame(maxWidth: .infinity, alignment: .center)
-                            .padding(.bottom, 40)
-                        
-                        
-                        //CHECKLIST PROGRESS BAR
-                        if viewController.immersiveSpaceId != "360image"{
-                            ZStack {
-                                Capsule()
-                                    .fill(Color.gray.opacity(0.3))
-                                    .frame(height: 10)
-                                
-                                GeometryReader { geometry in
-                                    Capsule()
-                                        .fill(Color(red: 175 / 255.0, green: 182 / 255.0, blue: 255 / 255.0))
-                                        .frame(width: geometry.size.width * CGFloat(progress / 100))
-                                        .animation(.linear(duration: 0.3), value: progress)
-                                }
-                                .frame(height: 10)
-                            }
-                        }
-                        
-                        //.padding()
-                        
-                        //clientInformationView
-                        //instructionsView
-                        
-                        if !interviewButtonActive {
-                            checklistView(for: selectedRoom)
-                        } else {
-                            interviewQuestionsView
-                        }
+                        Image("Social Work Case File")
+                            .resizable()
+                            .scaledToFit()
+                            .background(Color.white)
+                            .cornerRadius(20)
+                            .shadow(radius: 10)
                     }
-                    .padding(40)
                 }
-                .background(Color.white)
-                .cornerRadius(20)
-                .shadow(radius: 10)
                 
-                // Show the Exit button when the timer reaches 0
-                if showExitButton &&  viewController.immersiveSpaceId != "360image"{
-                    Button("Exit Home Inspection") {
-                        Task {
-                            showExitButton = false
-                            notesButtonActive = true
-                            viewController.appState = .discussion
-                            viewController.immersiveSpaceId = "360image"
-                            let _ = await openImmersiveSpace(id: viewController.immersiveSpaceId)
-                            await viewController.updateSpatialTemplate()
-                            print("immersive space id set to: \(viewController.immersiveSpaceId)")
-                        }
-                        
-                    }
-                    .background(Color.blue)
-                    .foregroundColor(.white)
-                    .cornerRadius(8)
-                    .padding()
-                } else {
-                    RoomSelectionToolbar(viewController: _viewController, selectedRoom: $selectedRoom)
-                }
             }
-            
-            
-            
-            
-            //STACK 2
-            if showNotesPanel{
-                //INSTRUCTOR HOME INSPECTION CHECKLIST
+        }else{
+            HStack{
+                
+                //MAIN USER HOME INSPECTION CHECKLIST
                 VStack {
                     ScrollView {
                         VStack(alignment: .leading, spacing: 16) {
@@ -229,21 +99,115 @@ struct ContentView: View {
                                     .scaledToFit()
                                     .frame(width: 200)
                                 Spacer()
+                                HStack{
+                                    //CHECKLIST BUTTON
+                                    Button(action: {
+                                        checklistButtonActive = true
+                                        interviewButtonActive = false
+                                    }) {
+                                        Label("Checklist", systemImage: "")
+                                            .frame(minWidth: 80)
+                                            .padding()
+                                            .background(checklistButtonActive ? Color.blue : Color.white)
+                                            .overlay(
+                                                    RoundedRectangle(cornerRadius: 8)
+                                                        .stroke(Color.blue, lineWidth: 4)
+                                            )
+                                            .foregroundColor(checklistButtonActive ? Color.white : Color.blue)
+                                            .cornerRadius(8)
+                                            .shadow(radius: 5)
+                                    }
+                                    .buttonStyle(PlainButtonStyle())
+                                    .onAppear {
+                                        checklistButtonActive = true
+                                    }
+                                    .padding(5)
+                                    
+                                    
+                                    //INTERVIEW BUTTON
+                                    Button(action: {
+                                        showInterviewQuestions = true
+                                        interviewButtonActive = true
+                                        checklistButtonActive = false
+                                        
+                                    }) {
+                                        Label("Interview", systemImage: "")
+                                            .frame(minWidth: 80)
+                                            .padding()
+                                            .background(checklistButtonActive ? Color.white : Color.black)
+                                            .overlay(
+                                                    RoundedRectangle(cornerRadius: 8)
+                                                        .stroke(Color.black, lineWidth: 4)
+                                            )
+                                            .foregroundColor(checklistButtonActive ? Color.black : Color.white)
+                                            .cornerRadius(8)
+                                            .shadow(radius: 5)
+                                    }
+                                    .buttonStyle(PlainButtonStyle())
+                                    .padding(5)
+                                    .disabled(!isChecklistComplete())
+                                    
+                                    
+                                    //TIMER
+                                    
+                                    if viewController.immersiveSpaceId != "360image"{
+                                        // Timer display
+                                        HStack {
+                                            
+                                            Text(timeFormatted(countdown)) //formatted time mm:ss
+                                                .font(.custom("Avenir", size: 20))
+                                                .fontWeight(.semibold)
+                                                .foregroundColor(Color.white)
+                                                .padding()
+                                                .background(timerColor)
+                                                .clipShape(RoundedRectangle(cornerRadius: 10))
+                                        }
+                                        .onAppear {
+                                            startTimer() // Start the timer when the view appears
+                                        }
+                                    }
+                                }
+                                .padding(10)
                             }
                             
-                            headerInstructorView
+                            
+                            
+                            
+                            //CHECKLIST HEADER
+                            
+                            headerView
                                 .frame(maxWidth: .infinity, alignment: .center)
                                 .padding(.bottom, 40)
+                            
+                            
+                            //CHECKLIST PROGRESS BAR
+                            if viewController.immersiveSpaceId != "360image"{
+                                ZStack {
+                                    Capsule()
+                                        .fill(Color.gray.opacity(0.3))
+                                        .frame(height: 10)
+                                    
+                                    GeometryReader { geometry in
+                                        Capsule()
+                                            .fill(Color(red: 175 / 255.0, green: 182 / 255.0, blue: 255 / 255.0))
+                                            .frame(width: geometry.size.width * CGFloat(progress / 100))
+                                            .animation(.linear(duration: 0.3), value: progress)
+                                    }
+                                    .frame(height: 10)
+                                }
+                            }
+                            
+                            //.padding()
+                            
                             //clientInformationView
                             //instructionsView
                             
                             if !interviewButtonActive {
-                                instructorChecklistView(for: selectedRoom)
+                                checklistView(for: selectedRoom)
                             } else {
-                                instructorInterviewView
+                                interviewQuestionsView
                             }
                         }
-                        
                         .padding(40)
                     }
                     .background(Color.white)
@@ -258,21 +222,107 @@ struct ContentView: View {
                                 notesButtonActive = true
                                 viewController.appState = .discussion
                                 viewController.immersiveSpaceId = "360image"
+                                viewController.scene = "scene3"
                                 let _ = await openImmersiveSpace(id: viewController.immersiveSpaceId)
                                 await viewController.updateSpatialTemplate()
+                                print("immersive space id set to: \(viewController.immersiveSpaceId)")
                             }
+                            
                         }
                         .background(Color.blue)
                         .foregroundColor(.white)
                         .cornerRadius(8)
-                        .padding()
+                        .padding(10)
                     } else {
-                        // Room Selection Toolbar remains visible while timer is running
+                        
                         RoomSelectionToolbar(viewController: _viewController, selectedRoom: $selectedRoom)
+                        if viewController.scene == "scene2"{
+                            Button("Exit Home Inspection") {
+                                Task {
+                                    showExitButton = false
+                                    notesButtonActive = true
+                                    viewController.appState = .discussion
+                                    viewController.immersiveSpaceId = "360image"
+                                    viewController.scene = "scene3"
+                                    let _ = await openImmersiveSpace(id: viewController.immersiveSpaceId)
+                                    await viewController.updateSpatialTemplate()
+                                    print("immersive space id set to: \(viewController.immersiveSpaceId)")
+                                }
+                                
+                            }
+                            .background(Color.blue)
+                            .foregroundColor(.white)
+                            .cornerRadius(8)
+                            .padding(.bottom,10)
+                        }
+                        
                     }
                 }
                 
-            }
+                
+                
+                
+                //STACK 2
+                if showNotesPanel{
+                    //INSTRUCTOR HOME INSPECTION CHECKLIST
+                    VStack {
+                        ScrollView {
+                            VStack(alignment: .leading, spacing: 16) {
+                                HStack {
+                                    //Social Work Logo Image
+                                    Image("Social Work Logo")
+                                        .resizable()
+                                        .scaledToFit()
+                                        .frame(width: 200)
+                                    Spacer()
+                                }
+                                
+                                headerInstructorView
+                                    .frame(maxWidth: .infinity, alignment: .center)
+                                    .padding(.bottom, 40)
+                                //clientInformationView
+                                //instructionsView
+                                
+                                if !interviewButtonActive {
+                                    instructorChecklistView(for: selectedRoom)
+                                } else {
+                                    instructorInterviewView
+                                }
+                            }
+                            
+                            .padding(40)
+                        }
+                        .background(Color.white)
+                        .cornerRadius(20)
+                        .shadow(radius: 10)
+                        
+                        // Show the Exit button when the timer reaches 0
+                        if showExitButton &&  viewController.immersiveSpaceId != "360image"{
+                            Button("Exit Home Inspection") {
+                                Task {
+                                    showExitButton = false
+                                    notesButtonActive = true
+                                    viewController.appState = .discussion
+                                    viewController.immersiveSpaceId = "360image"
+                                    let _ = await openImmersiveSpace(id: viewController.immersiveSpaceId)
+                                    await viewController.updateSpatialTemplate()
+                                }
+                            }
+                            .background(Color.blue)
+                            .foregroundColor(.white)
+                            .cornerRadius(8)
+                            .padding()
+                        } else {
+                            // Room Selection Toolbar remains visible while timer is running
+                            RoomSelectionToolbar(viewController: _viewController, selectedRoom: $selectedRoom)
+                        }
+                    }
+                    
+                }
+        }
+        
+        
+        
         }
     }
     
@@ -306,7 +356,7 @@ struct ContentView: View {
 
         // Timer Logic
         func startTimer() {
-            countdown = 300 // 20 minutes in seconds
+            countdown = 1200 // 20 minutes in seconds is 1200
             timerIsActive = true
             Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true) { _ in
                 DispatchQueue.main.async {
@@ -342,18 +392,30 @@ struct ContentView: View {
                 HStack{
                     if viewController.immersiveSpaceId != "360image" {
                         Spacer()
-                        Toggle("Notes", systemImage: notesButtonActive ? "text.page.fill" : "text.page.slash.fill", isOn: $notesButtonActive)
-                            .tint(.gray)
-                            .toggleStyle(.button)
-                            .labelStyle(.iconOnly)
-                            .font(.largeTitle)
-                            .contentTransition(.symbolEffect)
+                        Button(action: {
+                            notesButtonActive.toggle()
+                        }) {
+                            Label {
+                                Text("Notes")
+                            } icon: {
+                                Image(systemName: notesButtonActive ? "text.page.fill" : "text.page.slash.fill")
+                            }
+                            .frame(minWidth: 80)
+                        }
+                        .font(.custom("Avenir", size: 20))
+                        .fontWeight(.semibold)
+                        .contentTransition(.symbolEffect)
+                        .foregroundColor(.white)
+                        .background(notesButtonActive ? Color.black : Color.gray)
+                        .cornerRadius(10)
+                        
+                    
                     }
                     else{
                         Spacer()
                         Button(action: {
                             showNotesPanel.toggle()
-                            checklistWindowWidth = checklistWindowWidth == 675 ? 1370 : 675
+                            checklistWindowWidth = checklistWindowWidth == 700 ? 1400 : 700
                         }) {
                             Label {
                                 Text("Answer")
@@ -365,7 +427,9 @@ struct ContentView: View {
                         .font(.custom("Avenir", size: 20))
                         .fontWeight(.semibold)
                         .contentTransition(.symbolEffect)
-                        .foregroundColor(.black)
+                        .foregroundColor(.white)
+                        .background(showNotesPanel ? Color.black : Color.gray)
+                        .cornerRadius(10)
                         
                         
                     }
@@ -426,6 +490,7 @@ struct ContentView: View {
                             .font(.body)
                     }
                     .buttonStyle(PlainButtonStyle())
+                    .disabled(viewController.scene == "scene3")
                 }
             }
             .padding(.bottom, 10)
@@ -447,6 +512,7 @@ struct ContentView: View {
                     .border(Color.gray, width: 1)
                     .frame(height: 100)
                     .foregroundColor(.black)
+                    .disabled(viewController.scene == "scene3")
             }
             
 
@@ -585,23 +651,53 @@ struct ContentView: View {
                 
                 if viewController.immersiveSpaceId != "360image"{
                     Spacer()
-                    Toggle("Notes", systemImage: notesButtonActive ? "text.page.fill" : "text.page.slash.fill", isOn: $notesButtonActive)
-                        .tint(.gray)
-                        .toggleStyle(.button)
-                        .labelStyle(.iconOnly)
-                        .font(.largeTitle)
-                        .contentTransition(.symbolEffect)
+                    Button(action: {
+                        notesButtonActive.toggle()
+                    }) {
+                        Label {
+                            Text("Notes")
+                        } icon: {
+                            Image(systemName: notesButtonActive ? "text.page.fill" : "text.page.slash.fill")
+                        }
+                        .frame(minWidth: 80)
+                    }
+                    .font(.custom("Avenir", size: 20))
+                    .fontWeight(.semibold)
+                    .contentTransition(.symbolEffect)
+                    .foregroundColor(.white)
+                    .background(notesButtonActive ? Color.black : Color.gray)
+                    .cornerRadius(10)
+                    
+                }
+                else{
+                    Spacer()
+                    Button(action: {
+                        showNotesPanel.toggle()
+                        checklistWindowWidth = checklistWindowWidth == 700 ? 1400 : 700
+                    }) {
+                        Label {
+                            Text("Answer")
+                        } icon: {
+                            Image(systemName: showNotesPanel ? "key.fill" : "key.slash.fill")
+                        }
+                        .frame(minWidth: 80)
+                    }
+                    .font(.custom("Avenir", size: 20))
+                    .fontWeight(.semibold)
+                    .contentTransition(.symbolEffect)
+                    .foregroundColor(.white)
+                    .background(showNotesPanel ? Color.black : Color.gray)
+                    .cornerRadius(10)
+                    
+                    
                 }
             }
             
 
             ForEach(Array(interviewQuestions.enumerated()), id: \.offset) { index, question in
                 Button(action: {
-                    if interviewQuestionsStatus[question] == nil {
-                        interviewQuestionsStatus[question] = true
-                    } else {
-                        interviewQuestionsStatus[question]?.toggle()
-                    }
+                    interviewQuestionsStatus[question] = true;
+
 
                     // Set immersive ID based on index: Interview_1, Interview_2, ...
                     viewController.immersiveSpaceId = "Interview_\(index + 1)"
@@ -622,6 +718,7 @@ struct ContentView: View {
                 }
                 .buttonStyle(PlainButtonStyle())
                 .padding(.bottom, 8)
+                .disabled(viewController.scene == "scene3")
             }
             
             if notesButtonActive {
@@ -640,6 +737,7 @@ struct ContentView: View {
                         }
                         .padding(.top, 16)
                         .padding(.horizontal)
+                        .disabled(viewController.scene == "scene3")
                     }
                 
             
@@ -732,7 +830,7 @@ struct ContentView: View {
         // Present the video regardless of immersive space
         if let rootViewController = UIApplication.shared.windows.first?.rootViewController {
             rootViewController.present(playerViewController, animated: true) {
-                // Start playing the video
+                
                 player.play()
             }
         }
@@ -741,7 +839,7 @@ struct ContentView: View {
     // Sample interview questions
     private var interviewQuestions: [String] {
         [
-            "Question 1: Hi, Jasmine. I’m Maca. It's nice to meet you. How are you and the kids doing today?",
+            "Question 1: Hi, Jasmine. It's nice to meet you. How are you and the kids doing today?",
             "Question 2: That sounds busy but rewarding! How is Eli adjusting to second grade?",
             "Question 3: I’m here to support you with that. Would you like to explore some resources to help Eli with reading?",
             "Question 4: I can connect you with a local literacy program and some online resources. How does that sound?"
@@ -785,22 +883,36 @@ struct ContentView: View {
                 }) {
                     Label("Living", systemImage: "sofa.fill")
                         .frame(maxWidth: .infinity)
+                        .font(.custom("Avenir", size: 20))
+                        .fontWeight(.semibold)
+                        .padding()
+                        .frame(maxWidth: .infinity)
+                        .background(selectedRoom == "Living Room" ? Color.blue : Color.gray.opacity(0.3))
+                        .foregroundColor(.white)
+                        .cornerRadius(8)
                 }
-                .buttonStyle(TabButtonStyle(isSelected: selectedRoom == "Living Room"))
+                .buttonStyle(PlainButtonStyle())
                 
                 // Kitchen Button with Icon
                 Button(action: {
                     selectedRoom = "Kitchen"
                     if viewController.immersiveSpaceId != "360image"{
-                        viewController.immersiveSpaceId = "Kitchen_360_new"
+                        viewController.immersiveSpaceId = "Kitchen_360"
                     }
                     
                     print("Immersive Space ID set to: \(viewController.immersiveSpaceId)")
                 }) {
                     Label("Kitchen", systemImage: "fork.knife")
                         .frame(maxWidth: .infinity)
+                        .font(.custom("Avenir", size: 20))
+                        .fontWeight(.semibold)
+                        .padding()
+                        .frame(maxWidth: .infinity)
+                        .background(selectedRoom == "Kitchen" ? Color.blue : Color.gray.opacity(0.3))
+                        .foregroundColor(.white)
+                        .cornerRadius(8)
                 }
-                .buttonStyle(TabButtonStyle(isSelected: selectedRoom == "Kitchen"))
+                .buttonStyle(PlainButtonStyle())
                 
                 // Bathroom Button with Icon
                 Button(action: {
@@ -808,47 +920,44 @@ struct ContentView: View {
                     if viewController.immersiveSpaceId != "360image"{
                         viewController.immersiveSpaceId = "Bathroom_360"
                     }
-                    print("Immersive Space ID set to: \(viewController.immersiveSpaceId)")
                 }) {
                     Label("Bathroom", systemImage: "bathtub.fill")
                         .frame(maxWidth: .infinity)
+                        .font(.custom("Avenir", size: 20))
+                        .fontWeight(.semibold)
+                        .padding()
+                        .frame(maxWidth: .infinity)
+                        .background(selectedRoom == "Bathroom" ? Color.blue : Color.gray.opacity(0.3))
+                        .foregroundColor(.white)
+                        .cornerRadius(8)
                 }
-                .buttonStyle(TabButtonStyle(isSelected: selectedRoom == "Bathroom"))
+                .buttonStyle(PlainButtonStyle())
                 
                 // Bedroom Button with Icon
                 Button(action: {
                     selectedRoom = "Bedroom"
                     if viewController.immersiveSpaceId != "360image"{
-                        viewController.immersiveSpaceId = "Bedroom_360_new"
+                        viewController.immersiveSpaceId = "Bedroom_360"
                     }
                     
-                    print("Immersive Space ID set to: \(viewController.immersiveSpaceId)")
                 }) {
                     Label("Bedroom", systemImage: "bed.double.fill")
                         .frame(maxWidth: .infinity)
+                        .font(.custom("Avenir", size: 20))
+                        .fontWeight(.semibold)
+                        .padding()
+                        .frame(maxWidth: .infinity)
+                        .background(selectedRoom == "Bedroom" ? Color.blue : Color.gray.opacity(0.3))
+                        .foregroundColor(.white)
+                        .cornerRadius(8)
                 }
-                .buttonStyle(TabButtonStyle(isSelected: selectedRoom == "Bedroom"))
+                .buttonStyle(PlainButtonStyle())
             }
-            .padding(.bottom, 40)
+            .padding(.bottom, 20)
             .padding(.leading, 20)
             .padding(.trailing, 20)
             .padding(.top, 10)
             .cornerRadius(8)
-        }
-    }
-    
-    
-    // Define TabButtonStyle for custom button style
-    struct TabButtonStyle: ButtonStyle {
-        var isSelected: Bool
-        
-        func makeBody(configuration: Configuration) -> some View {
-            configuration.label
-                .padding()
-                .background(isSelected ? Color.blue : Color.gray.opacity(0.3))
-                .cornerRadius(8)
-                .foregroundColor(.white)
-                .font(.body)
         }
     }
 }

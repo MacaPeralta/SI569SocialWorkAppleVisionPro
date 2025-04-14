@@ -29,6 +29,7 @@ enum AppState {
 class ViewController {
     var appState: AppState = .setup
     var immersiveSpaceId: String = "360image" // TODO: Change to enum
+    var scene:String = "scene0"
     var isInLibrary: Bool {
         appState.isInLibrary()
     }

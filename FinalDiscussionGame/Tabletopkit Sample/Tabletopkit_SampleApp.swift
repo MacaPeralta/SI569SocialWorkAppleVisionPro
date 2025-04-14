@@ -14,7 +14,7 @@ import TabletopKit
 struct SampleApp: App {
     @State private var immersionStyle: ImmersionStyle = .full
     @State private var immersiveSpaceID: String = "360image"
-    @State private var checklistWindowWidth: CGFloat = 675
+    @State private var checklistWindowWidth: CGFloat = 700
     @State private var showNotesPanel: Bool = false
     
     @Environment(\.openImmersiveSpace) var openImmersiveSpace
@@ -32,7 +32,7 @@ struct SampleApp: App {
         
         WindowGroup(id: "CheckList") {
             ContentView(checklistWindowWidth: $checklistWindowWidth, showNotesPanel: $showNotesPanel)
-                .frame(width: checklistWindowWidth, height: 950)
+                .frame(width: checklistWindowWidth, height: 975)
                 .environment(viewController)
         }
         .windowResizability(.contentSize)
@@ -106,13 +106,14 @@ struct GameToolbar: ToolbarContent {
             Button {
                 Task {
                     viewController.immersiveSpaceId = "360image"
+                    viewController.scene = "scene1"
+                    openWindow(id: "CheckList")
                     if viewController.isInLibrary {
                         await dismissImmersiveSpace()
                     } else {
                         let _ = await openImmersiveSpace(id: viewController.immersiveSpaceId)
                     }
                     viewController.appState = .intro
-                    
                     await viewController.updateSpatialTemplate()
                 }
             } label: {
@@ -120,13 +121,12 @@ struct GameToolbar: ToolbarContent {
             }
             
             Spacer()
-            if viewController.isInLibrary{
+            if viewController.isInLibrary && viewController.scene == "scene1"{
                 Button {
                     Task {
                         viewController.immersiveSpaceId = "LivingRoom_360"
-                        openWindow(id: "CheckList")
+                        viewController.scene = "scene2"
                         viewController.appState = .homeInspection
-                        print("Enter home inspection")
                         //await viewController.game?.setDeckMode(.full)
                         await viewController.game?.showNormalDeck()
                         await viewController.updateSpatialTemplate()

@@ -22,7 +22,7 @@ struct GameImmersiveView: View {
                     let sphere = ModelEntity(mesh: .generateSphere(radius: 1000), materials: [videoMaterial])
                     sphere.name = "videoSphere"
                     sphere.scale = [-1, 1, 1]  // invert for inside viewing
-                    sphere.transform.rotation = simd_quatf(angle: .pi, axis: [0, 1, 0])  // rotate 180°
+                    sphere.transform.rotation = simd_quatf(angle: .pi/(-2), axis: [0, 1, 0])  // 180° right
 
                     content.add(sphere)
                     player.play()
@@ -33,6 +33,7 @@ struct GameImmersiveView: View {
 
                 // 2. Else try loading an image texture named after immersiveSpaceId
                 } else if let texture = try? await TextureResource(named: viewController.immersiveSpaceId) {
+                    
                     // ✅ Render image
                     var material = UnlitMaterial()
                     material.color = .init(texture: .init(texture))
@@ -40,6 +41,17 @@ struct GameImmersiveView: View {
                     sphere.name = "imageSphere"
                     sphere.scale = [-1, 1, 1]
                     // sphere.transform.rotation = simd_quatf(angle: .pi / 2, axis: [0, 1, 0]) // 90°, if needed
+                  if viewController.immersiveSpaceId == "360image" {
+                      sphere.transform.rotation = simd_quatf(angle: .pi / 2, axis: [0, 1, 0])  // 90° right
+                  }else if viewController.immersiveSpaceId == "Kitchen_360_new"{
+                      sphere.transform.rotation = simd_quatf(angle: .pi / 2, axis: [0, 1, 0])  // 180° right
+                  }
+                    
+                    else {
+                      sphere.transform.rotation = simd_quatf(angle: .pi/(-2), axis: [0, 1, 0])  // 180° right
+                  }
+                    
+
 
                     content.add(sphere)
                     print("🖼️ Displaying image sphere: \(viewController.immersiveSpaceId)")

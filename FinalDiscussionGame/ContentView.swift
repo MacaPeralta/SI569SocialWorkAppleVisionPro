@@ -139,7 +139,7 @@ struct ContentView: View {
                                             .clipShape(RoundedRectangle(cornerRadius: 10))
                                     }
                                     .onAppear {
-                                        startTimer() // Start the timer when the view appears
+                                        startTimer() // Start the when the view appears
                                     }
                                 }
                             }
@@ -306,7 +306,7 @@ struct ContentView: View {
 
         // Timer Logic
         func startTimer() {
-            countdown = 300 // 20 minutes in seconds
+            countdown = 30 // 20 minutes in seconds
             timerIsActive = true
             Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true) { _ in
                 DispatchQueue.main.async {

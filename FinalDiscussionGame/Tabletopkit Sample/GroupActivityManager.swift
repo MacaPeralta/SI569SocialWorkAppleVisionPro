@@ -69,7 +69,7 @@ class GroupActivityManager: ObservableObject {
     func configureSession(session: GroupSession<Activity>) async {
         // override default shareplay settings
         var configuration = SystemCoordinator.Configuration()
-        configuration.supportsGroupImmersiveSpace = true
+        //configuration.supportsGroupImmersiveSpace = true
         configuration.spatialTemplatePreference = .sideBySide
         await session.systemCoordinator?.configuration = configuration
     }

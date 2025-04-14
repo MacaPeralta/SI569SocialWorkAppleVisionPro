@@ -14,6 +14,7 @@
 		03B3F2A82DA84D7D00E3A5B6 /* Interview_2.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 03B3F2A72DA84D7D00E3A5B6 /* Interview_2.mp4 */; };
 		03B3F2AA2DA84D8700E3A5B6 /* Interview_3.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 03B3F2A92DA84D8700E3A5B6 /* Interview_3.mp4 */; };
 		03B3F2AC2DA84D8D00E3A5B6 /* Interview_4.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 03B3F2AB2DA84D8D00E3A5B6 /* Interview_4.mp4 */; };
+		03B3F3C02DAD650800E3A5B6 /* LibraryNoise.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 03B3F3BF2DAD650800E3A5B6 /* LibraryNoise.mp3 */; };
 		400FD9942D95304900C13368 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 400FD9932D95304500C13368 /* ContentView.swift */; };
 		465C8AAE2BF581000039460A /* GameObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 465C8AAD2BF581000039460A /* GameObserver.swift */; };
 		46BD421D2BCB1AA600F8CC03 /* GroupActivityManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46BD421C2BCB1AA600F8CC03 /* GroupActivityManager.swift */; };
@@ -43,6 +44,7 @@
 		03B3F2A72DA84D7D00E3A5B6 /* Interview_2.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = Interview_2.mp4; sourceTree = "<group>"; };
 		03B3F2A92DA84D8700E3A5B6 /* Interview_3.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = Interview_3.mp4; sourceTree = "<group>"; };
 		03B3F2AB2DA84D8D00E3A5B6 /* Interview_4.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = Interview_4.mp4; sourceTree = "<group>"; };
+		03B3F3BF2DAD650800E3A5B6 /* LibraryNoise.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = LibraryNoise.mp3; sourceTree = "<group>"; };
 		03C6EC322D6CF7D0007B0AA5 /* static_scene.scn */ = {isa = PBXFileReference; lastKnownFileType = file.bplist; name = static_scene.scn; path = "Tabletopkit Sample/Resources/TabletopGameSampleContent/Sources/TabletopGameSampleContent/TabletopGameSampleContent.rkassets/static_scene.scn"; sourceTree = "<group>"; };
 		3A53195BE3858298577DDD79 /* LICENSE.txt */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = LICENSE.txt; sourceTree = "<group>"; };
 		400FD9932D95304500C13368 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -144,6 +146,7 @@
 				03B3F2A72DA84D7D00E3A5B6 /* Interview_2.mp4 */,
 				03B3F2A92DA84D8700E3A5B6 /* Interview_3.mp4 */,
 				03B3F2AB2DA84D8D00E3A5B6 /* Interview_4.mp4 */,
+				03B3F3BF2DAD650800E3A5B6 /* LibraryNoise.mp3 */,
 				87903A792BC4C376003009AC /* Info.plist */,
 				9A6D62FA2DA8AC0200EF3785 /* IntroVid.mov */,
 				87903A7A2BC4C376003009AC /* Tabletopkit_SampleApp.swift */,
@@ -301,6 +304,7 @@
 				03B3F2A82DA84D7D00E3A5B6 /* Interview_2.mp4 in Resources */,
 				03B3F2A62DA84D7200E3A5B6 /* Interview_1.mp4 in Resources */,
 				03B3F2AA2DA84D8700E3A5B6 /* Interview_3.mp4 in Resources */,
+				03B3F3C02DAD650800E3A5B6 /* LibraryNoise.mp3 in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

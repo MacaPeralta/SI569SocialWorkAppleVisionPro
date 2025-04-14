@@ -197,12 +197,9 @@ struct ContentView: View {
                             showExitButton = false
                             notesButtonActive = true
                             viewController.appState = .discussion
-                            viewController.immersiveSpaceId = "360image"
-                            let _ = await openImmersiveSpace(id: viewController.immersiveSpaceId)
-                            await viewController.updateSpatialTemplate()
-                            print("immersive space id set to: \(viewController.immersiveSpaceId)")
+                            viewController.activityManager?.sendStateMessage(AppStateMessage(appState: viewController.appState))
+                            viewController.appStateUpdated = true
                         }
-                        
                     }
                     .background(Color.blue)
                     .foregroundColor(.white)
@@ -257,9 +254,8 @@ struct ContentView: View {
                                 showExitButton = false
                                 notesButtonActive = true
                                 viewController.appState = .discussion
-                                viewController.immersiveSpaceId = "360image"
-                                let _ = await openImmersiveSpace(id: viewController.immersiveSpaceId)
-                                await viewController.updateSpatialTemplate()
+                                viewController.activityManager?.sendStateMessage(AppStateMessage(appState: viewController.appState))
+                                viewController.appStateUpdated = true
                             }
                         }
                         .background(Color.blue)

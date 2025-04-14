@@ -16,7 +16,7 @@ def Xform "Root"
         references = @card_01.usdc@
     )
     {
-        rel material:binding = </Root/card_arm_01_mat> (
+        rel material:binding = </Root/Material> (
             bindMaterialAs = "strongerThanDescendants"
         )
         float3 xformOp:scale = (1, 1, 1)
@@ -28,12 +28,33 @@ def Xform "Root"
             bool enableMeshShadow = 1
             uniform token info:id = "RealityKit.GroundingShadow"
         }
+
+        over "Looks" (
+            active = false
+        )
+        {
+        }
     }
 
-    def "card_arm_01_mat" (
-        active = true
-        references = @card_arm_01_mat.usda@
+    def "card_leg_01_mat" (
+        active = false
+        references = @card_leg_01_mat.usda@
     )
+    {
+        over "UsdPreviewSurface"
+        {
+            delete color3f inputs:diffuseColor.connect = </Root/card_leg_01_mat/diffuseColor.outputs:rgb>
+            prepend color3f inputs:diffuseColor.connect = </Root/card_leg_01_mat/diffuseColor.outputs:rgb>
+        }
+
+        over "diffuseColor"
+        {
+            uniform token info:id = "UsdUVTexture"
+            asset inputs:file = @textures/cards/DQ5.png@
+        }
+    }
+
+    def Material "Material"
     {
         token inputs:frame:stPrimvarName = "st" (
             customData = {
@@ -42,34 +63,29 @@ def Xform "Root"
                 }
             }
         )
-        token outputs:mtlx:surface.connect = </Root/card_arm_01_mat/PreviewSurface.outputs:out>
-        token outputs:surface.connect = </Root/card_arm_01_mat/UsdPreviewSurface.outputs:surface>
+        token outputs:mtlx:surface
+        token outputs:realitykit:vertex
+        prepend token outputs:surface.connect = </Root/Material/UsdPreviewSurface.outputs:surface>
 
-        over "PreviewSurface" (
-            active = false
-        )
+        def Shader "UsdPreviewSurface"
         {
-        }
-
-        over "UsdPreviewSurface" (
-            active = true
-        )
-        {
+            uniform token info:id = "UsdPreviewSurface"
             color3f inputs:diffuseColor = (0.18, 0.18, 0.18)
-            color3f inputs:diffuseColor.connect = </Root/card_arm_01_mat/diffuseColor.outputs:rgb>
+            color3f inputs:diffuseColor.connect = </Root/Material/diffuseColor.outputs:rgb>
+            token outputs:surface
         }
 
         def Shader "diffuseColor"
         {
             uniform token info:id = "UsdUVTexture"
-            asset inputs:file = @textures/cards/Q2.png@
-            float2 inputs:st.connect = </Root/card_arm_01_mat/diffuseColor/TexCoordReader.outputs:result>
+            asset inputs:file = @textures/cards/DQ5.png@
+            float2 inputs:st.connect = </Root/Material/diffuseColor/TexCoordReader.outputs:result>
             color3f outputs:rgb
 
             def Shader "TexCoordReader"
             {
                 uniform token info:id = "UsdPrimvarReader_float2"
-                token inputs:varname.connect = </Root/card_arm_01_mat.inputs:frame:stPrimvarName>
+                token inputs:varname.connect = </Root/Material.inputs:frame:stPrimvarName>
                 float2 outputs:result
             }
         }

@@ -130,9 +130,11 @@ class GameSetup {
     func loadEntityEquipment() {
         // --- Normal/Full Cards ---
         let cardEntities = [
-            (try! ModelEntity.load(named: "card_arm_01_assembly", in: tabletopGameSampleContentBundle), Card.Classification.arm),
-            (try! ModelEntity.load(named: "card_flower_01_assembly", in: tabletopGameSampleContentBundle), Card.Classification.flower),
-            (try! ModelEntity.load(named: "card_leg_01_assembly", in: tabletopGameSampleContentBundle), Card.Classification.leg)
+            (try! ModelEntity.load(named: "DQ1", in: tabletopGameSampleContentBundle), Card.Classification.dq1),
+            (try! ModelEntity.load(named: "DQ2", in: tabletopGameSampleContentBundle), Card.Classification.dq2),
+            (try! ModelEntity.load(named: "DQ3", in: tabletopGameSampleContentBundle), Card.Classification.dq3),
+            (try! ModelEntity.load(named: "DQ4", in: tabletopGameSampleContentBundle), Card.Classification.dq4),
+            (try! ModelEntity.load(named: "DQ5", in: tabletopGameSampleContentBundle), Card.Classification.dq5)
         ]
 
         let audioResource = try! AudioFileResource.load(named: "/Root/pickUpCard_mp3",
@@ -140,34 +142,48 @@ class GameSetup {
                                                         in: tabletopGameSampleContentBundle)
 
         // For example, create 5 copies of each normal card:
-        for _ in 0..<5 {
-            for cardEntity in cardEntities {
-                let card = Card(
-                    id: EquipmentIdentifier(idGenerator.newId()),
-                    classification: cardEntity.1,
-                    parent: normalDeckGroup.id,  // <-- Assign to normalDeckGroup
-                    entity: cardEntity.0.clone(recursive: true),
-                    audioResource: audioResource
-                )
-                cards.append(card)
-                setup.add(equipment: card)
-            }
-        }
-
-        // --- Mini/Green Cards ---
-        let flowerEntity = try! ModelEntity.load(named: "miniCard", in: tabletopGameSampleContentBundle)
-        for _ in 0..<10 {
-            let miniCard = Card(
+        for cardEntity in cardEntities {
+            let card = Card(
                 id: EquipmentIdentifier(idGenerator.newId()),
-                classification: .flower,
-                parent: miniDeckGroup.id,  // <-- Assign to miniDeckGroup
-                entity: flowerEntity.clone(recursive: true),
+                classification: cardEntity.1,
+                parent: normalDeckGroup.id,
+                entity: cardEntity.0,
                 audioResource: audioResource
             )
-            miniCards.append(miniCard)
-            setup.add(equipment: miniCard)
+            cards.append(card)
+            setup.add(equipment: card)
         }
-    }
+
+            
+
+        // --- Mini/Green Cards ---
+        
+        
+        let flowerEntities = [
+            (try! ModelEntity.load(named: "IQ1", in: tabletopGameSampleContentBundle), Card.Classification.iq1),
+            (try! ModelEntity.load(named: "IQ2", in: tabletopGameSampleContentBundle), Card.Classification.iq2),
+            (try! ModelEntity.load(named: "IQ3", in: tabletopGameSampleContentBundle), Card.Classification.iq3),
+            (try! ModelEntity.load(named: "IQ4", in: tabletopGameSampleContentBundle), Card.Classification.iq4),
+            (try! ModelEntity.load(named: "IQ5", in: tabletopGameSampleContentBundle), Card.Classification.iq5),
+            (try! ModelEntity.load(named: "IQ6", in: tabletopGameSampleContentBundle), Card.Classification.iq6)
+        ]
+
+        
+        // For example, create 5 copies of each normal card:
+        for flowerEntity in flowerEntities {
+            let card = Card(
+                id: EquipmentIdentifier(idGenerator.newId()),
+                classification: flowerEntity.1,
+                parent: miniDeckGroup.id,
+                entity: flowerEntity.0,
+                audioResource: audioResource
+            )
+            miniCards.append(card)
+            setup.add(equipment: card)
+        }
+        
+        
+        }
 
 }
 

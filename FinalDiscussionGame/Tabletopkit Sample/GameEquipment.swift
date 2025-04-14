@@ -252,6 +252,10 @@ struct Card: EntityEquipment {
         case arm
         case leg
         case flower
+        case dq1, dq2, dq3, dq4, dq5
+        case iq1, iq2, iq3, iq4, iq5, iq6
+        //case dq
+        //case iq
     }
 
     let id: ID

@@ -33,14 +33,57 @@ def Xform "Root"
             active = false
         )
         {
+            over "card_flower_usdPreviewSurface4SG"
+            {
+                token outputs:mtlx:surface
+                token outputs:realitykit:vertex
+            }
         }
     }
 
-    def "card_flower_01_mat" (
+    def "card_arm_01_mat" (
         active = false
-        references = @card_flower_01_mat.usda@
+        references = @card_arm_01_mat.usda@
     )
     {
+        token inputs:frame:stPrimvarName = "st" (
+            customData = {
+                dictionary realitykit = {
+                    bool hide = 1
+                }
+            }
+        )
+        token outputs:mtlx:surface.connect = </Root/card_arm_01_mat/PreviewSurface.outputs:out>
+        token outputs:surface.connect = </Root/card_arm_01_mat/UsdPreviewSurface.outputs:surface>
+
+        over "PreviewSurface" (
+            active = false
+        )
+        {
+        }
+
+        over "UsdPreviewSurface" (
+            active = true
+        )
+        {
+            color3f inputs:diffuseColor = (0.18, 0.18, 0.18)
+            color3f inputs:diffuseColor.connect = </Root/card_arm_01_mat/diffuseColor.outputs:rgb>
+        }
+
+        def Shader "diffuseColor"
+        {
+            uniform token info:id = "UsdUVTexture"
+            asset inputs:file = @textures/cards/DQ1.png@
+            float2 inputs:st.connect = </Root/card_arm_01_mat/diffuseColor/TexCoordReader.outputs:result>
+            color3f outputs:rgb
+
+            def Shader "TexCoordReader"
+            {
+                uniform token info:id = "UsdPrimvarReader_float2"
+                token inputs:varname.connect = </Root/card_arm_01_mat.inputs:frame:stPrimvarName>
+                float2 outputs:result
+            }
+        }
     }
 
     def Material "Material"
@@ -54,8 +97,7 @@ def Xform "Root"
         )
         token outputs:mtlx:surface
         token outputs:realitykit:vertex
-        token outputs:surface.connect = </Root/Material/UsdPreviewSurface.outputs:surface>
-        float2 ui:nodegraph:realitykit:subgraphOutputs:pos = (0, 110.5)
+        prepend token outputs:surface.connect = </Root/Material/UsdPreviewSurface.outputs:surface>
 
         def Shader "UsdPreviewSurface"
         {
@@ -68,7 +110,7 @@ def Xform "Root"
         def Shader "diffuseColor"
         {
             uniform token info:id = "UsdUVTexture"
-            asset inputs:file = @textures/cards/card_flower_BaseColor 2.png@
+            asset inputs:file = @textures/cards/IQ1.png@
             float2 inputs:st.connect = </Root/Material/diffuseColor/TexCoordReader.outputs:result>
             color3f outputs:rgb
 

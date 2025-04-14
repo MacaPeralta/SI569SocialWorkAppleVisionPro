@@ -579,6 +579,8 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 98C998E818430FA5BFAE3F67 /* SampleCode.xcconfig */;
 			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CLANG_ENABLE_OBJC_WEAK = YES;
 				CODE_SIGN_ENTITLEMENTS = "Tabletopkit Sample/Tabletopkit Sample.entitlements";
 				CODE_SIGN_IDENTITY = "Apple Development";
@@ -589,13 +591,14 @@
 				EXCLUDED_RECURSIVE_SEARCH_PATH_SUBDIRECTORIES = "*.nib *.lproj *.framework *.gch *.xcode* (*) .DS_Store CVS .svn .git .hg *.pbproj *.pbxproj";
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "$(TARGET_NAME)/Info.plist";
-				INFOPLIST_KEY_CFBundleDisplayName = TabletopkitSample;
+				INFOPLIST_KEY_CFBundleDisplayName = "Social Sphere";
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.example.SocialWork-card.tabletopkitsample--SAMPLE-CODE-DISAMBIGUATOR-";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SDKROOT = xros;
 				USE_HEADERMAP = NO;
+				XROS_DEPLOYMENT_TARGET = 2.0;
 			};
 			name = Debug;
 		};
@@ -603,6 +606,8 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 98C998E818430FA5BFAE3F67 /* SampleCode.xcconfig */;
 			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CLANG_ENABLE_OBJC_WEAK = YES;
 				CODE_SIGN_ENTITLEMENTS = "Tabletopkit Sample/Tabletopkit Sample.entitlements";
 				CODE_SIGN_IDENTITY = "Apple Development";
@@ -613,13 +618,14 @@
 				EXCLUDED_RECURSIVE_SEARCH_PATH_SUBDIRECTORIES = "*.nib *.lproj *.framework *.gch *.xcode* (*) .DS_Store CVS .svn .git .hg *.pbproj *.pbxproj";
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "$(TARGET_NAME)/Info.plist";
-				INFOPLIST_KEY_CFBundleDisplayName = TabletopkitSample;
+				INFOPLIST_KEY_CFBundleDisplayName = "Social Sphere";
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.example.SocialWork-card.tabletopkitsample--SAMPLE-CODE-DISAMBIGUATOR-";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SDKROOT = xros;
 				USE_HEADERMAP = NO;
+				XROS_DEPLOYMENT_TARGET = 2.0;
 			};
 			name = Release;
 		};

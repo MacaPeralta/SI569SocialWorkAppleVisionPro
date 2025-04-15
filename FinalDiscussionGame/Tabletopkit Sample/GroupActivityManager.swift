@@ -81,7 +81,7 @@ class GroupActivityManager: ObservableObject {
         }
         
         var configuration = SystemCoordinator.Configuration()
-        configuration.supportsGroupImmersiveSpace = true
+        //configuration.supportsGroupImmersiveSpace = true
         configuration.spatialTemplatePreference = isGroupSession ? .surround : .custom(IndividualTemplate())
         await session.systemCoordinator?.configuration = configuration
     }

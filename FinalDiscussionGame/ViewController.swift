@@ -52,7 +52,8 @@ class ViewController {
         url: Bundle.main.url(forResource: "IntroVid", withExtension: "mov")!
     )
     var introVideoPlayerEntity: ModelEntity? = nil
-    
+    var skySphereEntity: ModelEntity? = nil
+    var skySphereMaterial: Material? = nil
     
     var game: Game?
     var activityManager: GroupActivityManager?
@@ -73,6 +74,27 @@ class ViewController {
             )
             videoEntity.position = [0, -0.4, 0.4]
             introVideoPlayerEntity = videoEntity
+        }
+    }
+    
+    @MainActor
+    func loadSkySphereMaterial() async {
+        if let mp4URL = Bundle.main.url(forResource: immersiveSpaceId, withExtension: "mp4") {
+            // ✅ Render 360 Video
+            let player = AVPlayer(url: mp4URL)
+            skySphereMaterial = VideoMaterial(avPlayer: player)
+            player.play()
+            print("🎬 Playing 360 video: \(immersiveSpaceId).mp4")
+
+        // 2. Else try loading an image texture named after immersiveSpaceId
+        } else if let texture = try? await TextureResource(named: immersiveSpaceId) {
+            // ✅ Render image
+            var material = UnlitMaterial()
+            material.color = .init(texture: .init(texture))
+            skySphereMaterial = material
+            print("🖼️ Displaying image sphere: \(immersiveSpaceId)")
+        } else {
+            print("❌ No matching .mp4 or image for: \(immersiveSpaceId)")
         }
     }
 }

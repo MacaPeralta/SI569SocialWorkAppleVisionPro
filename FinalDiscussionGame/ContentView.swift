@@ -693,6 +693,9 @@ struct ContentView: View {
 
                     // Set immersive ID based on index: Interview_1, Interview_2, ...
                     viewController.immersiveSpaceId = "Interview_\(index + 1)"
+                    Task {
+                        await viewController.loadSkySphereMaterial()
+                    }
 
 //                    Task {
 //                        _ = await openImmersiveSpace(id: viewController.immersiveSpaceId)
@@ -869,6 +872,9 @@ struct ContentView: View {
                     selectedRoom = "Living Room"
                     if viewController.immersiveSpaceId != "360image"{
                         viewController.immersiveSpaceId = "LivingRoom_360"
+                        Task {
+                            await viewController.loadSkySphereMaterial()
+                        }
                     }
                     
                     print("Immersive Space ID set to: \(viewController.immersiveSpaceId)")
@@ -890,6 +896,9 @@ struct ContentView: View {
                     selectedRoom = "Kitchen"
                     if viewController.immersiveSpaceId != "360image"{
                         viewController.immersiveSpaceId = "Kitchen_360"
+                        Task {
+                            await viewController.loadSkySphereMaterial()
+                        }
                     }
                     
                     print("Immersive Space ID set to: \(viewController.immersiveSpaceId)")
@@ -911,6 +920,9 @@ struct ContentView: View {
                     selectedRoom = "Bathroom"
                     if viewController.immersiveSpaceId != "360image"{
                         viewController.immersiveSpaceId = "Bathroom_360"
+                        Task {
+                            await viewController.loadSkySphereMaterial()
+                        }
                     }
                 }) {
                     Label("Bathroom", systemImage: "bathtub.fill")
@@ -930,8 +942,10 @@ struct ContentView: View {
                     selectedRoom = "Bedroom"
                     if viewController.immersiveSpaceId != "360image"{
                         viewController.immersiveSpaceId = "Bedroom_360"
+                        Task {
+                            await viewController.loadSkySphereMaterial()
+                        }
                     }
-                    
                 }) {
                     Label("Bedroom", systemImage: "bed.double.fill")
                         .frame(maxWidth: .infinity)

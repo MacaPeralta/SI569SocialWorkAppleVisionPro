@@ -104,6 +104,7 @@ struct GameView: View {
                             Task {
                                 await viewController.updateSpatialTemplate()
                                 viewController.immersiveSpaceId = "360image"
+                                await viewController.loadSkySphereMaterial()
                                 openWindow(id: "CheckList")
                                 let _ = await openImmersiveSpace(id: viewController.immersiveSpaceId)
                             }
@@ -111,6 +112,7 @@ struct GameView: View {
                         } else if viewController.appState == .homeInspection {
                             Task {
                                 viewController.immersiveSpaceId = "LivingRoom_360"
+                                await viewController.loadSkySphereMaterial()
                                 print("Enter home inspection")
                                 await viewController.game?.showNormalDeck()
                                 await viewController.updateSpatialTemplate()
@@ -120,6 +122,7 @@ struct GameView: View {
                             Task {
                                 await viewController.updateSpatialTemplate()
                                 viewController.immersiveSpaceId = "360image"
+                                await viewController.loadSkySphereMaterial()
                                 //let _ = await openImmersiveSpace(id: viewController.immersiveSpaceId)
                             }
                             viewController.appStateUpdated = false

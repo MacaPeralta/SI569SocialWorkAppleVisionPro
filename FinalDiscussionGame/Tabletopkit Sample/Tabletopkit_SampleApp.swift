@@ -118,9 +118,9 @@ struct GameView: View {
                             viewController.appStateUpdated = false
                         } else if viewController.appState == .discussion {
                             Task {
+                                await viewController.updateSpatialTemplate()
                                 viewController.immersiveSpaceId = "360image"
                                 //let _ = await openImmersiveSpace(id: viewController.immersiveSpaceId)
-                                await viewController.updateSpatialTemplate()
                             }
                             viewController.appStateUpdated = false
                         }

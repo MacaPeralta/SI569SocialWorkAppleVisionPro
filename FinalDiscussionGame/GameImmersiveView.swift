@@ -41,6 +41,7 @@ struct GameImmersiveView: View {
             RealityView { content in
                 let sphere = ModelEntity(mesh: .generateSphere(radius: 1000))
                 sphere.scale = [-1, 1, 1]
+                sphere.transform.rotation = simd_quatf(angle: .pi / -2, axis: [0, 1, 0])
                 viewController.skySphereEntity = sphere
                 viewController.skySphereEntity?.model?.materials = []
                 content.add(sphere)
@@ -51,16 +52,16 @@ struct GameImmersiveView: View {
                 
                 sphere.model?.materials = [UnlitMaterial(color: .darkGray)]
                 
-//                if viewController.immersiveSpaceId == "360image" {
+                if viewController.immersiveSpaceId == "360image" {
 //                    sphere.transform.rotation = simd_quatf(angle: .pi / 2, axis: [0, 1, 0])
-//                    audioManager.playLoopingAudio(named: "LibraryNoise")  // 🔊 Start audio
-//                } else if viewController.immersiveSpaceId == "Kitchen_360" {
+                    audioManager.playLoopingAudio(named: "LibraryNoise")  // 🔊 Start audio
+                } else if viewController.immersiveSpaceId == "Kitchen_360" {
 //                    sphere.transform.rotation = simd_quatf(angle: .pi / 2, axis: [0, 1, 0])
-//                    audioManager.stop()
-//                } else {
+                    audioManager.stop()
+                } else {
 //                    sphere.transform.rotation = simd_quatf(angle: .pi / -2, axis: [0, 1, 0])
-//                    audioManager.stop()
-//                }
+                    audioManager.stop()
+                }
                 
                 sphere.model?.materials = [material]
             }

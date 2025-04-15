@@ -39,7 +39,6 @@ struct GameImmersiveView: View {
     var body: some View {
         ZStack {
             RealityView { content in
-
                 // 1. Try loading a .mp4
                 if let mp4URL = Bundle.main.url(forResource: viewController.immersiveSpaceId, withExtension: "mp4") {
                     // ✅ Render 360 Video

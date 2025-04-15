@@ -149,7 +149,7 @@ struct ContentView: View {
                                     
                                     //TIMER
                                     
-                                    if viewController.immersiveSpaceId != "360image"{
+                                    if viewController.immersiveSpaceId != "360image" && viewController.immersiveSpaceId != "360image_new"{
                                         // Timer display
                                         HStack {
                                             
@@ -180,7 +180,7 @@ struct ContentView: View {
                             
                             
                             //CHECKLIST PROGRESS BAR
-                            if viewController.immersiveSpaceId != "360image"{
+                            if viewController.immersiveSpaceId != "360image" && viewController.immersiveSpaceId != "360image_new"{
                                 ZStack {
                                     Capsule()
                                         .fill(Color.gray.opacity(0.3))
@@ -214,7 +214,7 @@ struct ContentView: View {
                     .shadow(radius: 10)
                     
                     // Show the Exit button when the timer reaches 0
-                    if showExitButton &&  viewController.immersiveSpaceId != "360image"{
+                    if showExitButton &&  viewController.immersiveSpaceId != "360image" && viewController.immersiveSpaceId != "360image_new"{
                         Button("Exit Home Inspection") {
                             Task {
                             showExitButton = false
@@ -290,7 +290,7 @@ struct ContentView: View {
                         .shadow(radius: 10)
                         
                         // Show the Exit button when the timer reaches 0
-                        if showExitButton &&  viewController.immersiveSpaceId != "360image"{
+                        if showExitButton &&  viewController.immersiveSpaceId != "360image" && viewController.immersiveSpaceId != "360image_new"{
                             Button("Exit Home Inspection") {
                                 Task {
                                 showExitButton = false
@@ -382,7 +382,7 @@ struct ContentView: View {
                 
                 //NOTES BUTTON TOGGLE
                 HStack{
-                    if viewController.immersiveSpaceId != "360image" {
+                    if viewController.immersiveSpaceId != "360image" && viewController.immersiveSpaceId != "360image_new"{
                         Spacer()
                         Button(action: {
                             notesButtonActive.toggle()
@@ -641,7 +641,7 @@ struct ContentView: View {
                     .padding()
                     .foregroundColor(.black)
                 
-                if viewController.immersiveSpaceId != "360image"{
+                if viewController.immersiveSpaceId != "360image" && viewController.immersiveSpaceId != "360image_new"{
                     Spacer()
                     Button(action: {
                         notesButtonActive.toggle()
@@ -867,7 +867,7 @@ struct ContentView: View {
                 // Living Room Button with Icon
                 Button(action: {
                     selectedRoom = "Living Room"
-                    if viewController.immersiveSpaceId != "360image"{
+                    if viewController.immersiveSpaceId != "360image" && viewController.immersiveSpaceId != "360image_new"{
                         viewController.immersiveSpaceId = "LivingRoom_360"
                     }
                     
@@ -888,7 +888,7 @@ struct ContentView: View {
                 // Kitchen Button with Icon
                 Button(action: {
                     selectedRoom = "Kitchen"
-                    if viewController.immersiveSpaceId != "360image"{
+                    if viewController.immersiveSpaceId != "360image" && viewController.immersiveSpaceId != "360image_new"{
                         viewController.immersiveSpaceId = "Kitchen_360"
                     }
                     
@@ -909,7 +909,7 @@ struct ContentView: View {
                 // Bathroom Button with Icon
                 Button(action: {
                     selectedRoom = "Bathroom"
-                    if viewController.immersiveSpaceId != "360image"{
+                    if viewController.immersiveSpaceId != "360image" && viewController.immersiveSpaceId != "360image_new"{
                         viewController.immersiveSpaceId = "Bathroom_360"
                     }
                 }) {
@@ -928,7 +928,7 @@ struct ContentView: View {
                 // Bedroom Button with Icon
                 Button(action: {
                     selectedRoom = "Bedroom"
-                    if viewController.immersiveSpaceId != "360image"{
+                    if viewController.immersiveSpaceId != "360image" && viewController.immersiveSpaceId != "360image_new"{
                         viewController.immersiveSpaceId = "Bedroom_360"
                     }
                     

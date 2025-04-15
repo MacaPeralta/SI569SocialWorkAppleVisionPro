@@ -15,7 +15,7 @@ import QuickLook
 struct SampleApp: App {
     @State private var immersionStyle: ImmersionStyle = .full
     @State private var immersiveSpaceID: String = "360image"
-    @State private var checklistWindowWidth: CGFloat = 675
+    @State private var checklistWindowWidth: CGFloat = 700
     @State private var showNotesPanel: Bool = false
     
     @Environment(\.openImmersiveSpace) var openImmersiveSpace
@@ -33,7 +33,7 @@ struct SampleApp: App {
         
         WindowGroup(id: "CheckList") {
             ContentView(checklistWindowWidth: $checklistWindowWidth, showNotesPanel: $showNotesPanel)
-                .frame(width: checklistWindowWidth, height: 950)
+                .frame(width: checklistWindowWidth, height: 975)
                 .environment(viewController)
         }
         .windowResizability(.contentSize)
@@ -127,7 +127,7 @@ struct GameView: View {
                     }
                 }
                 .toolbar() {
-                    if (viewController.appState != .homeInspection) {
+                    if (viewController.appState != .homeInspection && viewController.appState != .discussion) {
                         GameToolbar(
                             viewController: viewController)
                     }
@@ -189,11 +189,12 @@ struct GameToolbar: ToolbarContent {
                     viewController.activityManager?.sendStateMessage(AppStateMessage(appState: viewController.appState))
                 }
             case .intro, .discussion:
-//                Button("Reset", systemImage: "arrow.counterclockwise") {
-//                    viewController.game!.resetGame()
-//                }
-//                Spacer()
-                // 2card sets is causing reset issues, so let's remove it
+                Button("Home Inspection") {
+                    viewController.appState = .homeInspection
+                    viewController.appStateUpdated = true
+                    viewController.activityManager?.sendStateMessage(AppStateMessage(appState: viewController.appState))
+                }
+            case .discussion:
                 Button("Home Inspection") {
                     viewController.appState = .homeInspection
                     viewController.appStateUpdated = true

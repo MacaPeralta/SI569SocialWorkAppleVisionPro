@@ -165,10 +165,10 @@ struct GameToolbar: ToolbarContent {
                 Button("Start") {
                     Task {
                          _ = try! await Activity().activate()
-                        viewController.appState = .instructorVideo
-                        viewController.appStateUpdated = true
-                        viewController.activityManager?.sendStateMessage(AppStateMessage(appState: viewController.appState))
                     }
+                    viewController.appState = .instructorVideo
+                    viewController.appStateUpdated = true
+                    viewController.activityManager?.sendStateMessage(AppStateMessage(appState: viewController.appState))
                 }
             case .instructorVideo:
                 Button("Play Intro") {

@@ -68,7 +68,7 @@ struct GameImmersiveView: View {
                     if viewController.immersiveSpaceId == "360image" {
                         sphere.transform.rotation = simd_quatf(angle: .pi / 2, axis: [0, 1, 0])
                         audioManager.playLoopingAudio(named: "LibraryNoise")  // 🔊 Start audio
-                    } else if viewController.immersiveSpaceId == "Kitchen_360_new" {
+                    } else if viewController.immersiveSpaceId == "Kitchen_360" {
                         sphere.transform.rotation = simd_quatf(angle: .pi / 2, axis: [0, 1, 0])
                         audioManager.stop()
 

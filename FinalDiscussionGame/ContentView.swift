@@ -83,25 +83,6 @@ struct ContentView: View {
                             .shadow(radius: 10)
                     }
                 }
-                
-                // Show the Exit button when the timer reaches 0
-                if showExitButton &&  viewController.immersiveSpaceId != "360image"{
-                    Button("Exit Home Inspection") {
-                        Task {
-                            showExitButton = false
-                            notesButtonActive = true
-                            viewController.appState = .discussion
-                            viewController.activityManager?.sendStateMessage(AppStateMessage(appState: viewController.appState))
-                            viewController.appStateUpdated = true
-                        }
-                    }
-                    .background(Color.blue)
-                    .foregroundColor(.white)
-                    .cornerRadius(8)
-                    .padding()
-                } else {
-                    RoomSelectionToolbar(viewController: _viewController, selectedRoom: $selectedRoom)
-                }
             }
         }else{
             HStack{

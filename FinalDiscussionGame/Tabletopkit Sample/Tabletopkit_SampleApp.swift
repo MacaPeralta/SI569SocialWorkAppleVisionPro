@@ -104,13 +104,13 @@ struct GameView: View {
                             Task {
                                 await viewController.updateSpatialTemplate()
                                 viewController.immersiveSpaceId = "360image"
+                                openWindow(id: "CheckList")
                                 let _ = await openImmersiveSpace(id: viewController.immersiveSpaceId)
                             }
                             viewController.appStateUpdated = false
                         } else if viewController.appState == .homeInspection {
                             Task {
                                 viewController.immersiveSpaceId = "LivingRoom_360"
-                                openWindow(id: "CheckList")
                                 print("Enter home inspection")
                                 await viewController.game?.showNormalDeck()
                                 await viewController.updateSpatialTemplate()

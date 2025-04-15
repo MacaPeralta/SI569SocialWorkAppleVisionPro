@@ -694,9 +694,9 @@ struct ContentView: View {
                     // Set immersive ID based on index: Interview_1, Interview_2, ...
                     viewController.immersiveSpaceId = "Interview_\(index + 1)"
 
-                    Task {
-                        _ = await openImmersiveSpace(id: viewController.immersiveSpaceId)
-                    }
+//                    Task {
+//                        _ = await openImmersiveSpace(id: viewController.immersiveSpaceId)
+//                    }
                 }) {
                     Text(question)
               
